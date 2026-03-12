@@ -1,71 +1,158 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import MonsterCard from './MonsterCard';
+
+gsap.registerPlugin(ScrollTrigger);
+
+const characters = [
+  { 
+    variant: 'zeek', 
+    title: "Confused? Need Answers?", 
+    subtitle: "Zeek represents patients who feel overwhelmed by dental information. He turns confusion into clarity.", 
+    image: "/assets/characters/zeek-placeholder.jpg",
+    youtubeId: "GYl4OuSHAsU", 
+    borderColor: "border-plasma-blue/30",
+    shadowColor: "shadow-[0_0_30px_rgba(0,240,255,0.2)]",
+    textColor: "text-plasma-blue",
+    stats: { type: "CLARITY", confidence: "98.2%" }
+  },
+  { 
+    variant: 'olivia', 
+    title: "Avoid & Cover", 
+    subtitle: "Olivia represents patients who hide their smile. She shows how cosmetic dentistry rebuilds confidence.", 
+    image: "/assets/characters/olivia-placeholder.jpg",
+    youtubeId: "H2ebRDGQwpE", 
+    borderColor: "border-plasma-pink/30",
+    shadowColor: "shadow-[0_0_30px_rgba(255,0,127,0.2)]",
+    textColor: "text-plasma-pink",
+    stats: { type: "COSMETIC", confidence: "94.5%" }
+  },
+  { 
+    variant: 'molar', 
+    title: "In a Glass?", 
+    subtitle: "Molar represents patients living with traditional dentures who want implant-supported stability.", 
+    image: "/assets/characters/molar-placeholder.jpg",
+    youtubeId: "9QG4IF25Qu8", 
+    borderColor: "border-plasma-green/30",
+    shadowColor: "shadow-[0_0_30px_rgba(0,255,102,0.2)]",
+    textColor: "text-plasma-green",
+    stats: { type: "IMPLANTS", confidence: "99.9%" }
+  },
+  { 
+    variant: 'toothy', 
+    title: "Adhesive Confidence", 
+    subtitle: "Toothy helps patients understand the difference between temporary solutions and permanent implants.", 
+    image: "/assets/characters/toothy-placeholder.jpeg",
+    youtubeId: "", // Empty until provided
+    borderColor: "border-plasma-orange/30",
+    shadowColor: "shadow-[0_0_30px_rgba(255,85,0,0.2)]",
+    textColor: "text-plasma-orange",
+    stats: { type: "PERMANENT", confidence: "100%" }
+  }
+];
 
 export default function TemplateStack() {
   const containerRef = useRef(null);
-
+  
   useEffect(() => {
     let ctx = gsap.context(() => {
-      const cards = gsap.utils.toArray('.monster-card');
+      const cards = gsap.utils.toArray('.stack-card');
       
       cards.forEach((card, i) => {
+        // Sticky pinning for stacking effect
         ScrollTrigger.create({
           trigger: card,
-          start: `top top+=${100 + (i * 20)}`,
-          endTrigger: containerRef.current,
-          end: `bottom bottom-=${100 - (i * 20)}`,
+          start: `top top+=80`, 
+          endTrigger: ".stack-container",
+          end: `bottom bottom-=${(cards.length - i) * 20}`,
           pin: true,
           pinSpacing: false,
-          scrub: 1,
+          scrub: true,
         });
 
+        // Scale down previous cards
         if (i > 0) {
-          gsap.fromTo(card, 
-            { scale: 0.8, opacity: 0, y: 50 },
-            { 
-              scale: 1 - ((cards.length - 1 - i) * 0.05), 
-              opacity: 1, 
-              y: 0,
-              ease: "none",
-              scrollTrigger: {
-                trigger: card,
-                start: `top center`,
-                end: `top top+=${100 + (i * 20)}`,
-                scrub: true
-              }
+          gsap.to(cards[i - 1], {
+            scale: 0.95 - (0.05 * i),
+            opacity: 0.5,
+            y: -20,
+            scrollTrigger: {
+              trigger: card,
+              start: 'top center',
+              end: 'top top+=80',
+              scrub: true,
             }
-          );
+          });
         }
       });
+      
     }, containerRef);
     
     return () => ctx.revert();
   }, []);
 
-  const templates = [
-    { variant: 'zeek', title: "Confused? Need Answers?", subtitle: "Maximize FAQ engagement, explain complex procedures.", color: "bg-blue-600", image: "/assets/characters/zeek.png" },
-    { variant: 'olivia', title: "Avoid & Cover", subtitle: "Solve cosmetic anxiety with reassuring visuals.", color: "bg-pink-500", image: "/assets/characters/olivia.png" },
-    { variant: 'molar', title: "In a Glass?", subtitle: "The clean transition from dentures to full implants.", color: "bg-emerald-500", image: "/assets/characters/molar.jpg" },
-    { variant: 'toothy', title: "Adhesive vs Stability", subtitle: "Build confidence in permanent stability.", color: "bg-orange-500", image: "/assets/characters/toothy.jpg" }
-  ];
-
   return (
-    <section ref={containerRef} className="relative w-full py-32 px-6 flex flex-col items-center min-h-[400vh]">
-      <div className="w-full max-w-lg mb-32 z-10 text-center">
-        <h2 className="text-4xl md:text-6xl font-sans font-bold mb-4 uppercase tracking-tight">The Roster</h2>
-        <p className="text-xl opacity-80 font-serif italic">Meet the characters driving your campaigns.</p>
+    <section ref={containerRef} id="stack" className="relative w-full py-24 pb-[40vh] z-20 bg-obsidian">
+      
+      <div className="text-center mb-16 max-w-4xl mx-auto px-6">
+        <h2 className="text-xs font-mono text-plasma-purple uppercase tracking-[0.3em] mb-4">Section B</h2>
+        <h3 className="text-4xl md:text-6xl font-serif italic text-ghost mb-6">The Template Protocol</h3>
+        <p className="text-ghost/70 font-sans text-lg max-w-xl mx-auto leading-relaxed">
+          Four distinct modules engineered to address critical patient barriers.
+        </p>
       </div>
 
-      <div className="relative w-full max-w-sm md:max-w-md aspect-[9/16] mt-10">
-        {templates.map((template, index) => (
+      <div className="stack-container relative w-full max-w-5xl mx-auto px-4 md:px-8">
+        {characters.map((char, index) => (
           <div 
-            key={template.variant} 
-            className="monster-card absolute top-0 left-0 w-full h-full will-change-transform"
-            style={{ zIndex: index }}
+            key={char.variant} 
+            className={`stack-card relative w-full min-h-[70vh] mb-[10vh] flex flex-col md:flex-row items-center rounded-3xl overflow-hidden bg-obsidian/90 backdrop-blur-3xl border border-t-white/10 ${char.borderColor} ${char.shadowColor} origin-top`}
+            style={{ zIndex: index * 10 }}
           >
-            <MonsterCard {...template} index={index} />
+            {/* Visual Column - Strict 9:16 Aspect Ratio */}
+            <div className="w-full md:w-1/2 flex items-center justify-center p-8 md:p-12 h-[50vh] md:h-full border-b md:border-b-0 md:border-r border-white/5 bg-black/40">
+              <div className="relative w-full max-h-full aspect-[9/16] rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10 mx-auto">
+                <img 
+                  src={char.image} 
+                  alt={char.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                {char.youtubeId && (
+                  <div className="absolute inset-0 pointer-events-auto overflow-hidden">
+                    <iframe 
+                      src={`https://www.youtube.com/embed/${char.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${char.youtubeId}&controls=0&modestbranding=1&playsinline=1&rel=0`}
+                      className="w-full h-full scale-[1.3] opacity-100"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    ></iframe>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Content Column */}
+            <div className="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-center text-left">
+              <span className={`text-[10px] font-mono uppercase tracking-[0.2em] font-bold ${char.textColor} mb-4 block`}>
+                Subject: {char.variant}
+              </span>
+              <h3 className="text-4xl md:text-5xl font-serif italic text-ghost tracking-tight mb-6 mt-2">
+                {char.title}
+              </h3>
+              <p className="text-lg text-ghost/70 font-sans leading-relaxed mb-10">
+                {char.subtitle}
+              </p>
+              
+              <div className="grid grid-cols-2 gap-8 border-t border-white/10 pt-8 mt-auto">
+                <div>
+                  <div className="text-[10px] font-mono text-ghost/40 uppercase tracking-widest mb-2">Target</div>
+                  <div className="font-sans text-xl font-bold tracking-tight text-ghost">{char.stats.type}</div>
+                </div>
+                <div>
+                  <div className="text-[10px] font-mono text-ghost/40 uppercase tracking-widest mb-2">Efficacy</div>
+                  <div className={`font-mono text-xl font-bold ${char.textColor}`}>{char.stats.confidence}</div>
+                </div>
+              </div>
+            </div>
+
           </div>
         ))}
       </div>

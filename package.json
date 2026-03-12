@@ -12,6 +12,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "@fontsource/instrument-serif": "^5.2.8",
     "@fontsource/inter": "^5.2.8",
     "@fontsource/space-mono": "^5.2.9",
     "@gsap/react": "^2.1.1",
