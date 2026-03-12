@@ -58,32 +58,54 @@ export default function TemplateStack() {
     let ctx = gsap.context(() => {
       const cards = gsap.utils.toArray('.stack-card');
       
-      cards.forEach((card, i) => {
-        // Sticky pinning for stacking effect
-        ScrollTrigger.create({
-          trigger: card,
-          start: `top top+=80`, 
-          endTrigger: ".stack-container",
-          end: `bottom bottom-=${(cards.length - i) * 20}`,
-          pin: true,
-          pinSpacing: false,
-          scrub: true,
-        });
+      let mm = gsap.matchMedia();
 
-        // Scale down previous cards
-        if (i > 0) {
-          gsap.to(cards[i - 1], {
-            scale: 0.95 - (0.05 * i),
-            opacity: 0.5,
-            y: -20,
+      // Desktop/Tablet Stacking Effect
+      mm.add("(min-width: 768px)", () => {
+        cards.forEach((card, i) => {
+          // Sticky pinning for stacking effect
+          ScrollTrigger.create({
+            trigger: card,
+            start: `top top+=80`, 
+            endTrigger: ".stack-container",
+            end: `bottom bottom-=${(cards.length - i) * 20}`,
+            pin: true,
+            pinSpacing: false,
+            scrub: true,
+          });
+
+          // Scale down previous cards
+          if (i > 0) {
+            gsap.to(cards[i - 1], {
+              scale: 0.95 - (0.05 * i),
+              opacity: 0.5,
+              y: -20,
+              scrollTrigger: {
+                trigger: card,
+                start: 'top center',
+                end: 'top top+=80',
+                scrub: true,
+              }
+            });
+          }
+        });
+      });
+
+      // Mobile Standard Scrolling with slight fade-ins
+      mm.add("(max-width: 767px)", () => {
+        cards.forEach((card) => {
+          gsap.from(card, {
+            opacity: 0,
+            y: 30,
+            duration: 0.8,
+            ease: "power2.out",
             scrollTrigger: {
               trigger: card,
-              start: 'top center',
-              end: 'top top+=80',
-              scrub: true,
+              start: "top bottom-=50",
+              toggleActions: "play none none reverse"
             }
           });
-        }
+        });
       });
       
     }, containerRef);
@@ -123,6 +145,7 @@ export default function TemplateStack() {
                       src={`https://www.youtube.com/embed/${char.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${char.youtubeId}&controls=0&modestbranding=1&playsinline=1&rel=0`}
                       className="absolute top-1/2 left-1/2 w-[135%] h-[135%] max-w-none -translate-x-1/2 -translate-y-1/2"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      loading="lazy"
                     ></iframe>
                   </div>
                 )}
