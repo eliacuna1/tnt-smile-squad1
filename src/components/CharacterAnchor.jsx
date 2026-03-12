@@ -13,6 +13,7 @@ export default function CharacterAnchor() {
       title: "Confused? Need Answers?", 
       subtitle: "Zeek represents patients who feel overwhelmed by dental information or unsure where to begin. Through simple stories and familiar situations, Zeek helps explain common procedures, answers frequent questions, and turns confusion into clarity.", 
       image: "/assets/characters/Confused? Need Answers?.jpg",
+      youtubeId: "GYl4OuSHAsU", 
       theme: "bg-blue-900",
       stats: { type: "CLARITY", confidence: "98.2%" }
     },
@@ -21,6 +22,7 @@ export default function CharacterAnchor() {
       title: "Avoid and Cover", 
       subtitle: "Olivia represents patients who hide their smile or avoid photos because they feel self conscious about cosmetic issues. Her story shows how modern cosmetic dentistry can rebuild confidence and help patients feel comfortable sharing their smile again.", 
       image: "/assets/characters/Avoid and Cover.jpg",
+      youtubeId: "H2ebRDGQwpE", 
       theme: "bg-pink-900",
       stats: { type: "COSMETIC", confidence: "94.5%" }
     },
@@ -29,6 +31,7 @@ export default function CharacterAnchor() {
       title: "In a Glass", 
       subtitle: "Molar represents patients who have lived with dentures for years and want something more stable. His story helps patients understand the transition from traditional dentures to implant supported solutions that restore comfort, confidence, and everyday freedom.", 
       image: "/assets/characters/In a Glass.jpg",
+      youtubeId: "9QG4IF25Qu8", 
       theme: "bg-emerald-900",
       stats: { type: "IMPLANTS", confidence: "99.9%" }
     },
@@ -37,6 +40,7 @@ export default function CharacterAnchor() {
       title: "Adhesive vs Stability", 
       subtitle: "Toothy helps patients understand the difference between temporary denture solutions and the long term stability of dental implants. His story focuses on restoring confidence through permanent solutions that allow patients to eat, speak, and live comfortably again.", 
       image: "/assets/characters/Adhesive.jpeg",
+      youtubeId: "", 
       theme: "bg-orange-800",
       stats: { type: "PERMANENT", confidence: "100%" }
     }
@@ -87,15 +91,30 @@ export default function CharacterAnchor() {
       >
         <div className="relative w-full max-w-md md:max-w-lg aspect-[3/4] transition-all duration-1000 ease-in-out">
           {characters.map((char, index) => (
-            <img 
+            <div 
               key={char.variant}
-              src={char.image} 
-              alt={char.title}
-              className={`absolute inset-0 w-full h-full object-cover rounded-[2rem] shadow-2xl transition-all duration-1000 ease-[cubic-bezier(0.4,0,0.2,1)] ${index === activeChar ? 'opacity-100 scale-100 filter-none' : 'opacity-0 scale-95 blur-md'}`}
+              className={`absolute inset-0 w-full h-full rounded-[2rem] shadow-2xl transition-all duration-1000 ease-[cubic-bezier(0.4,0,0.2,1)] ${index === activeChar ? 'opacity-100 scale-100 filter-none' : 'opacity-0 scale-95 blur-md'}`}
               style={{
                 boxShadow: index === activeChar ? '0 30px 60px -15px rgba(0,0,0,0.6)' : 'none'
               }}
-            />
+            >
+              {char.youtubeId ? (
+                <div className="absolute inset-0 bg-black pointer-events-auto rounded-[2rem] overflow-hidden">
+                  <iframe 
+                    src={`https://www.youtube.com/embed/${char.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${char.youtubeId}&controls=0&modestbranding=1&playsinline=1&rel=0`}
+                    className="w-full h-full scale-[1.2] opacity-90 transition-opacity duration-1000"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  ></iframe>
+                </div>
+              ) : (
+                <img 
+                  src={char.image} 
+                  alt={char.title}
+                  className="absolute inset-0 w-full h-full object-cover rounded-[2rem]"
+                />
+              )}
+            </div>
           ))}
           
           {/* Glass Overlay on the active character */}
