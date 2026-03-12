@@ -48,7 +48,7 @@ export default function MatrixFooter() {
   const footerRef = useRef(null);
 
   return (
-    <section ref={footerRef} id="footer" className="relative w-full bg-obsidian py-32 border-t border-white/5 px-6">
+    <section ref={footerRef} id="footer" className="relative w-full bg-obsidian py-20 md:py-32 border-t border-white/5 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-xs font-mono text-white/50 uppercase tracking-[0.3em] mb-4">Section C</h2>
@@ -85,11 +85,11 @@ export default function MatrixFooter() {
                 <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent opacity-80"></div>
                 
                 {/* Magnetic Hover Effect: Name fades up */}
-                <div className="absolute bottom-0 left-0 w-full p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 overflow-hidden flex flex-col items-center text-center">
-                  <span className={`text-xl font-sans font-black tracking-widest ${char.textColor}`}>
+                <div className="absolute bottom-0 left-0 w-full p-4 md:p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 overflow-hidden flex flex-col items-center text-center">
+                  <span className={`text-base md:text-xl font-sans font-black tracking-widest ${char.textColor}`}>
                     {char.name}
                   </span>
-                  <p className="mt-2 text-xs font-mono uppercase text-white tracking-[0.2em]">{char.title}</p>
+                  <p className="mt-2 text-[10px] md:text-xs font-mono uppercase text-white tracking-[0.2em]">{char.title}</p>
                 </div>
               </div>
 

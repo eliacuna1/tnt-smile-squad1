@@ -43,13 +43,13 @@ export default function Hero() {
       <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center">
         
         {/* Massive Split-Text Headline */}
-        <h1 className="flex flex-col items-center text-[12vw] md:text-[8rem] lg:text-[10rem] font-serif italic text-ghost leading-[0.8] tracking-tight [perspective:1000px]">
+        <h1 className="flex flex-col items-center text-[18vw] md:text-[8rem] lg:text-[10rem] font-serif italic text-ghost leading-[0.8] tracking-tight [perspective:1000px]">
           <span className="block overflow-hidden pb-4"><span className="hero-line block drop-shadow-[0_0_30px_rgba(255,0,127,0.4)]">Smile</span></span>
           <span className="block overflow-hidden"><span className="hero-line block text-plasma-purple drop-shadow-[0_0_40px_rgba(157,78,221,0.6)]">Squad</span></span>
         </h1>
 
-        <div className="hero-fade mt-12 max-w-xl text-center">
-          <p className="text-lg md:text-xl font-mono text-ghost/70 leading-relaxed uppercase tracking-widest text-sm">
+        <div className="hero-fade mt-12 max-w-xl text-center px-4">
+          <p className="text-xs md:text-sm font-mono text-ghost/70 leading-relaxed uppercase tracking-widest">
             The Next Evolution of Dental Marketing.
           </p>
           <div className="mt-8 h-[1px] w-24 bg-gradient-to-r from-transparent via-plasma-pink to-transparent mx-auto"></div>

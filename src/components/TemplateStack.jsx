@@ -110,8 +110,8 @@ export default function TemplateStack() {
             style={{ zIndex: index * 10 }}
           >
             {/* Visual Column - Strict 9:16 Aspect Ratio */}
-            <div className="w-full md:w-1/2 flex items-center justify-center p-8 md:p-12 h-[50vh] md:h-[60vh] lg:h-full border-b md:border-b-0 md:border-r border-white/5 bg-black/40">
-              <div className="relative w-full max-w-[320px] aspect-[9/16] rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10 mx-auto bg-obsidian">
+            <div className="w-full md:w-1/2 flex items-center justify-center p-6 md:p-12 h-[45vh] lg:h-full border-b md:border-b-0 md:border-r border-white/5 bg-black/40">
+              <div className="relative w-full max-w-[280px] md:max-w-[320px] aspect-[9/16] rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10 mx-auto bg-obsidian">
                 <img 
                   src={char.image} 
                   alt={char.title}
@@ -130,25 +130,25 @@ export default function TemplateStack() {
             </div>
 
             {/* Content Column */}
-            <div className="w-full md:w-1/2 p-8 md:p-16 flex flex-col justify-center text-left">
-              <span className={`text-[10px] font-mono uppercase tracking-[0.2em] font-bold ${char.textColor} mb-4 block`}>
+            <div className="w-full md:w-1/2 p-6 md:p-16 flex flex-col justify-center text-left">
+              <span className={`text-[10px] font-mono uppercase tracking-[0.2em] font-bold ${char.textColor} mb-3 md:mb-4 block`}>
                 Subject: {char.variant}
               </span>
-              <h3 className="text-4xl md:text-5xl font-serif italic text-ghost tracking-tight mb-6 mt-2">
+              <h3 className="text-3xl md:text-5xl font-serif italic text-ghost tracking-tight mb-4 md:mb-6 mt-1 md:mt-2">
                 {char.title}
               </h3>
-              <p className="text-lg text-ghost/70 font-sans leading-relaxed mb-10">
+              <p className="text-base md:text-lg text-ghost/70 font-sans leading-relaxed mb-6 md:mb-10">
                 {char.subtitle}
               </p>
               
-              <div className="grid grid-cols-2 gap-8 border-t border-white/10 pt-8 mt-auto">
+              <div className="grid grid-cols-2 gap-4 md:gap-8 border-t border-white/10 pt-6 mt-auto">
                 <div>
-                  <div className="text-[10px] font-mono text-ghost/40 uppercase tracking-widest mb-2">Target</div>
-                  <div className="font-sans text-xl font-bold tracking-tight text-ghost">{char.stats.type}</div>
+                  <div className="text-[10px] font-mono text-ghost/40 uppercase tracking-widest mb-1 md:mb-2">Target</div>
+                  <div className="font-sans text-lg md:text-xl font-bold tracking-tight text-ghost">{char.stats.type}</div>
                 </div>
                 <div>
-                  <div className="text-[10px] font-mono text-ghost/40 uppercase tracking-widest mb-2">Efficacy</div>
-                  <div className={`font-mono text-xl font-bold ${char.textColor}`}>{char.stats.confidence}</div>
+                  <div className="text-[10px] font-mono text-ghost/40 uppercase tracking-widest mb-1 md:mb-2">Efficacy</div>
+                  <div className={`font-mono text-lg md:text-xl font-bold ${char.textColor}`}>{char.stats.confidence}</div>
                 </div>
               </div>
             </div>
