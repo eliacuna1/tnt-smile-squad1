@@ -9,7 +9,7 @@ const characters = [
     variant: 'zeek', 
     title: "Confused? Need Answers?", 
     subtitle: "Zeek represents patients who feel overwhelmed by dental information. He turns confusion into clarity.", 
-    image: "/assets/characters/zeek-placeholder.jpg",
+    image: "./assets/characters/zeek-placeholder.jpg",
     youtubeId: "GYl4OuSHAsU", 
     borderColor: "border-plasma-blue/30",
     shadowColor: "shadow-[0_0_30px_rgba(0,240,255,0.2)]",
@@ -20,7 +20,7 @@ const characters = [
     variant: 'olivia', 
     title: "Avoid & Cover", 
     subtitle: "Olivia represents patients who hide their smile. She shows how cosmetic dentistry rebuilds confidence.", 
-    image: "/assets/characters/olivia-placeholder.jpg",
+    image: "./assets/characters/olivia-placeholder.jpg",
     youtubeId: "H2ebRDGQwpE", 
     borderColor: "border-plasma-pink/30",
     shadowColor: "shadow-[0_0_30px_rgba(255,0,127,0.2)]",
@@ -31,7 +31,7 @@ const characters = [
     variant: 'molar', 
     title: "In a Glass?", 
     subtitle: "Molar represents patients living with traditional dentures who want implant-supported stability.", 
-    image: "/assets/characters/molar-placeholder.jpg",
+    image: "./assets/characters/molar-placeholder.jpg",
     youtubeId: "9QG4IF25Qu8", 
     borderColor: "border-plasma-green/30",
     shadowColor: "shadow-[0_0_30px_rgba(0,255,102,0.2)]",
@@ -42,7 +42,7 @@ const characters = [
     variant: 'toothy', 
     title: "Adhesive Confidence", 
     subtitle: "Toothy helps patients understand the difference between temporary solutions and permanent implants.", 
-    image: "/assets/characters/toothy-placeholder.jpeg",
+    image: "./assets/characters/toothy-placeholder.jpeg",
     youtubeId: "", // Empty until provided
     borderColor: "border-plasma-orange/30",
     shadowColor: "shadow-[0_0_30px_rgba(255,85,0,0.2)]",
@@ -110,7 +110,7 @@ export default function TemplateStack() {
             style={{ zIndex: index * 10 }}
           >
             {/* Visual Column - Strict 9:16 Aspect Ratio */}
-            <div className="w-full md:w-1/2 flex items-center justify-center p-6 md:p-12 h-[45vh] lg:h-full border-b md:border-b-0 md:border-r border-white/5 bg-black/40">
+            <div className="w-full md:w-1/2 flex items-center justify-center p-6 md:p-12 min-h-[45vh] py-10 lg:py-0 lg:h-full border-b md:border-b-0 md:border-r border-white/5 bg-black/40">
               <div className="relative w-full max-w-[280px] md:max-w-[320px] aspect-[9/16] rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10 mx-auto bg-obsidian">
                 <img 
                   src={char.image} 

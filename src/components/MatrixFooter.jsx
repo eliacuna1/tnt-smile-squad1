@@ -7,7 +7,7 @@ const characters = [
     variant: 'zeek', 
     name: 'ZEEK',
     title: "Confused? Need Answers?", 
-    image: "/assets/characters/zeek-placeholder.jpg",
+    image: "./assets/characters/zeek-placeholder.jpg",
     youtubeId: "GYl4OuSHAsU",
     hoverColor: "hover:border-plasma-blue hover:shadow-[0_0_40px_rgba(0,240,255,0.4)]",
     textColor: "text-plasma-blue"
@@ -17,7 +17,7 @@ const characters = [
     variant: 'olivia', 
     name: 'OLIVIA',
     title: "Avoid & Cover", 
-    image: "/assets/characters/olivia-placeholder.jpg",
+    image: "./assets/characters/olivia-placeholder.jpg",
     youtubeId: "H2ebRDGQwpE", 
     hoverColor: "hover:border-plasma-pink hover:shadow-[0_0_40px_rgba(255,0,127,0.4)]",
     textColor: "text-plasma-pink"
@@ -27,7 +27,7 @@ const characters = [
     variant: 'molar', 
     name: 'MOLAR',
     title: "In a Glass?", 
-    image: "/assets/characters/molar-placeholder.jpg",
+    image: "./assets/characters/molar-placeholder.jpg",
     youtubeId: "9QG4IF25Qu8", 
     hoverColor: "hover:border-plasma-green hover:shadow-[0_0_40px_rgba(0,255,102,0.4)]",
     textColor: "text-plasma-green"
@@ -37,7 +37,7 @@ const characters = [
     variant: 'toothy', 
     name: 'TOOTHY',
     title: "Adhesive Confidence", 
-    image: "/assets/characters/toothy-placeholder.jpeg",
+    image: "./assets/characters/toothy-placeholder.jpeg",
     youtubeId: "", 
     hoverColor: "hover:border-plasma-orange hover:shadow-[0_0_40px_rgba(255,85,0,0.4)]",
     textColor: "text-plasma-orange"
