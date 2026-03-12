@@ -12,7 +12,7 @@ export default function CharacterAnchor() {
       variant: 'zeek', 
       title: "Confused? Need Answers?", 
       subtitle: "Zeek represents patients who feel overwhelmed by dental information or unsure where to begin. Through simple stories and familiar situations, Zeek helps explain common procedures, answers frequent questions, and turns confusion into clarity.", 
-      image: "/assets/characters/zeek.png",
+      image: "/assets/characters/Confused? Need Answers?.jpg",
       theme: "bg-blue-900",
       stats: { type: "CLARITY", confidence: "98.2%" }
     },
@@ -20,7 +20,7 @@ export default function CharacterAnchor() {
       variant: 'olivia', 
       title: "Avoid and Cover", 
       subtitle: "Olivia represents patients who hide their smile or avoid photos because they feel self conscious about cosmetic issues. Her story shows how modern cosmetic dentistry can rebuild confidence and help patients feel comfortable sharing their smile again.", 
-      image: "/assets/characters/olivia.png",
+      image: "/assets/characters/Avoid and Cover.jpg",
       theme: "bg-pink-900",
       stats: { type: "COSMETIC", confidence: "94.5%" }
     },
@@ -28,7 +28,7 @@ export default function CharacterAnchor() {
       variant: 'molar', 
       title: "In a Glass", 
       subtitle: "Molar represents patients who have lived with dentures for years and want something more stable. His story helps patients understand the transition from traditional dentures to implant supported solutions that restore comfort, confidence, and everyday freedom.", 
-      image: "/assets/characters/molar.jpg",
+      image: "/assets/characters/In a Glass.jpg",
       theme: "bg-emerald-900",
       stats: { type: "IMPLANTS", confidence: "99.9%" }
     },
@@ -36,7 +36,7 @@ export default function CharacterAnchor() {
       variant: 'toothy', 
       title: "Adhesive vs Stability", 
       subtitle: "Toothy helps patients understand the difference between temporary denture solutions and the long term stability of dental implants. His story focuses on restoring confidence through permanent solutions that allow patients to eat, speak, and live comfortably again.", 
-      image: "/assets/characters/toothy.jpg",
+      image: "/assets/characters/Adhesive.jpeg",
       theme: "bg-orange-800",
       stats: { type: "PERMANENT", confidence: "100%" }
     }
