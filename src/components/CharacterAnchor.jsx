@@ -12,7 +12,7 @@ export default function CharacterAnchor() {
       variant: 'zeek', 
       title: "Confused? Need Answers?", 
       subtitle: "Zeek represents patients who feel overwhelmed by dental information or unsure where to begin. Through simple stories and familiar situations, Zeek helps explain common procedures, answers frequent questions, and turns confusion into clarity.", 
-      image: "/assets/characters/Confused? Need Answers?.jpg",
+      image: "/assets/characters/zeek-placeholder.jpg",
       youtubeId: "GYl4OuSHAsU", 
       theme: "bg-blue-900",
       stats: { type: "CLARITY", confidence: "98.2%" }
@@ -21,7 +21,7 @@ export default function CharacterAnchor() {
       variant: 'olivia', 
       title: "Avoid and Cover", 
       subtitle: "Olivia represents patients who hide their smile or avoid photos because they feel self conscious about cosmetic issues. Her story shows how modern cosmetic dentistry can rebuild confidence and help patients feel comfortable sharing their smile again.", 
-      image: "/assets/characters/Avoid and Cover.jpg",
+      image: "/assets/characters/olivia-placeholder.jpg",
       youtubeId: "H2ebRDGQwpE", 
       theme: "bg-pink-900",
       stats: { type: "COSMETIC", confidence: "94.5%" }
@@ -30,7 +30,7 @@ export default function CharacterAnchor() {
       variant: 'molar', 
       title: "In a Glass", 
       subtitle: "Molar represents patients who have lived with dentures for years and want something more stable. His story helps patients understand the transition from traditional dentures to implant supported solutions that restore comfort, confidence, and everyday freedom.", 
-      image: "/assets/characters/In a Glass.jpg",
+      image: "/assets/characters/molar-placeholder.jpg",
       youtubeId: "9QG4IF25Qu8", 
       theme: "bg-emerald-900",
       stats: { type: "IMPLANTS", confidence: "99.9%" }
@@ -39,7 +39,7 @@ export default function CharacterAnchor() {
       variant: 'toothy', 
       title: "Adhesive vs Stability", 
       subtitle: "Toothy helps patients understand the difference between temporary denture solutions and the long term stability of dental implants. His story focuses on restoring confidence through permanent solutions that allow patients to eat, speak, and live comfortably again.", 
-      image: "/assets/characters/Adhesive.jpeg",
+      image: "/assets/characters/toothy-placeholder.jpeg",
       youtubeId: "", 
       theme: "bg-orange-800",
       stats: { type: "PERMANENT", confidence: "100%" }
@@ -98,21 +98,23 @@ export default function CharacterAnchor() {
                 boxShadow: index === activeChar ? '0 30px 60px -15px rgba(0,0,0,0.6)' : 'none'
               }}
             >
-              {char.youtubeId ? (
-                <div className="absolute inset-0 bg-black pointer-events-auto rounded-[2rem] overflow-hidden">
+              {/* Always map the image underneath */}
+              <img 
+                src={char.image} 
+                alt={char.title}
+                className="absolute inset-0 w-full h-full object-cover rounded-[2rem]"
+              />
+              
+              {/* Layer the video on top if it exists */}
+              {char.youtubeId && (
+                <div className="absolute inset-0 pointer-events-auto rounded-[2rem] overflow-hidden">
                   <iframe 
                     src={`https://www.youtube.com/embed/${char.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${char.youtubeId}&controls=0&modestbranding=1&playsinline=1&rel=0`}
-                    className="w-full h-full scale-[1.2] opacity-90 transition-opacity duration-1000"
+                    className="w-full h-full scale-[1.2] opacity-100 transition-opacity duration-1000"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                   ></iframe>
                 </div>
-              ) : (
-                <img 
-                  src={char.image} 
-                  alt={char.title}
-                  className="absolute inset-0 w-full h-full object-cover rounded-[2rem]"
-                />
               )}
             </div>
           ))}
