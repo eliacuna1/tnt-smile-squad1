@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import ReactPlayer from 'react-player/youtube';
 
 export default function Hero() {
   const containerRef = useRef(null);
@@ -27,16 +28,28 @@ export default function Hero() {
       id="hero"
       className="relative min-h-[100svh] flex flex-col justify-center items-center text-center px-6 z-10 overflow-hidden"
     >
-      {/* Background Vertical Video loop (New YouTube URL) */}
+      {/* Background Vertical Video loop (New YouTube URL via ReactPlayer) */}
       <div className="absolute inset-0 z-0 flex items-center justify-center bg-transparent pointer-events-none">
         <div className="relative w-full h-full max-w-[600px] aspect-[9/16] opacity-30 mix-blend-screen overflow-hidden">
-          <iframe 
-            src={`https://www.youtube.com/embed/Qh5ddCxXEhU?autoplay=1&mute=1&loop=1&playlist=Qh5ddCxXEhU&controls=0&modestbranding=1&playsinline=1&rel=0`}
-            className="absolute inset-0 w-full h-full scale-[1.3] object-cover"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          ></iframe>
-           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black"></div>
-           <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/50"></div>
+          <div className="absolute inset-0 w-full h-full scale-[1.3]">
+            <ReactPlayer
+              url="https://www.youtube.com/watch?v=Qh5ddCxXEhU"
+              playing={true}
+              loop={true}
+              muted={true}
+              playsinline={true}
+              controls={false}
+              width="100%"
+              height="100%"
+              config={{
+                youtube: {
+                  playerVars: { showinfo: 0, modestbranding: 1, rel: 0, disablekb: 1 }
+                }
+              }}
+            />
+          </div>
+           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black pointer-events-none"></div>
+           <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/50 pointer-events-none"></div>
         </div>
       </div>
 
