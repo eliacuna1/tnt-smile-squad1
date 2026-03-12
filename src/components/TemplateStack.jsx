@@ -110,18 +110,18 @@ export default function TemplateStack() {
             style={{ zIndex: index * 10 }}
           >
             {/* Visual Column - Strict 9:16 Aspect Ratio */}
-            <div className="w-full md:w-1/2 flex items-center justify-center p-8 md:p-12 h-[50vh] md:h-full border-b md:border-b-0 md:border-r border-white/5 bg-black/40">
-              <div className="relative w-full max-h-full aspect-[9/16] rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10 mx-auto">
+            <div className="w-full md:w-1/2 flex items-center justify-center p-8 md:p-12 h-[50vh] md:h-[60vh] lg:h-full border-b md:border-b-0 md:border-r border-white/5 bg-black/40">
+              <div className="relative w-full max-w-[320px] aspect-[9/16] rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10 mx-auto bg-obsidian">
                 <img 
                   src={char.image} 
                   alt={char.title}
-                  className="absolute inset-0 w-full h-full object-cover"
+                  className="absolute top-1/2 left-1/2 w-[135%] h-[135%] max-w-none -translate-x-1/2 -translate-y-1/2 object-cover"
                 />
                 {char.youtubeId && (
                   <div className="absolute inset-0 pointer-events-auto overflow-hidden">
                     <iframe 
                       src={`https://www.youtube.com/embed/${char.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${char.youtubeId}&controls=0&modestbranding=1&playsinline=1&rel=0`}
-                      className="w-full h-full scale-[1.3] opacity-100"
+                      className="absolute top-1/2 left-1/2 w-[135%] h-[135%] max-w-none -translate-x-1/2 -translate-y-1/2"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     ></iframe>
                   </div>
