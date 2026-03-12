@@ -3,9 +3,9 @@ export default function Navbar() {
     <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-[100] w-[90%] max-w-7xl rounded-full bg-obsidian/50 backdrop-blur-xl border border-white/10 shadow-2xl overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-r from-plasma-purple/10 to-plasma-pink/10 pointer-events-none mix-blend-overlay"></div>
       <div className="px-6 py-4 flex items-center justify-between relative z-10">
-        <div className="flex items-center gap-3">
-          {/* Logo container */}
-          <div className="h-8 md:h-10 w-auto flex items-center">
+        <div className="absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0 flex items-center justify-center">
+          {/* Logo container: Increased from h-8 to h-10 on mobile */}
+          <div className="h-10 md:h-10 w-auto flex items-center">
             <img 
               src="./assets/characters/tnt-logo-official.png" 
               alt="TNT Dental" 
