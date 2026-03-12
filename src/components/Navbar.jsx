@@ -7,7 +7,7 @@ export default function Navbar() {
           {/* Logo container */}
           <div className="h-8 md:h-10 w-auto flex items-center">
             <img 
-              src="./assets/characters/tnt-logo-final.png" 
+              src="./assets/characters/tnt-logo-official.png" 
               alt="TNT Dental" 
               className="h-full w-auto object-contain brightness-0 invert" 
               // Using brightness-0 invert to make it Ghost White. If the logo is already white, remove this class later.
