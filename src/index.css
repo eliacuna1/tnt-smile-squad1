@@ -32,17 +32,17 @@
   mix-blend-mode: soft-light;
 }
 
-/* Video Background Cover Logic (for 16:9 source) */
+/* Video Background Cover Logic (for 9:16 VERTICAL source) */
 .video-background-cover {
   @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none;
-  width: 100vw;
-  height: 56.25vw; /* 16:9 aspect ratio (9/16 = 0.5625) */
+  width: 56.25vh; /* 9:16 aspect ratio (9/16 = 0.5625) */
+  height: 100vh;
 }
 
-@media (max-aspect-ratio: 16/9) {
+@media (min-aspect-ratio: 9/16) {
   .video-background-cover {
-    width: 177.78vh; /* 16:9 aspect ratio (16/9 = 1.7778) */
-    height: 100vh;
+    width: 100vw;
+    height: 177.78vw; /* 16:9 aspect ratio for vertical filling (16/9 = 1.7778) */
   }
 }
 
@@ -51,6 +51,7 @@
   width: 100% !important;
   height: 100% !important;
 }
+
 
 
 
