@@ -157,7 +157,7 @@ export default function TemplateStack() {
             {/* Content Column */}
             <div className="w-full md:w-1/2 p-6 md:p-16 flex flex-col justify-center text-left">
               <span className={`text-[10px] font-mono uppercase tracking-[0.2em] font-bold ${char.textColor} mb-3 md:mb-4 block`}>
-                Subject: {char.variant}
+                Meet {char.variant.charAt(0).toUpperCase() + char.variant.slice(1)}
               </span>
               <h3 className="text-4xl md:text-6xl font-good-castyll text-ghost tracking-tight mb-4 md:mb-6 mt-1 md:mt-2">
                 {char.title}
@@ -166,14 +166,10 @@ export default function TemplateStack() {
                 {char.subtitle}
               </p>
               
-              <div className="grid grid-cols-2 gap-4 md:gap-8 border-t border-white/10 pt-6 mt-auto">
+              <div className="border-t border-white/10 pt-6 mt-auto">
                 <div>
                   <div className="text-[10px] font-mono text-ghost/40 uppercase tracking-widest mb-1 md:mb-2">Target</div>
                   <div className="font-sans text-lg md:text-xl font-bold tracking-tight text-ghost">{char.stats.type}</div>
-                </div>
-                <div>
-                  <div className="text-[10px] font-mono text-ghost/40 uppercase tracking-widest mb-1 md:mb-2">Efficacy</div>
-                  <div className={`font-mono text-lg md:text-xl font-bold ${char.textColor}`}>{char.stats.confidence}</div>
                 </div>
               </div>
             </div>
