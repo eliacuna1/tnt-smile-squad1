@@ -29,8 +29,8 @@ export default function Hero() {
       className="relative min-h-[100svh] flex flex-col justify-center items-center text-center px-6 z-10 overflow-hidden"
     >
       {/* Full-Screen Background Video for Desktop/Mobile Crop */}
-      <div className="absolute inset-0 z-0 bg-obsidian pointer-events-none overflow-hidden select-none">
-        <div className="video-background-cover opacity-50 mix-blend-screen scale-110">
+      <div className="absolute inset-0 z-0 bg-black pointer-events-none overflow-hidden select-none">
+        <div className="video-background-cover opacity-80 scale-110">
           <ReactPlayer
             url="https://www.youtube.com/watch?v=Qh5ddCxXEhU"
             playing={true}
@@ -42,17 +42,26 @@ export default function Hero() {
             height="100%"
             config={{
               youtube: {
-                playerVars: { showinfo: 0, modestbranding: 1, rel: 0, disablekb: 1, origin: window.location.origin }
+                playerVars: { 
+                  showinfo: 0, 
+                  modestbranding: 1, 
+                  rel: 0, 
+                  disablekb: 1,
+                  autoplay: 1,
+                  controls: 0,
+                  iv_load_policy: 3
+                }
               }
             }}
           />
         </div>
         
-        {/* Deep vignettes and texture */}
-        <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-obsidian opacity-90"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-obsidian via-transparent to-obsidian opacity-50"></div>
-        <div className="absolute inset-0 bg-obsidian/40 mix-blend-multiply"></div>
+        {/* Simplified overlays for better visibility */}
+        <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-obsidian opacity-80"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-obsidian via-transparent to-obsidian opacity-40"></div>
+        <div className="absolute inset-0 bg-black/30"></div>
       </div>
+
 
 
       <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center">
