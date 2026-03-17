@@ -10,6 +10,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import TemplateStack from './components/TemplateStack';
 import MatrixFooter from './components/MatrixFooter';
+import Footer from './components/Footer';
 
 function App() {
   const appRef = useRef(null);
@@ -27,6 +28,9 @@ function App() {
       
       {/* Section C: The Matrix Footer */}
       <MatrixFooter />
+
+      {/* Final Branding Section */}
+      <Footer />
     </main>
   );
 }
