@@ -9,11 +9,9 @@ export default function Navbar() {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       
-      // Determine if at top
       setIsScrolled(currentScrollY > 50);
 
-      // Determine scroll direction & sections
-      // For simplicity, we stick to scroll direction and a small buffer for "sections"
+      // Determine scroll direction
       if (currentScrollY < lastScrollY.current) {
         setIsScrollingUp(true);
       } else if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
@@ -27,21 +25,19 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Shrink when scrolled down AND currently scrolling down
+  // Shrink when scrolled down AND scrolling down
   const isShrunk = isScrolled && !isScrollingUp;
 
   return (
-    <div className="fixed top-6 left-1/2 -translate-x-1/2 z-[100] w-[95%] max-w-7xl flex pointer-events-none">
+    <div className={`fixed top-6 left-1/2 -translate-x-1/2 z-[100] w-[95%] max-w-7xl flex pointer-events-none transition-all duration-700 ${isShrunk ? 'px-0' : ''}`}>
       <nav 
         style={{ 
-          width: isShrunk ? '64px' : '100%',
-          height: isShrunk ? '64px' : '72px',
-          left: isShrunk ? '0' : '0',
-          position: 'relative',
+          width: isShrunk ? '180px' : '100%',
+          height: isShrunk ? '60px' : '72px',
           transition: 'all 0.8s cubic-bezier(0.23, 1, 0.32, 1)'
         }}
-        className={`bg-obsidian/70 backdrop-blur-2xl border border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.5)] rounded-full overflow-hidden group pointer-events-auto
-          ${isShrunk ? 'translate-x-0' : ''}
+        className={`bg-obsidian/70 backdrop-blur-2xl border border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.5)] rounded-full overflow-hidden group pointer-events-auto relative
+          ${isShrunk ? 'translate-x-[0%] ml-0' : ''}
         `}
       >
         {/* Siri-style Premium Glow */}
@@ -52,12 +48,12 @@ export default function Navbar() {
         {/* Animated Internal Mesh */}
         <div className={`absolute inset-0 bg-gradient-to-br from-white/5 to-transparent transition-opacity duration-700 ${isShrunk ? 'opacity-0' : 'opacity-100'}`}></div>
 
-        <div className="relative h-full px-6 flex items-center overflow-hidden">
+        <div className={`relative h-full flex items-center transition-all duration-700 ${isShrunk ? 'px-4 justify-center' : 'px-8 justify-between'}`}>
           {/* Logo Section */}
-          <div className={`flex items-center justify-center transition-all duration-700 delay-100 min-w-[50px]
-            ${isShrunk ? 'scale-75 translate-x-1' : 'scale-100'}
+          <div className={`flex items-center transition-all duration-700 delay-100
+            ${isShrunk ? 'scale-90' : 'scale-100'}
           `}>
-            <div className="h-10 w-auto flex items-center">
+            <div className="h-8 md:h-9 w-auto flex items-center">
               <img 
                 src="./assets/characters/tnt-logo-official.png" 
                 alt="TNT Dental" 
@@ -67,16 +63,16 @@ export default function Navbar() {
           </div>
           
           {/* Navigation Links - Full Menu */}
-          <div className={`flex flex-1 items-center justify-center gap-10 font-mono text-[10px] uppercase tracking-[0.3em] text-white/50 transition-all duration-700
-            ${isShrunk ? 'opacity-0 -translate-y-10 pointer-events-none' : 'opacity-100 translate-y-0'}
+          <div className={`flex items-center justify-center gap-10 font-mono text-[10px] uppercase tracking-[0.3em] text-white/50 transition-all duration-700
+            ${isShrunk ? 'opacity-0 absolute translate-y-10 pointer-events-none' : 'opacity-100 translate-y-0'}
           `}>
             <a href="#hero" className="hover:text-plasma-pink hover:scale-110 transition-all duration-500 whitespace-nowrap">Casa</a>
             <a href="#stack" className="hover:text-plasma-purple hover:scale-110 transition-all duration-500 whitespace-nowrap">The Characters</a>
             <a href="#footer" className="hover:text-plasma-blue hover:scale-110 transition-all duration-500 whitespace-nowrap">All Templates</a>
           </div>
 
-          {/* Spacer to keep logo left-ish when expanded on desktop if desired, but we used flex-1 and justify-center for links */}
-          <div className={`transition-all duration-700 ${isShrunk ? 'w-0' : 'w-[50px]'}`}></div>
+          {/* Spacer */}
+          {!isShrunk && <div className="w-[50px] hidden md:block opacity-0"></div>}
         </div>
       </nav>
     </div>
