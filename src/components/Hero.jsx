@@ -51,9 +51,10 @@ export default function Hero() {
         
         {/* Massive Split-Text Headline */}
         <h1 className="flex flex-col items-center text-[18vw] md:text-[8rem] lg:text-[10rem] font-serif italic text-ghost leading-[0.8] tracking-tight [perspective:1000px]">
-          <span className="block overflow-hidden pb-4 px-10 -mx-10"><span className="hero-line block drop-shadow-[0_0_30px_rgba(255,0,127,0.4)]">Smile</span></span>
-          <span className="block overflow-hidden px-10 -mx-10"><span className="hero-line block text-plasma-purple drop-shadow-[0_0_40px_rgba(157,78,221,0.6)]">Squad</span></span>
+          <span className="block overflow-hidden pb-4 px-20 -mx-20"><span className="hero-line block px-10 drop-shadow-[0_0_30px_rgba(255,0,127,0.4)]">Smile</span></span>
+          <span className="block overflow-hidden px-20 -mx-20"><span className="hero-line block px-10 text-plasma-purple drop-shadow-[0_0_40px_rgba(157,78,221,0.6)]">Squad</span></span>
         </h1>
+
 
 
         <div className="hero-fade mt-12 max-w-xl text-center px-4">
