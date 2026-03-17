@@ -143,7 +143,7 @@ export default function TemplateStack() {
                   <div className="absolute inset-0 pointer-events-auto overflow-hidden">
                     <iframe 
                       src={`https://www.youtube.com/embed/${char.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${char.youtubeId}&controls=0&modestbranding=1&playsinline=1&rel=0`}
-                      className="absolute top-1/2 left-1/2 w-[135%] h-[135%] max-w-none -translate-x-1/2 -translate-y-1/2"
+                      className="video-background-cover-9-16"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       loading="lazy"
                     ></iframe>

@@ -30,7 +30,8 @@ export default function Hero() {
     >
       {/* Full-Screen Background Video for Desktop/Mobile Crop */}
       <div className="absolute inset-0 z-0 bg-black pointer-events-none overflow-hidden select-none">
-        <div className="video-background-cover opacity-80 scale-110">
+        <div className="video-background-cover-16-9 opacity-90 scale-110">
+
           <ReactPlayer
             url="https://www.youtube.com/watch?v=Qh5ddCxXEhU"
             playing={true}
