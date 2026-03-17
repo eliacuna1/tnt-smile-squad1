@@ -159,7 +159,7 @@ export default function TemplateStack() {
               <span className={`text-[10px] font-mono uppercase tracking-[0.2em] font-bold ${char.textColor} mb-3 md:mb-4 block`}>
                 Subject: {char.variant}
               </span>
-              <h3 className="text-3xl md:text-5xl font-serif italic text-ghost tracking-tight mb-4 md:mb-6 mt-1 md:mt-2">
+              <h3 className="text-4xl md:text-6xl font-good-castyll text-ghost tracking-tight mb-4 md:mb-6 mt-1 md:mt-2">
                 {char.title}
               </h3>
               <p className="text-base md:text-lg text-ghost/70 font-sans leading-relaxed mb-6 md:mb-10">

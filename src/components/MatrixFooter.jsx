@@ -51,8 +51,7 @@ export default function MatrixFooter() {
     <section ref={footerRef} id="footer" className="relative w-full bg-obsidian py-20 md:py-32 border-t border-white/5 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-xs font-mono text-white/50 uppercase tracking-[0.3em] mb-4">Section C</h2>
-          <h3 className="text-4xl md:text-5xl font-serif italic text-ghost">The Matrix Picker</h3>
+          <h3 className="text-5xl md:text-7xl font-good-castyll text-ghost tracking-tight">The Matrix Picker</h3>
           <p className="mt-4 text-ghost/60 font-sans max-w-lg mx-auto">
             Select a module to deploy the corresponding campaign.
           </p>
