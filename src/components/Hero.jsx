@@ -28,30 +28,32 @@ export default function Hero() {
       id="hero"
       className="relative min-h-[100svh] flex flex-col justify-center items-center text-center px-6 z-10 overflow-hidden"
     >
-      {/* Background Vertical Video loop (New YouTube URL via ReactPlayer) */}
-      <div className="absolute inset-0 z-0 flex items-center justify-center bg-transparent pointer-events-none">
-        <div className="relative w-full h-full max-w-[600px] aspect-[9/16] opacity-30 mix-blend-screen overflow-hidden">
-          <div className="absolute inset-0 w-full h-full scale-[1.3]">
-            <ReactPlayer
-              url="https://www.youtube.com/watch?v=Qh5ddCxXEhU"
-              playing={true}
-              loop={true}
-              muted={true}
-              playsinline={true}
-              controls={false}
-              width="100%"
-              height="100%"
-              config={{
-                youtube: {
-                  playerVars: { showinfo: 0, modestbranding: 1, rel: 0, disablekb: 1 }
-                }
-              }}
-            />
-          </div>
-           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black pointer-events-none"></div>
-           <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/50 pointer-events-none"></div>
+      {/* Full-Screen Background Video for Desktop/Mobile Crop */}
+      <div className="absolute inset-0 z-0 bg-obsidian pointer-events-none overflow-hidden select-none">
+        <div className="video-background-cover opacity-50 mix-blend-screen scale-110">
+          <ReactPlayer
+            url="https://www.youtube.com/watch?v=Qh5ddCxXEhU"
+            playing={true}
+            loop={true}
+            muted={true}
+            playsinline={true}
+            controls={false}
+            width="100%"
+            height="100%"
+            config={{
+              youtube: {
+                playerVars: { showinfo: 0, modestbranding: 1, rel: 0, disablekb: 1, origin: window.location.origin }
+              }
+            }}
+          />
         </div>
+        
+        {/* Deep vignettes and texture */}
+        <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-obsidian opacity-90"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-obsidian via-transparent to-obsidian opacity-50"></div>
+        <div className="absolute inset-0 bg-obsidian/40 mix-blend-multiply"></div>
       </div>
+
 
       <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center">
         

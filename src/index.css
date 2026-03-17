@@ -32,12 +32,34 @@
   mix-blend-mode: soft-light;
 }
 
-/* Mesh Gradient Underlay */
-.mesh-bg {
-  position: fixed;
-  inset: -20%;
-  z-index: -10;
-  filter: blur(100px);
-  will-change: transform, background-image;
-  transition: opacity 1.5s ease;
+/* Video Background Cover Logic */
+.video-background-cover {
+  @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none;
+  width: 100vw;
+  height: 177.78vw; /* 16/9 for vertical video */
 }
+
+@media (min-aspect-ratio: 9/16) {
+  .video-background-cover {
+    width: 100vw;
+    height: 177.78vw;
+  }
+}
+
+@media (max-aspect-ratio: 9/16) {
+  .video-background-cover {
+    width: 56.25vh;
+    height: 100vh;
+  }
+}
+
+/* For desktop wide crops where we want it to cover the entire width and height */
+@media (min-width: 768px) {
+  .video-background-cover {
+    width: 100vw;
+    height: 177.78vw;
+    min-width: 100vw;
+    min-height: 100vh;
+  }
+}
+
