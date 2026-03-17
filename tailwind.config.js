@@ -21,6 +21,7 @@ export default {
         inter: ['Inter', 'sans-serif'],
         mono: ['"Space Mono"', 'monospace'],
         serif: ['"Instrument Serif"', 'serif'],
+        'good-castyll': ['"Good Castyll"', 'serif'],
       },
     },
   },

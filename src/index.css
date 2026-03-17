@@ -6,6 +6,16 @@
 @import '@fontsource/instrument-serif/400-italic.css';
 @import '@fontsource/instrument-serif/400.css';
 
+@font-face {
+  font-family: 'Good Castyll';
+  src: url('./assets/fonts/GoodCastyll.woff') format('woff'),
+       url('./assets/fonts/GoodCastyll.ttf') format('truetype'),
+       url('./assets/fonts/GoodCastyll.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
