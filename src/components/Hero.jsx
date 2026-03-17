@@ -50,26 +50,39 @@ export default function Hero() {
       <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center">
         
         {/* Massive Split-Text Headline */}
-        <h1 className="flex flex-col items-center text-[18vw] md:text-[8rem] lg:text-[10rem] font-good-castyll text-ghost leading-[0.8] tracking-tight [perspective:1000px]">
-          <span className="block overflow-hidden pb-4 px-20 -mx-20"><span className="hero-line block px-10 drop-shadow-[0_0_30px_rgba(255,0,127,0.4)]">Smile</span></span>
-          <span className="block overflow-hidden px-20 -mx-20"><span className="hero-line block px-10 text-plasma-purple drop-shadow-[0_0_40px_rgba(157,78,221,0.6)]">Squad</span></span>
+        <h1 className="flex flex-col items-center text-[18vw] md:text-[8rem] lg:text-[10rem] font-good-castyll text-ghost leading-[0.9] tracking-tight [perspective:1000px]">
+          <span className="block pb-4 px-20 -mx-20"><span className="hero-line block px-10 drop-shadow-[0_0_30px_rgba(255,0,127,0.4)]">Smile</span></span>
+          <span className="block px-20 -mx-20"><span className="hero-line block px-10 text-plasma-purple drop-shadow-[0_0_40px_rgba(157,78,221,0.6)]">Squad</span></span>
         </h1>
 
 
 
         <div className="hero-fade mt-12 max-w-xl text-center px-4">
-          <p className="text-xs md:text-sm font-mono text-ghost/70 leading-relaxed uppercase tracking-widest">
-            The Next Evolution of Dental Marketing.
+          <p className="text-sm md:text-base font-inter text-ghost/90 leading-relaxed tracking-wide italic">
+            Where the right message meets the right patient.
           </p>
           <div className="mt-8 h-[1px] w-24 bg-gradient-to-r from-transparent via-plasma-pink to-transparent mx-auto"></div>
         </div>
       </div>
       
-      {/* Scroll indicator */}
-      <div className="hero-fade absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-70">
-        <span className="text-[10px] font-mono text-plasma-blue uppercase tracking-[0.3em] font-bold shadow-plasma-blue">Initialize Protocol</span>
-        <div className="w-[1px] h-16 bg-white/10 overflow-hidden relative">
-          <div className="absolute top-0 left-0 w-full h-full bg-plasma-blue transform -translate-y-full animate-[scrolldown_2s_ease-in-out_infinite] shadow-[0_0_10px_#00F0FF]"></div>
+      {/* Magical Scroll Cue */}
+      <div className="hero-fade absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none">
+        <div className="relative flex flex-col items-center animate-magical-float">
+          {/* Multi-color Bloom Effect */}
+          <div className="absolute inset-0 w-32 h-32 bg-gradient-to-tr from-plasma-blue via-plasma-purple to-plasma-pink opacity-20 blur-3xl rounded-full -translate-y-1/2 -translate-x-1/2 left-1/2 top-1/2 animate-pulse"></div>
+          <div className="absolute inset-0 w-40 h-40 bg-gradient-to-br from-plasma-green via-plasma-blue to-plasma-purple opacity-10 blur-[40px] rounded-full -translate-y-1/2 -translate-x-1/2 left-1/2 top-1/2 animate-pulse delay-700"></div>
+          
+          {/* Thin Light Trail Arrow */}
+          <svg width="24" height="80" viewBox="0 0 24 80" className="relative z-10 filter drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+            <path 
+              d="M12 0V70M12 70L4 62M12 70L20 62" 
+              stroke="white" 
+              strokeWidth="0.5" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+              className="opacity-60"
+            />
+          </svg>
         </div>
       </div>
     </section>
