@@ -29,20 +29,19 @@ export default function Hero() {
       className="relative min-h-[100svh] flex flex-col justify-center items-center text-center px-6 z-10 overflow-hidden"
     >
       {/* Full-Screen Background Video for Desktop/Mobile Crop */}
-      <div className="absolute inset-0 z-0 bg-black pointer-events-none overflow-hidden select-none">
-        {/* The Video Layer */}
-        <div className="video-background-cover-16-9 absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
+        {/* The Video Layer - Clean and Visible */}
+        <div className="video-background-cover-16-9 z-0">
           <iframe 
-            src={`https://www.youtube.com/embed/Qh5ddCxXEhU?autoplay=1&mute=1&loop=1&playlist=Qh5ddCxXEhU&controls=0&modestbranding=1&playsinline=1&rel=0`}
-            className="w-full h-full border-none pointer-events-none opacity-90"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            src={`https://www.youtube.com/embed/Qh5ddCxXEhU?autoplay=1&mute=1&loop=1&playlist=Qh5ddCxXEhU&controls=0&modestbranding=1&playsinline=1&rel=0&enablejsapi=1`}
+            className="w-full h-full border-none pointer-events-none opacity-100 transition-opacity duration-1000"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope;"
           ></iframe>
         </div>
-        
-        {/* Minimal darkening for contrast */}
-        <div className="absolute inset-0 bg-black/40 z-10"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-obsidian z-20 opacity-60"></div>
+        {/* Very subtle vignette for text legibility */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-t from-obsidian via-black/20 to-obsidian/40 opacity-70"></div>
       </div>
+
 
 
 
