@@ -30,38 +30,21 @@ export default function Hero() {
     >
       {/* Full-Screen Background Video for Desktop/Mobile Crop */}
       <div className="absolute inset-0 z-0 bg-black pointer-events-none overflow-hidden select-none">
-        <div className="video-background-cover-16-9 opacity-90 scale-110">
-
-          <ReactPlayer
-            url="https://www.youtube.com/watch?v=Qh5ddCxXEhU"
-            playing={true}
-            loop={true}
-            muted={true}
-            playsinline={true}
-            controls={false}
-            width="100%"
-            height="100%"
-            config={{
-              youtube: {
-                playerVars: { 
-                  showinfo: 0, 
-                  modestbranding: 1, 
-                  rel: 0, 
-                  disablekb: 1,
-                  autoplay: 1,
-                  controls: 0,
-                  iv_load_policy: 3
-                }
-              }
-            }}
-          />
+        {/* The Video Layer */}
+        <div className="video-background-cover-16-9 absolute inset-0 z-0">
+          <iframe 
+            src={`https://www.youtube.com/embed/Qh5ddCxXEhU?autoplay=1&mute=1&loop=1&playlist=Qh5ddCxXEhU&controls=0&modestbranding=1&playsinline=1&rel=0`}
+            className="w-full h-full border-none pointer-events-none opacity-90"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          ></iframe>
         </div>
         
-        {/* Simplified overlays for better visibility */}
-        <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-obsidian opacity-80"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-obsidian via-transparent to-obsidian opacity-40"></div>
-        <div className="absolute inset-0 bg-black/30"></div>
+        {/* Minimal darkening for contrast */}
+        <div className="absolute inset-0 bg-black/40 z-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-obsidian z-20 opacity-60"></div>
       </div>
+
+
 
 
 
