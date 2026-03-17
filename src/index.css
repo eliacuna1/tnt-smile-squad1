@@ -32,20 +32,25 @@
   mix-blend-mode: soft-light;
 }
 
-/* Video Background Cover Logic */
+/* Video Background Cover Logic (for 16:9 source) */
 .video-background-cover {
   @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none;
   width: 100vw;
-  height: 56.25vw; /* Exactly 16:9 aspect */
-  min-height: 100vh;
-  min-width: 177.77vh; /* Exactly 16:9 aspect scaled to height */
+  height: 56.25vw; /* 16:9 aspect ratio (9/16 = 0.5625) */
 }
 
-/* Ensure the iframe inside matches the container */
+@media (max-aspect-ratio: 16/9) {
+  .video-background-cover {
+    width: 177.78vh; /* 16:9 aspect ratio (16/9 = 1.7778) */
+    height: 100vh;
+  }
+}
+
 .video-background-cover iframe,
 .video-background-cover > div {
   width: 100% !important;
   height: 100% !important;
 }
+
 
 
