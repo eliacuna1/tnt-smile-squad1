@@ -36,30 +36,16 @@
 .video-background-cover {
   @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none;
   width: 100vw;
-  height: 177.78vw; /* 16/9 for vertical video */
+  height: 56.25vw; /* Exactly 16:9 aspect */
+  min-height: 100vh;
+  min-width: 177.77vh; /* Exactly 16:9 aspect scaled to height */
 }
 
-@media (min-aspect-ratio: 9/16) {
-  .video-background-cover {
-    width: 100vw;
-    height: 177.78vw;
-  }
+/* Ensure the iframe inside matches the container */
+.video-background-cover iframe,
+.video-background-cover > div {
+  width: 100% !important;
+  height: 100% !important;
 }
 
-@media (max-aspect-ratio: 9/16) {
-  .video-background-cover {
-    width: 56.25vh;
-    height: 100vh;
-  }
-}
-
-/* For desktop wide crops where we want it to cover the entire width and height */
-@media (min-width: 768px) {
-  .video-background-cover {
-    width: 100vw;
-    height: 177.78vw;
-    min-width: 100vw;
-    min-height: 100vh;
-  }
-}
 

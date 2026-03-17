@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import ReactPlayer from 'react-player/youtube';
+import ReactPlayer from 'react-player';
 
 export default function Hero() {
   const containerRef = useRef(null);
