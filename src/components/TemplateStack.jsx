@@ -119,10 +119,8 @@ export default function TemplateStack() {
       <div className="text-center mb-16 max-w-4xl mx-auto px-6">
         <h3 className="text-5xl md:text-8xl font-good-castyll text-ghost mb-6 tracking-tight">Meet the Characters</h3>
         <p className="text-ghost/70 font-sans text-lg max-w-xl mx-auto leading-relaxed">
-          Each video is built to target a specific type of implant patient.
-          Select the one that best matches your audience—or run multiple to cover them all.
-          <br /><br />
-          All videos are fully customizable to your practice.
+          Each character is built to connect with a specific patient mindset.
+          Select one or choose them all to maximize your reach.
         </p>
       </div>
 
