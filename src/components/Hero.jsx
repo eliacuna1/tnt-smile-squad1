@@ -49,10 +49,14 @@ export default function Hero() {
 
       <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center">
         
-        {/* Massive Liquid Glass Headline - Shrink slightly as requested */}
+        {/* Massive Liquid Glass Headline */}
         <h1 className="flex flex-col items-center text-[16vw] md:text-[7.5rem] lg:text-[10rem] font-good-castyll leading-[0.65] tracking-tight [perspective:1000px] mb-4">
-          <span className="block px-20 -mx-20"><span className="hero-line block px-10 glass-text">Smile</span></span>
-          <span className="block px-20 -mx-20"><span className="hero-line block px-10 glass-text-purple">Squad</span></span>
+          <span className="block px-20 -mx-20 relative">
+            <span className="hero-line block px-10 glass-text liquid-filter" data-text="Smile">Smile</span>
+          </span>
+          <span className="block px-20 -mx-20 relative">
+            <span className="hero-line block px-10 glass-text-purple liquid-filter" data-text="Squad">Squad</span>
+          </span>
         </h1>
 
 
@@ -63,6 +67,14 @@ export default function Hero() {
           <div className="mt-8 h-[1px] w-24 bg-gradient-to-r from-transparent via-plasma-pink to-transparent mx-auto"></div>
         </div>
       </div>
+      
+      {/* Liquid Glass SVG Filter Definition */}
+      <svg className="hidden">
+        <filter id="liquid-glass">
+          <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" result="noise" />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="15" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+      </svg>
       
       {/* Magical Scroll Cue */}
       <div className="hero-fade absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none">
