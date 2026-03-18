@@ -49,14 +49,14 @@ export default function Hero() {
 
       <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center">
         
-        {/* Massive Liquid Glass Headline */}
-        <h1 className="flex flex-col items-center text-[18vw] md:text-[8.5rem] lg:text-[11rem] font-good-castyll leading-[0.6] tracking-tight [perspective:1000px] py-10">
+        {/* Massive Liquid Glass Headline - Shrink slightly as requested */}
+        <h1 className="flex flex-col items-center text-[16vw] md:text-[7.5rem] lg:text-[10rem] font-good-castyll leading-[0.65] tracking-tight [perspective:1000px] mb-4">
           <span className="block px-20 -mx-20"><span className="hero-line block px-10 glass-text">Smile</span></span>
           <span className="block px-20 -mx-20"><span className="hero-line block px-10 glass-text-purple">Squad</span></span>
         </h1>
 
 
-        <div className="hero-fade mt-1 max-w-xl text-center px-4">
+        <div className="hero-fade max-w-xl text-center px-4">
           <p className="text-sm md:text-base font-inter text-ghost/90 leading-relaxed tracking-wide italic">
             Where the right message meets the right patient.
           </p>
