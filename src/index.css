@@ -1,21 +1,3 @@
-@import '@fontsource/inter/400.css';
-@import '@fontsource/inter/700.css';
-@import '@fontsource/inter/900.css';
-@import '@fontsource/space-mono/400.css';
-@import '@fontsource/space-mono/700.css';
-@import '@fontsource/instrument-serif/400-italic.css';
-@import '@fontsource/instrument-serif/400.css';
-
-@font-face {
-  font-family: 'Good Castyll';
-  src: url('./assets/fonts/GoodCastyll.woff') format('woff'),
-       url('./assets/fonts/GoodCastyll.ttf') format('truetype'),
-       url('./assets/fonts/GoodCastyll.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -30,54 +12,51 @@
   }
 }
 
-@layer components {
-  /* Noise overlay defined in tailwind config plugin or inline class */
-}
-
-.noise-overlay {
-  position: fixed;
-  inset: -100%;
-  width: 300%;
-  height: 300%;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  opacity: 0.05;
-  z-index: 50;
-  pointer-events: none;
-  mix-blend-mode: soft-light;
-}
-
-/* Video Background Cover Logic - HORIZONTAL 16:9 source (Hero) */
-.video-background-cover-16-9 {
-  @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none;
-  width: 100vw;
-  height: 56.25vw;
-  min-height: 100vh;
-  min-width: 177.78vh;
-}
-@media (max-aspect-ratio: 16/9) {
+@layer utilities {
+  .text-shadow-glow {
+    text-shadow: 0 0 20px rgba(157, 78, 221, 0.5);
+  }
+  
   .video-background-cover-16-9 {
-    width: 177.78vh;
-    height: 100vh;
-  }
-}
-
-/* Video Background Cover Logic - VERTICAL 9:16 source (Cards) */
-.video-background-cover-9-16 {
-  @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none;
-  width: 56.25vh;
-  height: 100vh;
-}
-@media (min-aspect-ratio: 9/16) {
-  .video-background-cover-9-16 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
     width: 100vw;
-    height: 177.78vw;
+    height: 56.25vw; /* 16:9 ratio */
+    min-height: 100vh;
+    min-width: 177.77vh; /* 16:9 ratio */
+    transform: translate(-50%, -50%);
+  }
+
+  .glass-text {
+    background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.4) 35%, rgba(157,78,221,0.2) 60%, rgba(255,255,255,0.1));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+    text-shadow: 
+      0 1px 1px rgba(255,255,255,0.8),
+      0 -1px 0 rgba(0,0,0,0.4),
+      0 4px 10px rgba(0,0,0,0.2),
+      0 0 15px rgba(255,255,255,0.2);
+    z-index: 10;
+  }
+
+  .glass-text-purple {
+    background: linear-gradient(135deg, rgba(200,100,255,0.95), rgba(157,78,221,0.6) 35%, rgba(157,78,221,0.3) 60%, rgba(157,78,221,0.1));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+    text-shadow: 
+      0 1px 1px rgba(255,255,255,0.7),
+      0 -1px 0 rgba(0,0,0,0.4),
+      0 4px 25px rgba(157,78,221,0.6),
+      0 0 35px rgba(157,78,221,0.4);
   }
 }
 
-.video-background-cover-16-9 iframe,
-.video-background-cover-16-9 > div,
-.video-background-cover-9-16 iframe,
-.video-background-cover-9-16 > div {
+.video-background-cover-16-9 iframe {
   width: 100% !important;
   height: 100% !important;
 }
@@ -142,8 +121,3 @@
 .animate-siri-glow-border {
   animation: siri-glow-border 12s linear infinite;
 }
-
-
-
-
-
