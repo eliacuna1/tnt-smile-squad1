@@ -28,87 +28,58 @@
     transform: translate(-50%, -50%);
   }
 
-  /* Liquid Glass Core Utilities */
-  .liquid-filter {
-    filter: url(#liquid-glass);
-  }
-
-  /* Refined Liquid Glass Text (Apple-Style) */
+  /* Liquid Glass Text - Clean and Bound to Letters ONLY */
   .glass-text {
-    position: relative;
+    /* Specular Reflection Gradient */
     background: linear-gradient(
       180deg, 
-      rgba(255, 255, 255, 0.5) 0%, 
-      rgba(255, 255, 255, 0.15) 50%, 
-      rgba(255, 255, 255, 0.05) 100%
+      rgba(255, 255, 255, 0.95) 0%, 
+      rgba(255, 255, 255, 0.4) 30%, 
+      rgba(255, 255, 255, 0.1) 50%, 
+      rgba(255, 255, 255, 0.4) 70%,
+      rgba(255, 255, 255, 0.95) 100%
     );
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
     
-    /* Text Shadow layers to create the 'liquid' bevel and highlights */
+    /* "Puffy" Bevel Effect via Shadows */
     text-shadow: 
-      0 1px 1px rgba(255, 255, 255, 0.4),
-      0 -1px 0 rgba(0, 0, 0, 0.3),
-      0 4px 15px rgba(0, 0, 0, 0.2),
-      0 0 5px rgba(255, 255, 255, 0.3);
+      0 2px 0 rgba(255, 255, 255, 0.8),         /* Top Bevel Highlight */
+      0 -1px 1px rgba(0, 0, 0, 0.4),            /* Bottom Bevel Depth */
+      0 8px 15px rgba(0, 0, 0, 0.4),            /* Deep Shadow */
+      0 0 20px rgba(255, 255, 255, 0.2);        /* Inner Glow */
     
-    /* Glossy Edge Highlight via ::before pseudo-mask if possible, 
-       but for simplicity we'll use layered shadow */
-    transition: all 0.5s ease;
-  }
-
-  .glass-text::before {
-    content: attr(data-text);
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background: linear-gradient(135deg, rgba(255,255,255,0.4), transparent 40%, rgba(255,255,255,0.1) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    filter: blur(4px);
-    opacity: 0.5;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+    mix-blend-mode: color-dodge; /* Makes letters interact with the video behind */
   }
 
   .glass-text-purple {
-    position: relative;
     background: linear-gradient(
       180deg, 
-      rgba(200, 100, 255, 0.5) 0%, 
+      rgba(220, 150, 255, 0.95) 0%, 
+      rgba(157, 78, 221, 0.5) 30%, 
       rgba(157, 78, 221, 0.2) 50%, 
-      rgba(157, 78, 221, 0.1) 100%
+      rgba(157, 78, 221, 0.5) 70%,
+      rgba(220, 150, 255, 0.95) 100%
     );
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    
     text-shadow: 
-      0 1px 1px rgba(255, 255, 255, 0.3),
-      0 4px 20px rgba(157, 78, 221, 0.4),
-      0 0 10px rgba(157, 78, 221, 0.2);
+      0 2px 0 rgba(255, 255, 255, 0.6),
+      0 -1px 1px rgba(0, 0, 0, 0.4),
+      0 10px 25px rgba(157, 78, 221, 0.5),
+      0 0 30px rgba(157, 78, 221, 0.3);
+      
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+    mix-blend-mode: plus-lighter;
   }
 
-  .glass-text-purple::before {
-    content: attr(data-text);
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    background: linear-gradient(135deg, rgba(157, 78, 221, 0.5), transparent 40%, rgba(157, 78, 221, 0.2) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    filter: blur(4px);
-    opacity: 0.5;
+  .liquid-filter {
+    filter: url(#liquid-glass);
+    display: inline-block;
   }
 }
 
