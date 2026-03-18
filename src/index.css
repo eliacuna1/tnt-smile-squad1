@@ -28,53 +28,34 @@
     transform: translate(-50%, -50%);
   }
 
-  /* Liquid Glass Text - Clean and Bound to Letters ONLY */
+  /* Deeply Transparent Liquid Glass Effect */
   .glass-text {
-    /* Specular Reflection Gradient */
-    background: linear-gradient(
-      180deg, 
-      rgba(255, 255, 255, 0.95) 0%, 
-      rgba(255, 255, 255, 0.4) 30%, 
-      rgba(255, 255, 255, 0.1) 50%, 
-      rgba(255, 255, 255, 0.4) 70%,
-      rgba(255, 255, 255, 0.95) 100%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: rgba(255, 255, 255, 0.05); /* Nearly transparent fill */
+    -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.2); /* Fine glass edge */
     
-    /* "Puffy" Bevel Effect via Shadows */
+    /* Layered shadows to create 'liquid' depth without a solid fill */
     text-shadow: 
-      0 2px 0 rgba(255, 255, 255, 0.8),         /* Top Bevel Highlight */
-      0 -1px 1px rgba(0, 0, 0, 0.4),            /* Bottom Bevel Depth */
-      0 8px 15px rgba(0, 0, 0, 0.4),            /* Deep Shadow */
-      0 0 20px rgba(255, 255, 255, 0.2);        /* Inner Glow */
-    
-    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
-    mix-blend-mode: color-dodge; /* Makes letters interact with the video behind */
+      0 2px 3px rgba(255, 255, 255, 0.7),     /* Top Edge Specular Shine */
+      0 -1px 1px rgba(0, 0, 0, 0.4),          /* Bottom Bevel Offset */
+      0 5px 15px rgba(0, 0, 0, 0.3),          /* Underlying Floor Shadow */
+      0 0 25px rgba(255, 255, 255, 0.1);      /* Internal Light Refusal */
+
+    mix-blend-mode: plus-lighter; /* Blends liquid light into the video background */
+    filter: blur(0.3px); /* Subtly soften the glass edges */
   }
 
   .glass-text-purple {
-    background: linear-gradient(
-      180deg, 
-      rgba(220, 150, 255, 0.95) 0%, 
-      rgba(157, 78, 221, 0.5) 30%, 
-      rgba(157, 78, 221, 0.2) 50%, 
-      rgba(157, 78, 221, 0.5) 70%,
-      rgba(220, 150, 255, 0.95) 100%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: rgba(200, 100, 255, 0.05);
+    -webkit-text-stroke: 0.5px rgba(200, 150, 255, 0.2);
     
     text-shadow: 
-      0 2px 0 rgba(255, 255, 255, 0.6),
+      0 2px 3px rgba(255, 255, 255, 0.5),
       0 -1px 1px rgba(0, 0, 0, 0.4),
-      0 10px 25px rgba(157, 78, 221, 0.5),
-      0 0 30px rgba(157, 78, 221, 0.3);
+      0 8px 20px rgba(157, 78, 221, 0.4),
+      0 0 30px rgba(157, 78, 221, 0.2);
       
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
     mix-blend-mode: plus-lighter;
+    filter: blur(0.3px);
   }
 
   .liquid-filter {
