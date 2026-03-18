@@ -28,39 +28,70 @@
     transform: translate(-50%, -50%);
   }
 
-  /* Deeply Transparent Liquid Glass Effect */
-  .glass-text {
-    color: rgba(255, 255, 255, 0.05); /* Nearly transparent fill */
-    -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.2); /* Fine glass edge */
-    
-    /* Layered shadows to create 'liquid' depth without a solid fill */
-    text-shadow: 
-      0 2px 3px rgba(255, 255, 255, 0.7),     /* Top Edge Specular Shine */
-      0 -1px 1px rgba(0, 0, 0, 0.4),          /* Bottom Bevel Offset */
-      0 5px 15px rgba(0, 0, 0, 0.3),          /* Underlying Floor Shadow */
-      0 0 25px rgba(255, 255, 255, 0.1);      /* Internal Light Refusal */
-
-    mix-blend-mode: plus-lighter; /* Blends liquid light into the video background */
-    filter: blur(0.3px); /* Subtly soften the glass edges */
+  /* 
+     ============================================================
+     APPLE LIQUID GLASS TEXT EFFECT
+     ============================================================
+     Description: Pure transparent refractive glass style.
+     - NO solid fill, NO frost, NO matte blocks.
+     - Uses mix-blend-mode to react to content underneath.
+     - Relies on edge lighting and SVG displacement.
+  */
+  
+  .liquid-glass-wrapper {
+    filter: url(#liquid-refraction);
+    display: inline-block;
+    will-change: filter, transform;
   }
 
-  .glass-text-purple {
-    color: rgba(200, 100, 255, 0.05);
-    -webkit-text-stroke: 0.5px rgba(200, 150, 255, 0.2);
+  .liquid-glass-text {
+    color: rgba(255, 255, 255, 0.02); /* Almost zero fill for clear glass */
+    -webkit-text-stroke: 0.8px rgba(255, 255, 255, 0.25); /* Ultra-fine liquid edge */
     
+    /* Top-down Specular Gradient (Reflections) */
+    background: linear-gradient(
+      180deg, 
+      rgba(255, 255, 255, 0.35) 0%, 
+      rgba(255, 255, 255, 0.02) 45%, 
+      rgba(255, 255, 255, 0.0) 55%, 
+      rgba(255, 255, 255, 0.25) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    /* Layered shadows for 3D Specular and Bevel depth */
     text-shadow: 
-      0 2px 3px rgba(255, 255, 255, 0.5),
-      0 -1px 1px rgba(0, 0, 0, 0.4),
-      0 8px 20px rgba(157, 78, 221, 0.4),
-      0 0 30px rgba(157, 78, 221, 0.2);
+      0 1px 1px rgba(255, 255, 255, 0.8),    /* Top rim reflection */
+      0 -0.5px 0.5px rgba(0, 0, 0, 0.3),     /* Bottom bevel definition */
+      0 12px 24px rgba(0, 0, 0, 0.4),        /* Depth Shadow */
+      0 2px 4px rgba(255, 255, 255, 0.15);   /* Internal refraction sheen */
+    
+    /* Mix blend overlay is critical for the 'clear glass' Reactivity */
+    mix-blend-mode: plus-lighter; 
+    
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  /* Specific Purple Variant for 'Squad' */
+  .liquid-glass-purple {
+    color: rgba(200, 150, 255, 0.02);
+    -webkit-text-stroke: 0.8px rgba(200, 150, 255, 0.25);
+    
+    background: linear-gradient(
+      180deg, 
+      rgba(220, 180, 255, 0.3) 0%, 
+      rgba(157, 78, 221, 0.05) 50%, 
+      rgba(220, 180, 255, 0.2) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    text-shadow: 
+      0 1px 1px rgba(255, 255, 255, 0.6),
+      0 15px 30px rgba(157, 78, 221, 0.35),
+      0 0 10px rgba(157, 78, 221, 0.1);
       
     mix-blend-mode: plus-lighter;
-    filter: blur(0.3px);
-  }
-
-  .liquid-filter {
-    filter: url(#liquid-glass);
-    display: inline-block;
   }
 }
 
