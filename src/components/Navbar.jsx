@@ -11,7 +11,6 @@ export default function Navbar() {
       
       setIsScrolled(currentScrollY > 50);
 
-      // Determine scroll direction
       if (currentScrollY < lastScrollY.current) {
         setIsScrollingUp(true);
       } else if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
@@ -25,18 +24,16 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Shrink when scrolled down AND scrolling down
+  // Shrink logic ONLY for desktop (tablet and up)
   const isShrunk = isScrolled && !isScrollingUp;
 
   return (
-    <div className={`fixed top-6 left-1/2 -translate-x-1/2 z-[100] w-[95%] max-w-7xl flex pointer-events-none transition-all duration-700 ${isShrunk ? 'px-0' : ''}`}>
+    <div className={`fixed top-6 left-1/2 -translate-x-1/2 z-[100] w-[95%] max-w-7xl flex flex-col items-center pointer-events-none transition-all duration-700`}>
       <div 
-        className="relative group pointer-events-auto"
-        style={{ 
-          width: isShrunk ? '180px' : '100%',
-          height: isShrunk ? '60px' : '72px',
-          transition: 'all 0.8s cubic-bezier(0.23, 1, 0.32, 1)'
-        }}
+        className={`relative group pointer-events-auto transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]
+          ${isShrunk ? 'md:w-[180px]' : 'w-full'}
+          h-[60px] md:h-[72px]
+        `}
       >
         {/* Apple Siri-Style Edge Glow Border */}
         <div className="absolute -inset-[1.5px] rounded-full overflow-hidden pointer-events-none">
@@ -47,17 +44,19 @@ export default function Navbar() {
         <div className="absolute -inset-[10px] bg-gradient-to-r from-plasma-blue/10 via-plasma-purple/10 to-plasma-pink/10 rounded-full blur-2xl opacity-40 animate-siri-glow transition-opacity pointer-events-none"></div>
 
         <nav 
-          className="relative h-full w-full bg-obsidian/40 backdrop-blur-3xl border border-white/10 rounded-full overflow-hidden flex items-center shadow-2xl"
+          className="relative h-full w-full bg-white/[0.05] backdrop-blur-3xl border border-white/10 rounded-full overflow-hidden flex items-center shadow-2xl"
         >
           {/* Animated Internal Mist / Mesh - Apple Style */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-60 pointer-events-none"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-60 pointer-events-none"></div>
           
-          <div className={`relative h-full w-full flex items-center transition-all duration-700 ${isShrunk ? 'px-4 justify-center' : 'px-8 justify-between'}`}>
-            {/* Logo Section */}
-            <div className={`flex items-center transition-all duration-700 delay-100
-              ${isShrunk ? 'scale-90' : 'scale-100'}
+          <div className={`relative h-full w-full flex items-center px-4 md:px-8 
+            ${isShrunk ? 'md:justify-center' : 'justify-between'}`}>
+            
+            {/* Logo Section - Always centered on mobile, left on desktop (unless shrunk) */}
+            <div className={`flex items-center transition-all duration-700 w-full md:w-auto justify-center md:justify-start
+              ${isShrunk ? 'md:scale-90' : 'scale-100'}
             `}>
-              <div className="h-8 md:h-9 w-auto flex items-center">
+              <div className="h-7 md:h-9 w-auto flex items-center translate-y-[1px]">
                 <img 
                   src="./assets/characters/tnt-logo-official.png" 
                   alt="TNT Dental" 
@@ -66,8 +65,8 @@ export default function Navbar() {
               </div>
             </div>
             
-            {/* Navigation Links - Full Menu */}
-            <div className={`flex items-center justify-center gap-10 font-mono text-[10px] uppercase tracking-[0.3em] text-white/60 transition-all duration-700
+            {/* Navigation Links - Hidden on mobile, Hidden on desktop when shrunk */}
+            <div className={`hidden md:flex items-center justify-center gap-10 font-mono text-[10px] uppercase tracking-[0.3em] text-white/70 transition-all duration-700
               ${isScrolled && !isScrollingUp ? 'opacity-0 absolute translate-y-10 pointer-events-none' : 'opacity-100 translate-y-0'}
             `}>
               <a href="#hero" className="hover:text-plasma-pink hover:scale-110 transition-all duration-500 whitespace-nowrap">Casa</a>
@@ -75,8 +74,8 @@ export default function Navbar() {
               <a href="#footer" className="hover:text-plasma-blue hover:scale-110 transition-all duration-500 whitespace-nowrap">All Templates</a>
             </div>
 
-            {/* Spacer */}
-            {!isShrunk && <div className="w-[50px] hidden md:block opacity-0"></div>}
+            {/* Desktop Spacer */}
+            <div className={`hidden md:block transition-all duration-700 ${isShrunk ? 'w-0' : 'w-[50px] opacity-0'}`}></div>
           </div>
         </nav>
       </div>

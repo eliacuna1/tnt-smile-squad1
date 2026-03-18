@@ -1,5 +1,4 @@
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
+import { useState, useRef } from 'react';
 
 const characters = [
   { 
@@ -46,26 +45,37 @@ const characters = [
 
 export default function MatrixFooter() {
   const footerRef = useRef(null);
+  const [selectedVideo, setSelectedVideo] = useState(null);
+
+  const openFullscreen = (char) => {
+    if (char.youtubeId) {
+      setSelectedVideo(char);
+    }
+  };
+
+  const closeFullscreen = () => {
+    setSelectedVideo(null);
+  };
 
   return (
     <section ref={footerRef} id="footer" className="relative w-full bg-obsidian py-20 md:py-32 border-t border-white/5 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h3 className="text-5xl md:text-7xl font-good-castyll text-ghost tracking-tight">The Smile Squad</h3>
+          <h3 className="text-5xl md:text-7xl font-good-castyll text-ghost tracking-tight uppercase">The Smile Squad</h3>
           <p className="mt-4 text-ghost/60 font-sans max-w-lg mx-auto">
             Connect with your Growth Leader today and let’s bring your campaign to life.
           </p>
         </div>
 
-        {/* 4-Column Video Grid (2 on mobile) */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
           {characters.map((char) => (
             <div 
               key={char.id}
-              className={`group relative flex flex-col items-center cursor-pointer transition-all duration-500`}
+              onClick={() => openFullscreen(char)}
+              className="group relative flex flex-col items-center cursor-pointer transition-all duration-500"
             >
               {/* Vertical Card wrapper for 9:16 */}
-              <div className={`relative w-full aspect-[9/16] rounded-2xl overflow-hidden border border-white/10 bg-black/50 transition-all duration-500 ease-out transform group-hover:-translate-y-2 ${char.hoverColor}`}>
+              <div className={`relative w-full aspect-[9/16] rounded-2xl overflow-hidden border border-white/10 bg-black transition-all duration-500 ease-out transform group-hover:-translate-y-2 ${char.hoverColor}`}>
                 <img 
                   src={char.image} 
                   alt={char.title}
@@ -73,17 +83,17 @@ export default function MatrixFooter() {
                 />
                 
                 {char.youtubeId && (
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none overflow-hidden">
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none overflow-hidden scale-100 group-hover:scale-110">
                     <iframe 
                       src={`https://www.youtube.com/embed/${char.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${char.youtubeId}&controls=0&modestbranding=1&playsinline=1&rel=0`}
-                      className="absolute top-1/2 left-1/2 w-[135%] h-[135%] max-w-none -translate-x-1/2 -translate-y-1/2"
+                      className="absolute top-1/2 left-1/2 w-[110%] h-[110%] max-w-none -translate-x-1/2 -translate-y-1/2 pointer-events-none"
                     ></iframe>
                   </div>
                 )}
                 
                 <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent opacity-80"></div>
                 
-                {/* Magnetic Hover Effect: Name fades up */}
+                {/* Magnetic Hover Effect Name */}
                 <div className="absolute bottom-0 left-0 w-full p-4 md:p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 overflow-hidden flex flex-col items-center text-center">
                   <span className={`text-base md:text-xl font-sans font-black tracking-widest ${char.textColor}`}>
                     {char.name}
@@ -101,6 +111,41 @@ export default function MatrixFooter() {
           ))}
         </div>
       </div>
+
+      {/* Modern High-End Video Modal Interface */}
+      {selectedVideo && (
+        <div 
+          className="fixed inset-0 z-[200] flex items-center justify-center p-4 md:p-10 bg-black/95 backdrop-blur-xl animate-in fade-in duration-500"
+          onClick={closeFullscreen}
+        >
+          {/* Close interaction anywhere off the video */}
+          <div className="absolute top-8 right-10 z-10">
+            <button className="p-3 text-white/50 hover:text-white transition-colors duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+
+          <div 
+            className="relative w-full max-w-4xl aspect-video rounded-3xl overflow-hidden shadow-[0_0_80px_rgba(0,0,0,1)] border border-white/5 animate-in zoom-in-95 duration-500"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <iframe 
+              src={`https://www.youtube.com/embed/${selectedVideo.youtubeId}?autoplay=1&controls=1&modestbranding=1&rel=0&showinfo=0`}
+              className="w-full h-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+          
+          <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
+             <h4 className="text-white font-good-castyll text-3xl md:text-5xl tracking-wide">{selectedVideo.name}</h4>
+             <p className="text-white/40 font-mono text-[10px] uppercase tracking-[0.5em]">Now Playing: Unmuted Original Template</p>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
