@@ -18,8 +18,10 @@ const emergencyCampaign = {
 
 export default function EmergencyStack() {
   const [isHovered, setIsHovered] = useState(false);
+  const [activeVisible, setActiveVisible] = useState(false);
   const [selectedVideo, setSelectedVideo] = useState(null);
   const containerRef = useRef(null);
+  const cardRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -48,6 +50,22 @@ export default function EmergencyStack() {
         }
       });
     }, containerRef);
+
+    // Mobile Viewport Observer for Video Activation
+    const isMobile = window.innerWidth < 768;
+    if (isMobile) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setActiveVisible(true);
+          }
+        });
+      }, { threshold: 0.6 });
+
+      if (cardRef.current) observer.observe(cardRef.current);
+      return () => observer.disconnect();
+    }
+
     return () => ctx.revert();
   }, []);
 
@@ -88,14 +106,15 @@ export default function EmergencyStack() {
 
         {/* 16:9 Wide Poster Card */}
         <div
+          ref={cardRef}
           className="relative w-full aspect-video rounded-[12px] md:rounded-[32px] overflow-hidden bg-neutral-900 cursor-pointer transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] border border-white/0 hover:border-white/10 z-10 shadow-2xl"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           onClick={() => setSelectedVideo(emergencyCampaign)}
         >
-          {/* Visual Layer */}
+          {/* Visual Layer (Active on Hover or Mobile Scroll) */}
           <div className="absolute inset-0 w-full h-full">
-            {isHovered ? (
+            {(isHovered || activeVisible) ? (
               <div className="w-full h-full relative">
                 <iframe
                   src={`https://www.youtube.com/embed/${emergencyCampaign.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${emergencyCampaign.youtubeId}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&playsinline=1`}
@@ -124,14 +143,16 @@ export default function EmergencyStack() {
 
           {/* Designer Typography Layer */}
           <div className="absolute inset-0 flex flex-col justify-end p-10 md:p-16 z-10 pointer-events-none">
-             <div className="transform transition-all duration-1000 group-hover:-translate-y-4">
+             <div className={`transform transition-all duration-1000 ${(isHovered || activeVisible) ? '-translate-y-4' : ''}`}>
                 <h2 className="font-serif leading-[0.8] tracking-tighter text-white whitespace-pre-line break-words
                    text-[10vw] sm:text-[6vw] lg:text-[4vw]
                 ">
                   {emergencyCampaign.title}
                 </h2>
-                <div className="flex items-center gap-4 mt-8 opacity-0 group-hover:opacity-100 transition-all duration-1000 translate-y-4 group-hover:translate-y-0 text-white/40 group-hover:text-white">
-                   <div className="w-20 h-[1px] bg-white/40 group-hover:bg-white transition-all"></div>
+                <div className={`flex items-center gap-4 mt-8 transition-all duration-1000 text-white/40
+                  ${(isHovered || activeVisible) ? 'opacity-100 translate-y-0 text-white' : 'opacity-4 translate-y-4'}
+                `}>
+                   <div className={`w-20 h-[1px] bg-white/40 transition-all ${(isHovered || activeVisible) ? 'bg-white' : ''}`}></div>
                    <span className="font-mono text-[10px] tracking-[0.6em] uppercase">High Intent</span>
                 </div>
              </div>

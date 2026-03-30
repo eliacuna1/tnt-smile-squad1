@@ -51,8 +51,10 @@ const campaigns = [
 
 export default function NewPatientStack() {
   const [hoveredId, setHoveredId] = useState(null);
+  const [activeMobileId, setActiveMobileId] = useState(null);
   const [selectedVideo, setSelectedVideo] = useState(null);
   const containerRef = useRef(null);
+  const cardRefs = useRef({});
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -76,6 +78,25 @@ export default function NewPatientStack() {
         }
       });
     }, containerRef);
+
+    // Mobile Viewport Observer for Video Activation
+    const isMobile = window.innerWidth < 768;
+    if (isMobile) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setActiveMobileId(entry.target.getAttribute('data-id'));
+          }
+        });
+      }, { threshold: 0.6 });
+
+      Object.values(cardRefs.current).forEach(card => {
+        if (card) observer.observe(card);
+      });
+
+      return () => observer.disconnect();
+    }
+
     return () => ctx.revert();
   }, []);
 
@@ -120,14 +141,16 @@ export default function NewPatientStack() {
 
             {/* Main Interactive Card */}
             <div
+              ref={el => cardRefs.current[camp.id] = el}
+              data-id={camp.id}
               className={`relative flex flex-col pt-[155%] md:pt-[145%] rounded-[12px] md:rounded-[20px] overflow-hidden bg-neutral-900 cursor-pointer transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] border border-white/0 hover:border-white/10 z-10`}
               onMouseEnter={() => setHoveredId(camp.id)}
               onMouseLeave={() => setHoveredId(null)}
               onClick={() => setSelectedVideo(camp)}
             >
-              {/* Visual Layer */}
+              {/* Visual Layer (Active on Hover or Mobile Scroll) */}
               <div className="absolute inset-0 w-full h-full">
-                {hoveredId === camp.id ? (
+                {(hoveredId === camp.id || activeMobileId === camp.id) ? (
                   <div className="w-full h-full relative">
                     <iframe
                       src={`https://www.youtube.com/embed/${camp.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${camp.youtubeId}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&playsinline=1`}
@@ -156,14 +179,16 @@ export default function NewPatientStack() {
 
               {/* Designer Typography Layer (Bottom-Left Side) */}
               <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-10 z-10 pointer-events-none">
-                 <div className="transform transition-all duration-1000 group-hover:-translate-y-2">
+                  <div className={`transform transition-all duration-1000 ${(hoveredId === camp.id || activeMobileId === camp.id) ? '-translate-y-2' : ''}`}>
                     <h2 className="font-serif leading-[0.85] tracking-tighter text-white whitespace-pre-line break-words
                        text-[9vw] sm:text-[4vw] lg:text-[2.2vw]
                     ">
                       {camp.title}
                     </h2>
-                    <div className="flex items-center gap-3 mt-6 opacity-0 group-hover:opacity-100 transition-all duration-1000 translate-y-2 group-hover:translate-y-0 text-white/40 group-hover:text-white">
-                       <div className="w-12 h-[1px] bg-white/40 group-hover:bg-white transition-all"></div>
+                    <div className={`flex items-center gap-3 mt-6 transition-all duration-1000 text-white/40
+                      ${(hoveredId === camp.id || activeMobileId === camp.id) ? 'opacity-100 translate-y-0 text-white' : 'opacity-0 translate-y-2'}
+                    `}>
+                       <div className={`w-12 h-[1px] bg-white/40 transition-all ${(hoveredId === camp.id || activeMobileId === camp.id) ? 'bg-white' : ''}`}></div>
                        <Play size={10} className="fill-current" />
                     </div>
                  </div>

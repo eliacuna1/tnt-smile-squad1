@@ -4,7 +4,9 @@ import { ArrowRight } from 'lucide-react';
 
 const LibraryPortal = () => {
   const [hoveredId, setHoveredId] = useState(null);
+  const [activeMobileId, setActiveMobileId] = useState(null);
   const containerRef = useRef(null);
+  const cardRefs = useRef({});
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -55,6 +57,26 @@ const LibraryPortal = () => {
     }, containerRef);
 
     return () => ctx.revert();
+  }, []);
+
+  // Mobile Viewport Observer for Video Activation
+  useEffect(() => {
+    const isMobile = window.innerWidth < 768;
+    if (!isMobile) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActiveMobileId(entry.target.getAttribute('data-id'));
+        }
+      });
+    }, { threshold: 0.6 });
+
+    Object.values(cardRefs.current).forEach(card => {
+      if (card) observer.observe(card);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
   const sections = [
@@ -143,7 +165,6 @@ const LibraryPortal = () => {
                  Creative
               </span>
               <ScribbleUnderline />
-              <ScribbleCross />
             </span><br/>
             LIBRARY
           </h1>
@@ -202,13 +223,15 @@ const LibraryPortal = () => {
 
               <a
                 href={section.path}
+                ref={el => cardRefs.current[section.id] = el}
+                data-id={section.id}
                 className={`category-card relative group flex flex-col pt-[155%] md:pt-[145%] rounded-[12px] md:rounded-[20px] overflow-hidden bg-neutral-900 cursor-pointer transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] border border-white/0 hover:border-white/10 z-10`}
                 onMouseEnter={() => setHoveredId(section.id)}
                 onMouseLeave={() => setHoveredId(null)}
               >
-                {/* Background Layer */}
+                {/* Background Layer (Hover or Scroll Active) */}
                 <div className="absolute inset-0 w-full h-full overflow-hidden text-clip">
-                  {hoveredId === section.id ? (
+                  {(hoveredId === section.id || activeMobileId === section.id) ? (
                     <div className="w-full h-full relative transition-transform duration-[1.5s]">
                       <iframe 
                         src={`https://www.youtube.com/embed/${section.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${section.youtubeId}&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&iv_load_policy=3`}
@@ -251,10 +274,10 @@ const LibraryPortal = () => {
                      {/* Minimalist Line Transition */}
                      <div className="flex items-center gap-4 mt-2">
                         <div className={`h-[1px] bg-white/40 transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]
-                          ${hoveredId === section.id ? 'w-16 bg-white opacity-100' : 'w-0 opacity-0'}
+                          ${(hoveredId === section.id || activeMobileId === section.id) ? 'w-16 bg-white opacity-100' : 'w-0 opacity-0'}
                         `}></div>
                         <ArrowRight className={`w-4 h-4 text-white transition-all duration-700 delay-100
-                          ${hoveredId === section.id ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}
+                          ${(hoveredId === section.id || activeMobileId === section.id) ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}
                         `} />
                      </div>
                   </div>
