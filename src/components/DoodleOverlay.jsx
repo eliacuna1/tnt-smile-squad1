@@ -16,62 +16,46 @@ export default function DoodleOverlay() {
   const [activeDoodles, setActiveDoodles] = useState([]);
 
   useEffect(() => {
-    console.log("DoodleOverlay: Mounted and starting spawn cycle.");
+    console.log("DoodleOverlay: MOUNTED");
     
     const spawnDoodle = () => {
-      setActiveDoodles(prev => {
-        if (prev.length >= 6) return prev; // Allowing more for testing
+      const doodleType = DOODLES[Math.floor(Math.random() * DOODLES.length)];
+      const id = Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
+      
+      const newDoodle = {
+        ...doodleType,
+        uniqueId: id,
+        x: Math.random() * 70 + 15,
+        y: Math.random() * 70 + 15,
+        rotation: Math.random() * 60 - 30,
+        scale: 1.5 // Force large scale
+      };
 
-        const doodleType = DOODLES[Math.floor(Math.random() * DOODLES.length)];
-        const id = Math.random().toString(36).substr(2, 9);
-        
-        const newDoodle = {
-          ...doodleType,
-          uniqueId: id,
-          x: Math.random() * 80 + 10,
-          y: Math.random() * 80 + 10,
-          rotation: Math.random() * 90 - 45,
-          scale: Math.random() * 0.5 + 1.2 // Made even larger
-        };
-
-        console.log(`DoodleOverlay: Spawning ${newDoodle.id} at ${newDoodle.x}%, ${newDoodle.y}%`);
-        return [...prev, newDoodle];
-      });
-
-      // Clear doodle after animation
-      setTimeout(() => {
-        setActiveDoodles(prev => prev.filter(d => !prev.find(p => p.uniqueId === d.uniqueId && Date.now() - parseInt(d.uniqueId, 36) > 7000)));
-        // Note: the logic above is a bit flawed, let's just use a simple timeout for each id inside the state update or a separate effect.
-      }, 8000);
+      console.log("DoodleOverlay: SPAWNING", newDoodle.id);
+      setActiveDoodles(prev => [...prev.slice(-10), newDoodle]); // Keep last 10
     };
 
-    // Initial spawn
+    // Spawn 2 immediately
     spawnDoodle();
+    setTimeout(spawnDoodle, 500);
     
-    const interval = setInterval(spawnDoodle, 3000);
+    const interval = setInterval(spawnDoodle, 2500); // More frequent
     return () => clearInterval(interval);
-  }, []); // Only run once on mount
-
-  // Cleanup effect for doodles
-  useEffect(() => {
-    const timer = setInterval(() => {
-        setActiveDoodles(prev => prev.slice(-6)); // Just keep the latest 6 for safety
-    }, 10000);
-    return () => clearInterval(timer);
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-[999] overflow-hidden select-none">
+    <div 
+      id="doodle-overlay-container"
+      className="fixed inset-0 pointer-events-none z-[9999] overflow-hidden select-none"
+    >
       {activeDoodles.map((doodle) => (
-        <Doodle key={doodle.uniqueId} doodle={doodle} onComplete={() => {
-            setActiveDoodles(prev => prev.filter(d => d.uniqueId !== doodle.uniqueId));
-        }} />
+        <Doodle key={doodle.uniqueId} doodle={doodle} />
       ))}
     </div>
   );
 }
 
-function Doodle({ doodle, onComplete }) {
+function Doodle({ doodle }) {
   const doodleRef = useRef(null);
 
   useEffect(() => {
@@ -84,36 +68,26 @@ function Doodle({ doodle, onComplete }) {
     const length = path.getTotalLength();
     gsap.set(path, { strokeDasharray: length, strokeDashoffset: length });
 
-    const tl = gsap.timeline({
-      onComplete: () => {
-        // Optional: wait a bit before calling onComplete to let it fade out
-        setTimeout(onComplete, 1000);
-      }
-    });
+    const tl = gsap.timeline();
 
     tl.to(path, {
       strokeDashoffset: 0,
-      duration: 1.5,
-      ease: "power2.out"
+      duration: 1,
+      ease: "none"
     })
     .to(el, {
       opacity: 1,
-      duration: 0.5
+      duration: 0.3
     }, 0)
     .to(el, {
        opacity: 0,
-       scale: 0.8,
-       delay: 5,
-       duration: 1.5,
+       delay: 15, // STAY VISIBLE FOR A LONG TIME FOR TESTING
+       duration: 1,
        ease: "power2.inOut"
     });
-
-    if (doodle.text) {
-      tl.fromTo(el.querySelector('text'), { opacity: 0 }, { opacity: 1, duration: 1 }, 1);
-    }
     
     return () => tl.kill();
-  }, [doodle, onComplete]);
+  }, [doodle]);
 
   return (
     <div 
@@ -129,18 +103,18 @@ function Doodle({ doodle, onComplete }) {
         <path 
           d={doodle.d} 
           fill="none" 
-          stroke="white" 
-          strokeWidth="3" 
+          stroke="#00ffff" // Use cyan for extreme visibility testing
+          strokeWidth="4" 
           strokeLinecap="round" 
           strokeLinejoin="round"
-          className="drop-shadow-[0_0_12px_rgba(255,255,255,0.5)]"
+          className="drop-shadow-[0_0_15px_rgba(0,255,255,0.8)]"
         />
         {doodle.text && (
           <text 
             x="25" 
             y="28" 
             textAnchor="middle" 
-            className="font-serif italic text-[12px] fill-white"
+            className="font-serif italic text-[14px] fill-cyan-400 font-bold"
           >
             {doodle.text}
           </text>
