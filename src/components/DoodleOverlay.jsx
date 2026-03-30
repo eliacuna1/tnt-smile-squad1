@@ -48,6 +48,7 @@ export default function DoodleOverlay() {
       id="doodle-overlay-container"
       className="fixed inset-0 pointer-events-none z-[9999] overflow-hidden select-none"
     >
+      <span className="sr-only">Atmosphere Layer Active</span>
       {activeDoodles.map((doodle) => (
         <Doodle key={doodle.uniqueId} doodle={doodle} />
       ))}
