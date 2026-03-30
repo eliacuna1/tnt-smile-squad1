@@ -146,10 +146,19 @@ export default function NewPatientStack() {
                 {temp.subtitle}
               </p>
               
-              <div className="border-t border-white/10 pt-6 mt-auto">
-                <div>
+              <div className="flex flex-col gap-8 md:gap-12 mt-auto">
+                <div className="border-t border-white/10 pt-6">
                   <div className="text-[10px] font-mono text-ghost/40 uppercase tracking-widest mb-2">Strategy Type</div>
-                  <div className="font-sans text-xl font-bold tracking-tight text-ghost">{temp.stats.type}</div>
+                  <div className="font-sans text-xl font-bold tracking-tight text-white mb-8">{temp.stats.type}</div>
+                  
+                  {/* Action Button to make it a clickable module */}
+                  <button className={`group relative inline-flex items-center gap-3 px-8 py-4 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all duration-300 transform hover:scale-[1.02] cursor-pointer w-fit overflow-hidden`}>
+                    <div className={`absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out`}></div>
+                    <span className="relative text-[10px] uppercase font-mono tracking-[0.3em] text-white">Full Review</span>
+                    <svg className={`relative w-4 h-4 text-white transition-transform group-hover:translate-x-1`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </button>
                 </div>
               </div>
             </div>

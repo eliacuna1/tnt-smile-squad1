@@ -1,64 +1,90 @@
-import { useState, useRef } from 'react';
-import '@fontsource/inter/400.css';
-import '@fontsource/inter/700.css';
-import '@fontsource/inter/900.css';
-import '@fontsource/space-mono/400.css';
-import '@fontsource/space-mono/700.css';
+import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
 
-import NoiseOverlay from './components/NoiseOverlay';
+// Components
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import TemplateStack from './components/TemplateStack';
-import MatrixFooter from './components/MatrixFooter';
-import Footer from './components/Footer';
 import LibraryPortal from './components/LibraryPortal';
 import NewPatientHero from './components/NewPatientHero';
 import NewPatientStack from './components/NewPatientStack';
+import EmergencyHero from './components/EmergencyHero';
+import EmergencyStack from './components/EmergencyStack';
+import ImplantsHero from './components/ImplantsHero';
+import TemplateStack from './components/TemplateStack'; // Character Cards for Implants
+import CosmeticHero from './components/CosmeticHero';
+import CosmeticStack from './components/CosmeticStack';
+import MatrixFooter from './components/MatrixFooter';
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
+
+function PageWrapper({ children }) {
+  return (
+    <div className="animate-fade-in origin-top">
+      {children}
+    </div>
+  );
+}
 
 function App() {
-  const [currentView, setCurrentView] = useState('LIBRARY'); // 'LIBRARY', 'SMILE_SQUAD', 'NEW_PATIENT_CAMPAIGNS'
-  const appRef = useRef(null);
-
-  const resetToLibrary = () => {
-    window.scrollTo(0, 0);
-    setCurrentView('LIBRARY');
-  };
-
-  if (currentView === 'LIBRARY') {
-    return (
-      <main ref={appRef} className="relative w-full min-h-screen bg-obsidian text-ghost selection:bg-plasma-pink selection:text-obsidian overflow-x-hidden">
-        <NoiseOverlay />
-        <Navbar currentView={currentView} />
-        <LibraryPortal 
-          onLaunchCampaign={() => setCurrentView('SMILE_SQUAD')} 
-          onNewPatientCampaigns={() => setCurrentView('NEW_PATIENT_CAMPAIGNS')}
-        />
-      </main>
-    )
-  }
-
   return (
-    <main ref={appRef} className="relative w-full min-h-screen bg-obsidian text-ghost selection:bg-plasma-pink selection:text-obsidian overflow-x-hidden animate-fade-in">
-      <NoiseOverlay />
-      <Navbar onBack={resetToLibrary} currentView={currentView} />
-      
-      {currentView === 'SMILE_SQUAD' && (
-        <>
-          <Hero />
-          <TemplateStack />
-          <MatrixFooter />
-        </>
-      )}
+    <Router>
+      <ScrollToTop />
+      <main className="relative w-full min-h-screen bg-obsidian text-ghost selection:bg-plasma-pink selection:text-obsidian overflow-x-hidden">
+        <Navbar />
+        
+        <Routes>
+          <Route path="/" element={
+            <PageWrapper>
+              <LibraryPortal />
+            </PageWrapper>
+          } />
+          
+          <Route path="/new-patient-campaigns" element={
+            <PageWrapper>
+              <NewPatientHero />
+              <NewPatientStack />
+              <MatrixFooter />
+            </PageWrapper>
+          } />
 
-      {currentView === 'NEW_PATIENT_CAMPAIGNS' && (
-        <>
-          <NewPatientHero />
-          <NewPatientStack />
-        </>
-      )}
-      
-      <Footer />
-    </main>
+          <Route path="/emergency-conversion" element={
+            <PageWrapper>
+              <EmergencyHero />
+              <EmergencyStack />
+              <MatrixFooter />
+            </PageWrapper>
+          } />
+
+          <Route path="/dental-implants" element={
+            <PageWrapper>
+              <ImplantsHero />
+              <TemplateStack />
+              <MatrixFooter />
+            </PageWrapper>
+          } />
+
+          <Route path="/smile-transformation" element={
+            <PageWrapper>
+              <CosmeticHero />
+              <CosmeticStack />
+              <MatrixFooter />
+            </PageWrapper>
+          } />
+        </Routes>
+
+        {/* Global Glows */}
+        <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0">
+          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-plasma-blue/5 blur-[120px] rounded-full animate-pulse-slow"></div>
+          <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-plasma-purple/5 blur-[120px] rounded-full animate-pulse-slow delay-700"></div>
+        </div>
+      </main>
+    </Router>
   );
 }
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-const LibraryPortal = ({ onLaunchCampaign }) => {
+const LibraryPortal = () => {
   const [visibleCards, setVisibleCards] = useState(new Set());
 
   useEffect(() => {
@@ -32,36 +33,36 @@ const LibraryPortal = ({ onLaunchCampaign }) => {
       tag: 'High Velocity',
       title: 'New Patient Campaigns',
       description: 'High-converting AI ad templates designed to drive consistent new patient flow. Built to capture attention and turn visitors into booked appointments.',
-      image: '/assets/new-patients.png',
+      image: './assets/new-patients.png',
       color: 'blue',
-      link: 'new-patient-campaigns'
+      path: '/new-patient-campaigns'
     },
     {
       id: 'emergency',
       tag: 'Urgency Driven',
-      title: 'Emergency',
+      title: 'Emergency Conversion',
       description: 'Urgency-driven AI ads built for immediate action. Optimized for high-intent searches and converting emergency cases into same-day calls.',
-      image: '/assets/emergency.png',
+      image: './assets/emergency.png',
       color: 'pink',
-      link: null
+      path: '/emergency-conversion'
     },
     {
       id: 'implants',
       tag: 'High Value',
       title: 'Dental Implants',
       description: 'Premium AI campaigns focused on high-value procedures. Designed to educate, build trust, and convert prospects into qualified consultations.',
-      image: '/assets/implants.png',
+      image: './assets/implants.png',
       color: 'orange',
-      link: 'smile-squad'
+      path: '/dental-implants'
     },
     {
       id: 'cosmetic',
       tag: 'Aesthetic Focus',
-      title: 'Cosmetic / Braces',
+      title: 'Smile Transformation',
       description: 'Transformation-focused AI templates highlighting lifestyle benefits. Designed to increase perceived value and build desire for smile makeovers.',
-      image: '/assets/cosmetic.png',
+      image: './assets/cosmetic.png',
       color: 'purple',
-      link: null
+      path: '/smile-transformation'
     }
   ];
 
@@ -77,11 +78,10 @@ const LibraryPortal = ({ onLaunchCampaign }) => {
 
   return (
     <div className="min-h-screen bg-obsidian text-ghost font-inter relative overflow-hidden flex flex-col items-center">
-      {/* Hero Section */}
       <header className="relative py-32 px-6 text-center max-w-4xl flex flex-col items-center justify-center min-h-[60vh]">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(157,78,221,0.1)_0%,transparent_70%)] pointer-events-none"></div>
         <div className="font-mono text-[0.7rem] uppercase tracking-[0.3em] text-plasma-blue mb-4 opacity-80">
-          Central Repository v1.0
+          Central Repository v2.0
         </div>
         <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl mb-8 leading-[0.9] bg-gradient-to-b from-white to-white/50 bg-clip-text text-transparent">
           TNT AI & Creative<br/>Ad Library
@@ -92,17 +92,13 @@ const LibraryPortal = ({ onLaunchCampaign }) => {
         </p>
       </header>
 
-      {/* Grid Section */}
       <main className="w-full max-w-[1400px] px-6 pb-32">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {sections.map((section) => (
-            <div
+            <Link
+              to={section.path}
               key={section.id}
               data-id={section.id}
-              onClick={() => {
-                if (section.link === 'smile-squad') onLaunchCampaign();
-                if (section.link === 'new-patient-campaigns') onNewPatientCampaigns();
-              }}
               className={`library-card relative aspect-[16/10] rounded-[32px] overflow-hidden border border-white/10 bg-white/5 cursor-pointer 
                           transition-all duration-[800ms] cubic-bezier(0.16,1,0.3,1) group
                           ${visibleCards.has(section.id) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
@@ -120,19 +116,19 @@ const LibraryPortal = ({ onLaunchCampaign }) => {
                   {section.tag}
                 </div>
                 <h2 className="font-serif text-4xl md:text-5xl mb-3 text-white">
-                  {section.title}
+                   {section.title}
                 </h2>
                 <p className="text-white/60 text-sm md:text-base line-clamp-2 max-w-md mb-6 transition-opacity duration-300 group-hover:opacity-100">
                   {section.description}
                 </p>
-                <div className={`flex items-center gap-2 font-bold text-sm transition-all duration-300 transform ${section.link ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100'}`}>
-                  {section.link ? 'Launch Campaign' : 'Explore Templates'}
-                  <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="flex items-center gap-2 font-bold text-sm transition-all duration-300 transform group-hover:translate-x-1">
+                  Launch Category Page
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </main>

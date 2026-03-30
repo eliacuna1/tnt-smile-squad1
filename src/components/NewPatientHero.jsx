@@ -32,7 +32,7 @@ export default function NewPatientHero() {
 
       <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center">
         <div className="liquid-glass-wrapper overflow-visible">
-          <h1 className="flex flex-col items-center text-[10vw] md:text-[5rem] lg:text-[7rem] font-good-castyll leading-[0.65] tracking-tight mb-8">
+          <h1 className="flex flex-col items-center text-[12vw] md:text-[6.5rem] lg:text-[8.5rem] font-good-castyll leading-[0.65] tracking-tight mb-8">
             <span className="block px-20 -mx-20">
               <span className="hero-line block px-10 liquid-glass-text">NEW PATIENT</span>
             </span>
@@ -49,6 +49,39 @@ export default function NewPatientHero() {
           <div className="mt-8 h-[1px] w-24 bg-gradient-to-r from-transparent via-plasma-blue to-transparent mx-auto"></div>
         </div>
       </div>
+
+      {/* Magical Scroll Cue */}
+      <div className="hero-fade absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none z-20">
+        <div className="relative flex flex-col items-center animate-magical-float">
+          <div className="absolute inset-0 w-32 h-32 bg-gradient-to-tr from-plasma-blue via-plasma-purple to-plasma-pink opacity-20 blur-3xl rounded-full -translate-y-1/2 -translate-x-1/2 left-1/2 top-1/2 animate-pulse"></div>
+          
+          <svg width="24" height="80" viewBox="0 0 24 80" className="relative z-10 filter drop-shadow-[0_0_12px_rgba(255,255,255,0.6)]">
+            <path 
+              d="M12 0V70M12 70L4 62M12 70L20 62" 
+              stroke="white" 
+              strokeWidth="0.5" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+              className="opacity-60"
+            />
+          </svg>
+        </div>
+      </div>
+
+      {/* Liquid Refraction Definition (Same as Hero.jsx) */}
+      <svg className="absolute w-0 h-0 pointer-events-none opacity-0 invisible" aria-hidden="true">
+        <defs>
+          <filter id="liquid-refraction" x="-20%" y="-20%" width="140%" height="140%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="4" result="warp-noise" />
+            <feDisplacementMap in="SourceGraphic" in2="warp-noise" scale="12" xChannelSelector="R" yChannelSelector="G" result="refracted" />
+            <feSpecularLighting in="refracted" surfaceScale="5" specularConstant="1.5" specularExponent="45" lighting-color="#ffffff" result="rim-shine">
+              <feDistantLight azimuth="225" elevation="60" />
+            </feSpecularLighting>
+            <feComposite in="rim-shine" in2="refracted" operator="in" result="rim-clipping" />
+            <feComposite in="refracted" in2="rim-clipping" operator="arithmetic" k1="0" k2="1" k3="0.8" k4="0" />
+          </filter>
+        </defs>
+      </svg>
     </section>
   );
 }
