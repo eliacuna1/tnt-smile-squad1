@@ -15,6 +15,7 @@ import CosmeticHero from './components/CosmeticHero';
 import CosmeticStack from './components/CosmeticStack';
 import MatrixFooter from './components/MatrixFooter';
 import DoodleOverlay from './components/DoodleOverlay';
+import EdgeGlow from './components/EdgeGlow';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -37,6 +38,7 @@ function App() {
     <Router>
       <ScrollToTop />
       <main className="relative w-full min-h-screen bg-obsidian text-ghost selection:bg-plasma-pink selection:text-obsidian overflow-x-hidden">
+        <EdgeGlow />
         <DoodleOverlay />
         <Navbar />
         
@@ -80,11 +82,7 @@ function App() {
           } />
         </Routes>
 
-        {/* Global Glows */}
-        <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0">
-          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-plasma-blue/5 blur-[120px] rounded-full animate-pulse-slow"></div>
-          <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-plasma-purple/5 blur-[120px] rounded-full animate-pulse-slow delay-700"></div>
-        </div>
+
       </main>
     </Router>
   );
