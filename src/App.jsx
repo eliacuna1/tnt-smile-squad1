@@ -14,6 +14,7 @@ import TemplateStack from './components/TemplateStack'; // Character Cards for I
 import CosmeticHero from './components/CosmeticHero';
 import CosmeticStack from './components/CosmeticStack';
 import MatrixFooter from './components/MatrixFooter';
+import DoodleOverlay from './components/DoodleOverlay';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -36,6 +37,7 @@ function App() {
     <Router>
       <ScrollToTop />
       <main className="relative w-full min-h-screen bg-obsidian text-ghost selection:bg-plasma-pink selection:text-obsidian overflow-x-hidden">
+        <DoodleOverlay />
         <Navbar />
         
         <Routes>
