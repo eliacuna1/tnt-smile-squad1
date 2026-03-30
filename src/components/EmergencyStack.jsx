@@ -99,7 +99,7 @@ export default function EmergencyStack() {
               <div className="w-full h-full relative">
                 <iframe
                   src={`https://www.youtube.com/embed/${emergencyCampaign.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${emergencyCampaign.youtubeId}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&playsinline=1`}
-                  className="w-full h-full pointer-events-none scale-110 md:scale-125"
+                  className="w-full h-full pointer-events-none scale-105 md:scale-[1.08]"
                   allow="autoplay; encrypted-media"
                   frameBorder="0"
                 />

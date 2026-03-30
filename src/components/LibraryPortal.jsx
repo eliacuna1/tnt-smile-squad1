@@ -213,7 +213,7 @@ const LibraryPortal = () => {
                       <iframe 
                         src={`https://www.youtube.com/embed/${section.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${section.youtubeId}&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&iv_load_policy=3`}
                         className={`absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 pointer-events-none transition-all duration-1000
-                          ${(section.id === 'emergency' || section.id === 'implants') ? 'scale-[1.75] md:scale-[2.1]' : 'scale-[1.0]'}
+                          ${(section.id === 'emergency' || section.id === 'implants') ? 'scale-[1.25] md:scale-[1.45]' : 'scale-[1.0]'}
                         `}
                         allow="autoplay; encrypted-media"
                         frameBorder="0"
