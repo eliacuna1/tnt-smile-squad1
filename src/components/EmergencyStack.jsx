@@ -6,9 +6,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 const templates = [
   { 
-    id: 'broken-tooth',
-    title: "BROKEN TOOTH?", 
-    subtitle: "A high-urgency campaign targeting common dental emergencies with immediate 'call now' intent.", 
+    id: 'urban-emergency',
+    title: "EMERGENCY VISITS URBAN CITY", 
+    subtitle: "Fast-paced, urgency-driven creative for dense urban markets. Built to convert emergency search intent into calls quickly.", 
     image: "./assets/emergency.png",
     borderColor: "border-plasma-pink/30",
     shadowColor: "shadow-[0_0_30px_rgba(255,0,127,0.1)]",
@@ -16,34 +16,14 @@ const templates = [
     stats: { type: "URGENCY", confidence: "99.1%" }
   },
   { 
-    id: 'pain-relief',
-    title: "PAIN RELIEF FAST", 
-    subtitle: "Focused on compassionate care and same-day appointments for relief from dental pain.", 
+    id: 'suburb-emergency',
+    title: "EMERGENCY VISITS SUBURB", 
+    subtitle: "More local and trust-driven for suburban markets. Still urgent, but slightly more approachable and community-centered.", 
     image: "./assets/emergency.png",
     borderColor: "border-plasma-blue/30",
     shadowColor: "shadow-[0_0_30px_rgba(0,240,255,0.1)]",
     textColor: "text-plasma-blue",
-    stats: { type: "ACQUISITION", confidence: "98.5%" }
-  },
-  { 
-    id: 'emergency-spanish',
-    title: "URGENCIA DENTAL", 
-    subtitle: "Connecting with the Spanish-speaking community during dental crises with culturally relevant speed.", 
-    image: "./assets/emergency.png",
-    borderColor: "border-plasma-green/30",
-    shadowColor: "shadow-[0_0_30px_rgba(0,255,102,0.1)]",
-    textColor: "text-plasma-green",
-    stats: { type: "REACH", confidence: "97.4%" }
-  },
-  { 
-    id: 'trauma-care',
-    title: "TRAUMA CARE", 
-    subtitle: "Highly specialized campaign for dental trauma, offering a calm and expert clinical first-response.", 
-    image: "./assets/emergency.png",
-    borderColor: "border-plasma-orange/30",
-    shadowColor: "shadow-[0_0_30px_rgba(255,85,0,0.1)]",
-    textColor: "text-plasma-orange",
-    stats: { type: "SPECIALIZED", confidence: "98.9%" }
+    stats: { type: "COMMUNITY", confidence: "98.5%" }
   }
 ];
 
@@ -109,9 +89,9 @@ export default function EmergencyStack() {
     <section ref={containerRef} id="stack" className="relative w-full py-24 pb-[40vh] z-20 bg-obsidian">
       
       <div className="text-center mb-16 max-w-4xl mx-auto px-6">
-        <h3 className="text-5xl md:text-8xl font-good-castyll text-ghost mb-6 tracking-tight">Emergency Hub</h3>
-        <p className="text-ghost/70 font-sans text-lg max-w-xl mx-auto leading-relaxed">
-          The fastest path from patient pain to practice appointment. Speed-optimized conversion creatives.
+        <h3 className="text-5xl md:text-8xl font-good-castyll text-ghost mb-6 tracking-tight">Conversion Hub</h3>
+        <p className="text-ghost/70 font-sans text-lg max-w-xl mx-auto leading-relaxed italic">
+          High-converting AI ad templates designed to turn urgent intent into immediate practice action.
         </p>
       </div>
 
@@ -122,7 +102,7 @@ export default function EmergencyStack() {
             className={`template-card relative w-full min-h-[70vh] mb-[10vh] flex flex-col md:flex-row items-center rounded-3xl overflow-hidden bg-obsidian/90 backdrop-blur-3xl border border-t-white/10 ${temp.borderColor} ${temp.shadowColor} origin-top`}
             style={{ zIndex: index * 10 }}
           >
-            <div className="w-full md:w-1/2 flex items-center justify-center p-6 md:p-12 min-h-[45vh] py-10 lg:py-0 lg:h-full border-b md:border-b-0 md:border-r border-white/5 bg-black/40">
+            <div className="w-full md:w-1/2 flex items-center justify-center p-6 md:p-12 min-h-[45vh] lg:h-full border-b md:border-b-0 md:border-r border-white/5 bg-black/40">
               <div className="relative w-full max-w-[280px] md:max-w-[320px] aspect-[9/16] rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10 mx-auto bg-obsidian group">
                 <img 
                    src={temp.image} 
@@ -146,7 +126,7 @@ export default function EmergencyStack() {
               
               <div className="flex flex-col gap-8 md:gap-12 mt-auto">
                 <div className="border-t border-white/10 pt-6">
-                  <div className="text-[10px] font-mono text-ghost/40 uppercase tracking-widest mb-2">Strategy Type</div>
+                  <div className="text-[10px] font-mono text-ghost/40 uppercase tracking-widest mb-2">Market Segment</div>
                   <div className="font-sans text-xl font-bold tracking-tight text-white mb-8">{temp.stats.type}</div>
                   
                   <button className={`group relative inline-flex items-center gap-3 px-8 py-4 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all duration-300 transform hover:scale-[1.02] cursor-pointer w-fit overflow-hidden`}>

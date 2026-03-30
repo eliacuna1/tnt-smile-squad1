@@ -44,7 +44,7 @@ export default function EmergencyHero() {
 
         <div className="hero-fade max-w-2xl text-center px-4">
           <p className="text-lg md:text-xl font-inter text-ghost/70 leading-relaxed font-light tracking-wide italic">
-             Urgency-driven AI ads built for immediate action. Optimized for high-intent searches and converting emergency cases into same-day calls.
+             Explore high-converting AI ad templates built to capture urgent treatment needs, drive immediate action, and convert high-intent patients into same-day calls and appointments.
           </p>
           <div className="mt-8 h-[1px] w-24 bg-gradient-to-r from-transparent via-plasma-pink to-transparent mx-auto"></div>
         </div>

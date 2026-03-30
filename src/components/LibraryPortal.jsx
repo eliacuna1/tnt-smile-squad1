@@ -1,140 +1,178 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState, useRef } from 'react';
+import gsap from 'gsap';
+import { ArrowUpRight } from 'lucide-react';
 
 const LibraryPortal = () => {
-  const [visibleCards, setVisibleCards] = useState(new Set());
+  const [hoveredId, setHoveredId] = useState(null);
+  const containerRef = useRef(null);
 
   useEffect(() => {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
+    const ctx = gsap.context(() => {
+      // Hero entrance
+      gsap.fromTo('.hero-title',
+        { y: 100, opacity: 0 },
+        { y: 0, opacity: 1, duration: 2, ease: "power4.out", delay: 0.5 }
+      );
+      
+      gsap.fromTo('.hero-sub',
+        { opacity: 0 },
+        { opacity: 1, duration: 1.5, ease: "power2.out", delay: 1.2 }
+      );
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const id = entry.target.dataset.id;
-                setVisibleCards(prev => new Set([...prev, id]));
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
+      // Grid entrance
+      gsap.fromTo('.category-card',
+        { y: 50, opacity: 0 },
+        { 
+          y: 0, opacity: 1, duration: 1.5, ease: "power3.out", 
+          stagger: 0.2, 
+          scrollTrigger: {
+            trigger: '.category-grid',
+            start: 'top bottom-=100'
+          }
+        }
+      );
+    }, containerRef);
 
-    document.querySelectorAll('.library-card').forEach(card => {
-        observer.observe(card);
-    });
-
-    return () => observer.disconnect();
+    return () => ctx.revert();
   }, []);
 
   const sections = [
     {
       id: 'new-patient',
-      tag: 'High Velocity',
+      tag: '01 / High Velocity',
       title: 'New Patient Campaigns',
-      description: 'High-converting AI ad templates designed to drive consistent new patient flow. Built to capture attention and turn visitors into booked appointments.',
+      description: 'AI-powered templates to drive immediate patient acquisition.',
       image: './assets/new-patients.png',
-      color: 'blue',
-      path: '/new-patient-campaigns'
+      path: './new-patient.html'
     },
     {
       id: 'emergency',
-      tag: 'Urgency Driven',
+      tag: '02 / Urgency Driven',
       title: 'Emergency Conversion',
-      description: 'Urgency-driven AI ads built for immediate action. Optimized for high-intent searches and converting emergency cases into same-day calls.',
+      description: 'Capturing urgent intent with hyper-targeted creative.',
       image: './assets/emergency.png',
-      color: 'pink',
-      path: '/emergency-conversion'
+      path: './emergency.html'
     },
     {
       id: 'implants',
-      tag: 'High Value',
+      tag: '03 / High Value',
       title: 'Dental Implants',
-      description: 'Premium AI campaigns focused on high-value procedures. Designed to educate, build trust, and convert prospects into qualified consultations.',
+      description: 'Building trust for life-changing clinical transformations.',
       image: './assets/implants.png',
-      color: 'orange',
-      path: '/dental-implants'
+      path: './implants.html'
     },
     {
       id: 'cosmetic',
-      tag: 'Aesthetic Focus',
+      tag: '04 / Aesthetic Focus',
       title: 'Smile Transformation',
-      description: 'Transformation-focused AI templates highlighting lifestyle benefits. Designed to increase perceived value and build desire for smile makeovers.',
+      description: 'Premium creative for cosmetic and elective excellence.',
       image: './assets/cosmetic.png',
-      color: 'purple',
-      path: '/smile-transformation'
+      path: './transformation.html'
     }
   ];
 
-  const getColorClass = (color) => {
-    switch(color) {
-      case 'blue': return 'text-plasma-blue border-plasma-blue';
-      case 'pink': return 'text-plasma-pink border-plasma-pink';
-      case 'orange': return 'text-plasma-orange border-plasma-orange';
-      case 'purple': return 'text-plasma-purple border-plasma-purple';
-      default: return 'text-ghost border-ghost';
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-obsidian text-ghost font-inter relative overflow-hidden flex flex-col items-center">
-      <header className="relative py-32 px-6 text-center max-w-4xl flex flex-col items-center justify-center min-h-[60vh]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(157,78,221,0.1)_0%,transparent_70%)] pointer-events-none"></div>
-        <div className="font-mono text-[0.7rem] uppercase tracking-[0.3em] text-plasma-blue mb-4 opacity-80">
-          Central Repository v2.0
+    <div ref={containerRef} className="min-h-screen bg-black text-white font-inter selection:bg-white selection:text-black">
+      {/* Cinematic Hero with Video Background */}
+      <header className="relative h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
+        {/* Full-screen Background Video */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+           <div className="relative w-full h-full scale-[1.3] md:scale-110">
+              <iframe 
+                src="https://www.youtube.com/embed/2MRmV2ePfUQ?autoplay=1&mute=1&loop=1&playlist=2MRmV2ePfUQ&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&iv_load_policy=3"
+                className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 pointer-events-none brightness-[0.6] saturate-[0.8]"
+                allow="autoplay; encrypted-media"
+                frameBorder="0"
+              ></iframe>
+              {/* Dark Gradient Overlay for optimal readability */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/80"></div>
+           </div>
         </div>
-        <h1 className="font-serif text-6xl md:text-8xl lg:text-9xl mb-8 leading-[0.9] bg-gradient-to-b from-white to-white/50 bg-clip-text text-transparent">
-          TNT AI & Creative<br/>Ad Library
-        </h1>
-        <p className="text-ghost/60 text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed">
-          The front door to the world’s most advanced AI-driven dental ad templates. 
-          Designed to elevate branding while maximizing conversion.
-        </p>
+
+        <div className="relative z-10 text-center flex flex-col items-center">
+          <h1 className="hero-title font-bebas text-[18vw] md:text-[12vw] lg:text-[10vw] leading-[0.85] tracking-tight text-white mb-8 drop-shadow-2xl">
+            AI CREATIVE LIBRARY
+          </h1>
+          
+          <div className="hero-sub max-w-2xl px-6">
+             <p className="text-white/80 text-sm md:text-xl font-light leading-relaxed tracking-wide">
+               The front door to TNT’s AI-driven dental ad templates built to elevate branding and drive conversion.
+             </p>
+          </div>
+        </div>
+
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-40">
+           <div className="w-[1px] h-12 bg-white/40"></div>
+           <span className="text-[9px] font-mono uppercase tracking-[0.4em]">Explore Library</span>
+        </div>
       </header>
 
-      <main className="w-full max-w-[1400px] px-6 pb-32">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {sections.map((section) => (
-            <Link
-              to={section.path}
+      {/* Category Grid - 2 Column wall of content */}
+      <main className="category-grid pb-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border-t border-white/10 border-l border-white/10">
+          {sections.map((section, index) => (
+            <a
               key={section.id}
-              data-id={section.id}
-              className={`library-card relative aspect-[16/10] rounded-[32px] overflow-hidden border border-white/10 bg-white/5 cursor-pointer 
-                          transition-all duration-[800ms] cubic-bezier(0.16,1,0.3,1) group
-                          ${visibleCards.has(section.id) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
-                          hover:-translate-y-3 hover:scale-[1.02] hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.6)] hover:border-white/30`}
+              href={section.path}
+              className={`category-card relative group flex flex-col overflow-hidden aspect-square md:aspect-[1.1/1] border border-white/5 cursor-pointer`}
+              onMouseEnter={() => setHoveredId(section.id)}
+              onMouseLeave={() => setHoveredId(null)}
             >
-              <img 
-                src={section.image} 
-                alt={section.title} 
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-[800ms] cubic-bezier(0.16,1,0.3,1) group-hover:scale-110 -z-10"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-obsidian/90 via-obsidian/40 to-transparent z-0"></div>
-              
-              <div className="relative h-full flex flex-col justify-end p-8 md:p-12 z-10">
-                <div className={`font-mono text-[0.65rem] uppercase py-1 px-3 rounded-full bg-white/10 backdrop-blur-md mb-4 inline-block border w-fit ${getColorClass(section.color)}`}>
-                  {section.tag}
-                </div>
-                <h2 className="font-serif text-4xl md:text-5xl mb-3 text-white">
-                   {section.title}
-                </h2>
-                <p className="text-white/60 text-sm md:text-base line-clamp-2 max-w-md mb-6 transition-opacity duration-300 group-hover:opacity-100">
-                  {section.description}
-                </p>
-                <div className="flex items-center gap-2 font-bold text-sm transition-all duration-300 transform group-hover:translate-x-1">
-                  Launch Category Page
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
+              {/* Image Layer */}
+              <div className="absolute inset-0 w-full h-full">
+                <img 
+                  src={section.image} 
+                  alt={section.title} 
+                  className="w-full h-full object-cover transition-transform duration-[1.5s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition-colors duration-700"></div>
+              </div>
+
+              {/* Info Overlay */}
+              <div className="relative h-full flex flex-col justify-between p-8 md:p-16 z-10">
+                <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-white/50">
+                   {section.tag}
+                </span>
+                
+                <div className="mt-auto">
+                   <h2 className="font-serif text-3xl md:text-5xl lg:text-7xl text-white tracking-tight uppercase leading-[0.9] group-hover:translate-x-2 transition-transform duration-500">
+                      {section.title}
+                   </h2>
+                   <p className="mt-6 text-xs md:text-sm text-white/40 font-light max-w-xs group-hover:opacity-100 transition-opacity duration-500 opacity-60">
+                      {section.description}
+                   </p>
                 </div>
               </div>
-            </Link>
+
+              {/* Focus Interaction Icon */}
+              <div 
+                className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-all duration-700 z-20
+                  ${hoveredId === section.id ? 'opacity-100 scale-100' : 'opacity-0 scale-50'}
+                `}
+              >
+                <div className="w-20 h-20 md:w-28 md:h-28 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center transform group-hover:rotate-[-45deg] transition-transform duration-700">
+                   <ArrowUpRight className="text-white w-8 h-8 md:w-10 md:h-10" />
+                </div>
+              </div>
+            </a>
           ))}
         </div>
       </main>
 
-      <footer className="w-full py-16 text-center border-t border-white/10 text-[0.75rem] text-ghost/40 font-mono uppercase tracking-widest">
-        &copy; 2024 TNT AI Lab. Built to elevate dental marketing.
+      {/* Footer */}
+      <footer className="py-32 px-8 border-t border-white/10 bg-black text-center">
+           <div className="flex flex-col items-center gap-8">
+              <span className="font-bebas text-4xl text-white tracking-widest uppercase">
+                 TNT LABORATORY
+              </span>
+              <p className="text-white/20 text-[10px] font-mono tracking-[0.4em] uppercase max-w-sm">
+                 Elevating Dental Marketing through AI Complexity & Strategic Design
+              </p>
+              <div className="mt-12 text-[10px] text-white/10 font-mono tracking-[0.2em] uppercase">
+                 &copy; 2024 TNT Dental AI Lab.
+              </div>
+           </div>
       </footer>
     </div>
   );

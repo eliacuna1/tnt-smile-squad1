@@ -44,7 +44,7 @@ export default function ImplantsHero() {
 
         <div className="hero-fade max-w-2xl text-center px-4">
           <p className="text-lg md:text-xl font-inter text-ghost/70 leading-relaxed font-light tracking-wide italic">
-             Premium AI campaigns focused on high-value procedures. Designed to educate, build trust, and convert prospects into qualified consultations.
+             Premium AI ad campaigns designed to educate, build trust, and convert high-value implant prospects into qualified consultations.
           </p>
           <div className="mt-8 h-[1px] w-24 bg-gradient-to-r from-transparent via-plasma-orange to-transparent mx-auto"></div>
         </div>

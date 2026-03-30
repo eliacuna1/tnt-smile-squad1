@@ -44,7 +44,7 @@ export default function CosmeticHero() {
 
         <div className="hero-fade max-w-2xl text-center px-4">
           <p className="text-lg md:text-xl font-inter text-ghost/70 leading-relaxed font-light tracking-wide italic">
-             Transformation-focused AI templates highlighting lifestyle benefits. Designed to increase perceived value and build desire for smile makeovers.
+             High-converting AI ad templates designed to promote high-value treatments and aesthetic results. Focused on braces, teeth whitening, and night guards, these campaigns are built to increase perceived value, generate interest, and convert patients into consultations.
           </p>
           <div className="mt-8 h-[1px] w-24 bg-gradient-to-r from-transparent via-plasma-purple to-transparent mx-auto"></div>
         </div>

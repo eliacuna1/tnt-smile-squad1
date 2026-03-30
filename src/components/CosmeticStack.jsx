@@ -6,44 +6,34 @@ gsap.registerPlugin(ScrollTrigger);
 
 const templates = [
   { 
-    id: 'smile-makeover',
-    title: "SMILE MAKEOVER", 
-    subtitle: "A premium campaign focused on the life-changing confidence of a full cosmetic smile transformation.", 
+    id: 'braces',
+    title: "BRACES", 
+    subtitle: "Transformation-focused and confidence-driven. Highlight before and after results, lifestyle improvements, and long-term value.", 
     image: "./assets/cosmetic.png",
     borderColor: "border-plasma-purple/30",
     shadowColor: "shadow-[0_0_30px_rgba(157,78,221,0.1)]",
     textColor: "text-plasma-purple",
-    stats: { type: "AESTHETIC", confidence: "99.4%" }
+    stats: { type: "CONFIDENCE", confidence: "99.4%" }
   },
   { 
-    id: 'veneers-spotlight',
-    title: "VENEERS SPOTLIGHT", 
-    subtitle: "High-end visual storytelling centered on the artistry and precision of porcelain veneers.", 
+    id: 'whitening',
+    title: "TEETH WHITENING", 
+    subtitle: "Fast, visible results with strong visual appeal. Focus on brightness, confidence, and quick-win aesthetic improvement.", 
     image: "./assets/cosmetic.png",
     borderColor: "border-plasma-pink/30",
     shadowColor: "shadow-[0_0_30px_rgba(255,0,127,0.1)]",
     textColor: "text-plasma-pink",
-    stats: { type: "PREMIUM", confidence: "98.7%" }
+    stats: { type: "AESTHETIC", confidence: "98.7%" }
   },
   { 
-    id: 'braces-journey',
-    title: "THE JOURNEY", 
-    subtitle: "Emotional and relatable content focusing on the transformation path with braces or aligners.", 
+    id: 'night-guards',
+    title: "NIGHT GUARDS", 
+    subtitle: "Problem-solution driven. Focus on pain relief, protection, better sleep, and long-term dental health.", 
     image: "./assets/cosmetic.png",
     borderColor: "border-plasma-blue/30",
     shadowColor: "shadow-[0_0_30px_rgba(0,240,255,0.1)]",
     textColor: "text-plasma-blue",
-    stats: { type: "TRANSFORMATION", confidence: "97.9%" }
-  },
-  { 
-    id: 'whitening-boost',
-    title: "INSTANT BRIGHT", 
-    subtitle: "Flash-conversion campaign for professional teeth whitening, focusing on speed and visual impact.", 
-    image: "./assets/cosmetic.png",
-    borderColor: "border-plasma-orange/30",
-    shadowColor: "shadow-[0_0_30px_rgba(255,85,0,0.1)]",
-    textColor: "text-plasma-orange",
-    stats: { type: "ENTRY_LEVEL", confidence: "96.5%" }
+    stats: { type: "WELLNESS", confidence: "97.9%" }
   }
 ];
 
@@ -109,9 +99,9 @@ export default function CosmeticStack() {
     <section ref={containerRef} id="stack" className="relative w-full py-24 pb-[40vh] z-20 bg-obsidian">
       
       <div className="text-center mb-16 max-w-4xl mx-auto px-6">
-        <h3 className="text-5xl md:text-8xl font-good-castyll text-ghost mb-6 tracking-tight">Cosmetic Hub</h3>
-        <p className="text-ghost/70 font-sans text-lg max-w-xl mx-auto leading-relaxed">
-          Elevating perceived value through cinematic storytelling and aesthetic-driven AI templates.
+        <h3 className="text-5xl md:text-8xl font-good-castyll text-ghost mb-6 tracking-tight">Transformation Hub</h3>
+        <p className="text-ghost/70 font-sans text-lg max-w-xl mx-auto leading-relaxed italic">
+          High-converting AI ad templates designed to promote high-value treatments and life-changing aesthetic results.
         </p>
       </div>
 
@@ -122,7 +112,7 @@ export default function CosmeticStack() {
             className={`template-card relative w-full min-h-[70vh] mb-[10vh] flex flex-col md:flex-row items-center rounded-3xl overflow-hidden bg-obsidian/90 backdrop-blur-3xl border border-t-white/10 ${temp.borderColor} ${temp.shadowColor} origin-top`}
             style={{ zIndex: index * 10 }}
           >
-            <div className="w-full md:w-1/2 flex items-center justify-center p-6 md:p-12 min-h-[45vh] py-10 lg:py-0 lg:h-full border-b md:border-b-0 md:border-r border-white/5 bg-black/40">
+            <div className="w-full md:w-1/2 flex items-center justify-center p-6 md:p-12 min-h-[45vh] lg:h-full border-b md:border-b-0 md:border-r border-white/5 bg-black/40">
               <div className="relative w-full max-w-[280px] md:max-w-[320px] aspect-[9/16] rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10 mx-auto bg-obsidian group">
                 <img 
                    src={temp.image} 
