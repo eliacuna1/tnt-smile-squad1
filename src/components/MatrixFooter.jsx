@@ -84,7 +84,9 @@ export default function MatrixFooter() {
     <section ref={footerRef} id="footer" className="relative w-full bg-obsidian pt-32 pb-8 border-t border-white/5 px-6 flex flex-col items-center">
       <div className="max-w-7xl mx-auto w-full mb-32">
         <div className="text-center mb-16">
-          <h3 className="text-5xl md:text-7xl font-good-castyll text-ghost tracking-tight uppercase">The Smile Squad</h3>
+          <h3 className="font-serif text-[8vw] md:text-8xl text-white tracking-tighter leading-[0.85] mb-2 uppercase select-none">
+            The <span className="italic font-light opacity-60">Smile</span> Squad
+          </h3>
           <p className="mt-4 text-ghost/60 font-sans max-w-lg mx-auto">
             Connect with your Growth Leader today and let’s bring your campaign to life.
           </p>
@@ -164,8 +166,8 @@ export default function MatrixFooter() {
           </div>
           
           <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
-             <h4 className="text-white font-good-castyll text-3xl md:text-5xl tracking-wide">{selectedVideo.name}</h4>
-             <p className="text-white/40 font-mono text-[10px] uppercase tracking-[0.5em]">Now Playing: Unmuted Original Template</p>
+             <h4 className="font-serif text-3xl md:text-5xl text-white tracking-tighter italic opacity-80">{selectedVideo.name}</h4>
+             <p className="text-white/20 font-mono text-[9px] uppercase tracking-[0.6em] mt-4">Now Playing: Unmuted Original Template</p>
           </div>
         </div>
       )}
