@@ -8,20 +8,20 @@ const LibraryPortal = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Hero entrance
+      // Hero Entrance
       gsap.fromTo('.hero-title',
         { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 2.2, ease: "power4.out", delay: 0.3 }
+        { y: 0, opacity: 1, duration: 1.8, ease: "power4.out", delay: 0.2 }
       );
       
       gsap.fromTo('.hero-sub',
         { opacity: 0 },
-        { opacity: 1, duration: 1.8, ease: "power2.out", delay: 0.8 }
+        { opacity: 1, duration: 1.5, ease: "power2.out", delay: 0.6 }
       );
 
-      // Grid entrance
+      // Grid Entrance
       gsap.fromTo('.category-card',
-        { y: 50, opacity: 0 },
+        { y: 40, opacity: 0 },
         { 
           y: 0, opacity: 1, duration: 1.2, ease: "power3.out", 
           stagger: 0.15, 
@@ -43,8 +43,8 @@ const LibraryPortal = () => {
       title: 'New Patient Campaigns',
       description: 'Strategic acquisition focused on quality and performance.',
       image: './assets/new-patients.png',
-      path: './new-patient.html',
-      video: null // Placeholder for potential video preview
+      youtubeId: '6J7lJdCTuSw',
+      path: './new-patient.html'
     },
     {
       id: 'emergency',
@@ -52,8 +52,8 @@ const LibraryPortal = () => {
       title: 'Emergency Conversion',
       description: 'High-intent creative for immediate clinical action.',
       image: './assets/emergency.png',
-      path: './emergency.html',
-      video: null
+      youtubeId: '65KyQJboVo8',
+      path: './emergency.html'
     },
     {
       id: 'implants',
@@ -61,8 +61,8 @@ const LibraryPortal = () => {
       title: 'Dental Implants',
       description: 'Educational authority for the high-end implant market.',
       image: './assets/implants.png',
-      path: './implants.html',
-      video: null
+      youtubeId: 'Qh5ddCxXEhU',
+      path: './implants.html'
     },
     {
       id: 'cosmetic',
@@ -70,89 +70,91 @@ const LibraryPortal = () => {
       title: 'Smile Transformation',
       description: 'Aesthetic transformation with lifestyle-driven appeal.',
       image: './assets/cosmetic.png',
-      path: './transformation.html',
-      video: null
+      youtubeId: 'Cy2bMX54GHs',
+      path: './transformation.html'
     }
   ];
 
   return (
     <div ref={containerRef} className="min-h-screen bg-black text-white font-inter selection:bg-white selection:text-black">
-      {/* Premium Hero Section */}
+      {/* Cinematic Hero */}
       <header className="relative h-[90svh] flex flex-col items-center justify-center px-6 overflow-hidden">
-        {/* Full-screen Background Video - Full Color Always */}
         <div className="absolute inset-0 z-0 pointer-events-none">
            <div className="relative w-full h-full overflow-hidden">
               <iframe 
                 src="https://www.youtube.com/embed/E5vGhT6HT9A?autoplay=1&mute=1&loop=1&playlist=E5vGhT6HT9A&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&iv_load_policy=3"
-                className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 pointer-events-none scale-[1.1] brightness-[0.6] transition-opacity duration-1000"
+                className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 pointer-events-none scale-[1.1] brightness-[0.7]"
                 allow="autoplay; encrypted-media"
                 frameBorder="0"
               ></iframe>
-              {/* Subtle Dark Overlay */}
               <div className="absolute inset-0 bg-black/40"></div>
            </div>
         </div>
 
-        <div className="relative z-10 text-center flex flex-col items-center max-w-5xl">
-          <h1 className="hero-title font-bebas text-[18vw] md:text-[14vw] lg:text-[12vw] leading-[0.85] tracking-tight text-white mb-8">
+        <div className="relative z-10 text-center flex flex-col items-center">
+          <h1 className="hero-title font-bebas text-[18vw] md:text-[14vw] lg:text-[11vw] leading-[0.85] tracking-tight text-white mb-8">
             AI CREATIVE LIBRARY
           </h1>
-          
-          <div className="hero-sub max-w-xl mx-auto">
-             <p className="text-white/60 text-sm md:text-lg font-light leading-relaxed tracking-wider px-4">
+          <div className="hero-sub max-w-xl mx-auto px-6">
+             <p className="text-white/60 text-sm md:text-lg font-light leading-relaxed tracking-wider">
                The front door to TNT’s AI-driven dental ad templates built to elevate branding and drive conversion.
              </p>
           </div>
         </div>
       </header>
 
-      {/* Poster Style Campaign Grid */}
-      <main className="category-grid pb-12 px-6 md:px-12">
+      {/* Living Preview Grid */}
+      <main className="category-grid pb-24 px-6 md:px-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-[1600px] mx-auto">
           {sections.map((section, index) => (
             <a
               key={section.id}
               href={section.path}
-              className={`category-card relative group flex flex-col pt-[140%] md:pt-[133%] rounded-2xl overflow-hidden border border-white/5 bg-neutral-900 cursor-pointer transition-all duration-700 ease-in-out hover:border-white/20 hover:shadow-2xl hover:shadow-white/5`}
+              className={`category-card relative group flex flex-col pt-[150%] md:pt-[133%] rounded-[30px] overflow-hidden border border-white/5 bg-neutral-900 cursor-pointer transition-all duration-700 ease-in-out hover:border-white/20 hover:shadow-2xl hover:shadow-white/5`}
               onMouseEnter={() => setHoveredId(section.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
-              {/* Poster Image - B&W Transition */}
+              {/* Background Video / Thumbnail Layer */}
               <div className="absolute inset-0 w-full h-full overflow-hidden">
-                <img 
-                  src={section.image} 
-                  alt={section.title} 
-                  className={`w-full h-full object-cover transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]
-                    ${hoveredId === section.id ? 'grayscale-0 scale-110' : 'grayscale saturate-0 scale-100'}
-                  `}
-                />
-                
-                {/* Fallback Color Layer that smooths out the grayscale move */}
-                <div className={`absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent transition-opacity duration-700
-                   ${hoveredId === section.id ? 'opacity-80' : 'opacity-90'}
-                `}></div>
+                {hoveredId === section.id ? (
+                  <div className="w-full h-full scale-[1.3] md:scale-[1.5] transition-transform duration-[1s]">
+                    <iframe 
+                      src={`https://www.youtube.com/embed/${section.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${section.youtubeId}&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&iv_load_policy=3`}
+                      className="w-full h-full pointer-events-none"
+                      allow="autoplay; encrypted-media"
+                      frameBorder="0"
+                    />
+                    <div className="absolute inset-0 bg-black/10"></div>
+                  </div>
+                ) : (
+                  <div className="w-full h-full group-hover:scale-105 transition-transform duration-[1.2s]">
+                    <img 
+                      src={`https://img.youtube.com/vi/${section.youtubeId}/maxresdefault.jpg`}
+                      alt={section.title} 
+                      className="w-full h-full object-cover grayscale saturate-0 opacity-40 transition-all duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90"></div>
+                  </div>
+                )}
               </div>
 
               {/* Poster Content */}
               <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-10 z-10">
-                <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-white/40 mb-3 group-hover:text-white/60 transition-colors">
+                <span className="font-mono text-[9px] uppercase tracking-[0.4em] text-white/30 mb-3 group-hover:text-white/60 transition-colors">
                    {section.tag}
                 </span>
-                
-                <h2 className="font-bebas text-3xl md:text-4xl text-white tracking-wide uppercase leading-tight mb-4 transform transition-all duration-500 group-hover:-translate-y-2">
+                <h2 className="font-bebas text-3xl md:text-5xl text-white tracking-widest uppercase leading-[0.9] mb-4 transform transition-all duration-500 group-hover:-translate-y-2">
                    {section.title}
                 </h2>
-                
-                <p className="text-[11px] md:text-sm text-white/40 font-light leading-relaxed max-w-xs transition-all duration-500 opacity-60 group-hover:opacity-100 group-hover:-translate-y-2">
+                <p className="text-[11px] md:text-xs text-white/30 font-light leading-relaxed max-w-xs transition-all duration-500 opacity-60 group-hover:opacity-100 group-hover:-translate-y-2 group-hover:text-white/50">
                   {section.description}
                 </p>
 
-                {/* Vertical Launch Indicator */}
                 <div className={`mt-8 flex items-center gap-3 transition-all duration-700 transform
                   ${hoveredId === section.id ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}
                 `}>
                    <div className="w-8 h-[1px] bg-white/40 group-hover:bg-white transition-colors"></div>
-                   <span className="text-[9px] font-mono uppercase tracking-[0.4em] text-white/60 group-hover:text-white">Review Module</span>
+                   <span className="text-[9px] font-mono uppercase tracking-[0.4em] text-white/60">Launch Repository</span>
                    <ArrowUpRight className="w-4 h-4 text-white" />
                 </div>
               </div>
@@ -161,18 +163,18 @@ const LibraryPortal = () => {
         </div>
       </main>
 
-      {/* Footer */}
+      {/* Footer Branding */}
       <footer className="py-24 px-8 border-t border-white/10 bg-black text-center">
            <div className="flex flex-col items-center gap-6">
-              <div className="h-12 md:h-16 flex items-center justify-center">
+              <div className="h-10 md:h-12 flex items-center justify-center">
                  <img 
                    src="./assets/tnt-logo-official.png" 
                    alt="TNT Dental" 
-                   className="h-full w-auto object-contain brightness-0 invert opacity-60 hover:opacity-100 transition-opacity" 
+                   className="h-full w-auto object-contain brightness-0 invert opacity-40 hover:opacity-100 transition-opacity" 
                  />
               </div>
               <p className="text-white/20 text-[9px] font-mono tracking-[0.4em] uppercase max-w-sm mt-4">
-                 The front door to the world’s most advanced AI-driven dental ad templates.
+                 Strategic Intelligence for the Modern Dental Practice
               </p>
            </div>
       </footer>

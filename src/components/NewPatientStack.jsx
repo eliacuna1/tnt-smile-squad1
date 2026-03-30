@@ -1,170 +1,152 @@
-import { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Play, X, ArrowUpRight } from 'lucide-react';
 
-gsap.registerPlugin(ScrollTrigger);
-
-const templates = [
-  { 
+const campaigns = [
+  {
     id: 'love-your-dentist',
-    title: "LOVE YOUR DENTIST?", 
-    subtitle: "An emotional, curiosity-driven campaign focused on patient experience, trust, and why people enjoy coming to your practice.", 
-    image: "./assets/love-your-dentist.png",
-    borderColor: "border-plasma-pink/30",
-    shadowColor: "shadow-[0_0_30px_rgba(255,0,127,0.1)]",
-    textColor: "text-plasma-pink",
-    stats: { type: "EMOTIONAL", confidence: "96.4%" }
+    title: 'LOVE YOUR DENTIST?',
+    tag: 'Emotional Strategy',
+    youtubeId: '_KMMfnOGJWE',
+    description: 'An emotional, curiosity-driven campaign focused on patient trust.'
   },
-  { 
+  {
     id: 'free-visits-eng',
-    title: "FREE VISITS ENG", 
-    subtitle: "English version of the Free Visits campaign, focused on value, accessibility, and converting interest into booked appointments.", 
-    image: "./assets/free-visits-eng.png",
-    borderColor: "border-plasma-blue/30",
-    shadowColor: "shadow-[0_0_30px_rgba(0,240,255,0.1)]",
-    textColor: "text-plasma-blue",
-    stats: { type: "ACQUISITION", confidence: "98.8%" }
+    title: 'FREE VISITS ENG',
+    tag: 'Acquisition Flow',
+    youtubeId: 'g6CDB9xWH_0',
+    description: 'Clean, value-driven English campaign designed for conversion.'
   },
-  { 
+  {
     id: 'free-visitas-espl',
-    title: "FREE VISITAS ESPL", 
-    subtitle: "Spanish and Spanglish focused campaign designed to connect with Spanish-speaking audiences while maintaining high performance.", 
-    image: "./assets/free-visitas-espl.png",
-    borderColor: "border-plasma-green/30",
-    shadowColor: "shadow-[0_0_30px_rgba(0,255,102,0.1)]",
-    textColor: "text-plasma-green",
-    stats: { type: "REACH", confidence: "97.2%" }
+    title: 'FREE VISITAS ESPL',
+    tag: 'Bilingual Reach',
+    youtubeId: '9wRhHrTviYI',
+    description: 'Spanish/Spanglish version focused on culturally relevant trust.'
   },
-  { 
+  {
     id: 'healthy-habits',
-    title: "Healthy Habits Checklist", 
-    subtitle: "Educational and family-friendly campaign focused on preventive care, value-driven messaging, and long-term trust.", 
-    image: "./assets/healthy-habits.png",
-    borderColor: "border-plasma-orange/30",
-    shadowColor: "shadow-[0_0_30px_rgba(255,85,0,0.1)]",
-    textColor: "text-plasma-orange",
-    stats: { type: "EDUCATION", confidence: "99.1%" }
+    title: 'HEALTHY HABITS',
+    tag: 'Preventive Care',
+    youtubeId: 'mGdfxERd1rc',
+    description: 'Family-friendly checklist campaign to drive long-term patient volume.'
   }
 ];
 
 export default function NewPatientStack() {
+  const [hoveredId, setHoveredId] = useState(null);
+  const [selectedVideo, setSelectedVideo] = useState(null);
   const containerRef = useRef(null);
-  
+
   useEffect(() => {
-    let ctx = gsap.context(() => {
-      const cards = gsap.utils.toArray('.template-card');
-      
-      let mm = gsap.matchMedia();
-
-      mm.add("(min-width: 768px)", () => {
-        cards.forEach((card, i) => {
-          ScrollTrigger.create({
-            trigger: card,
-            start: `top top+=80`, 
-            endTrigger: ".template-stack-container",
-            end: `bottom bottom-=${(cards.length - i) * 20}`,
-            pin: true,
-            pinSpacing: false,
-            scrub: true,
-          });
-
-          if (i > 0) {
-            gsap.to(cards[i - 1], {
-              scale: 0.95 - (0.05 * i),
-              opacity: 0.5,
-              y: -20,
-              scrollTrigger: {
-                trigger: card,
-                start: 'top center',
-                end: 'top top+=80',
-                scrub: true,
-              }
-            });
-          }
-        });
-      });
-
-      mm.add("(max-width: 767px)", () => {
-        cards.forEach((card) => {
-          gsap.from(card, {
-            opacity: 0,
-            y: 30,
-            duration: 0.8,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: card,
-              start: "top bottom-=50",
-              toggleActions: "play none none reverse"
-            }
-          });
-        });
-      });
-      
+    const ctx = gsap.context(() => {
+      gsap.fromTo('.campaign-card', 
+        { y: 50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, ease: 'power3.out', stagger: 0.1, scrollTrigger: '.campaign-grid' }
+      );
     }, containerRef);
-    
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={containerRef} id="stack" className="relative w-full py-24 pb-[40vh] z-20 bg-obsidian">
-      
-      <div className="text-center mb-16 max-w-4xl mx-auto px-6">
-        <h3 className="text-5xl md:text-8xl font-good-castyll text-ghost mb-6 tracking-tight">Campaign Hub</h3>
-        <p className="text-ghost/70 font-sans text-lg max-w-xl mx-auto leading-relaxed">
-          High-performance acquisition strategies built to capture interest and drive consistent patient volume.
-        </p>
+    <div ref={containerRef} className="w-full bg-black min-h-screen pt-32 pb-40 px-6 md:px-12">
+      {/* Cinematic Header for Context */}
+      <div className="max-w-7xl mx-auto mb-20 text-center">
+         <h1 className="font-bebas text-6xl md:text-8xl text-white tracking-widest uppercase mb-4">NEW PATIENT CAMPAIGNS</h1>
+         <p className="text-white/40 text-sm md:text-base font-light tracking-[0.2em] uppercase max-w-2xl mx-auto">
+            Interactive Video Repository
+         </p>
       </div>
 
-      <div className="template-stack-container relative w-full max-w-5xl mx-auto px-4 md:px-8">
-        {templates.map((temp, index) => (
-          <div 
-            key={temp.id} 
-            className={`template-card relative w-full min-h-[70vh] mb-[10vh] flex flex-col md:flex-row items-center rounded-3xl overflow-hidden bg-obsidian/90 backdrop-blur-3xl border border-t-white/10 ${temp.borderColor} ${temp.shadowColor} origin-top`}
-            style={{ zIndex: index * 10 }}
+      {/* Video Grid - Vertical Posters */}
+      <div className="campaign-grid max-w-[1600px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        {campaigns.map((camp) => (
+          <div
+            key={camp.id}
+            className="group relative flex flex-col pt-[150%] md:pt-[133%] rounded-[32px] overflow-hidden border border-white/5 bg-neutral-900 cursor-pointer transition-all duration-700 hover:border-white/20 hover:shadow-2xl hover:shadow-white/5"
+            onMouseEnter={() => setHoveredId(camp.id)}
+            onMouseLeave={() => setHoveredId(null)}
+            onClick={() => setSelectedVideo(camp)}
           >
-            {/* Visual Column - Reflected 9:16 Style */}
-            <div className="w-full md:w-1/2 flex items-center justify-center p-6 md:p-12 min-h-[45vh] py-10 lg:py-0 lg:h-full border-b md:border-b-0 md:border-r border-white/5 bg-black/40">
-              <div className="relative w-full max-w-[280px] md:max-w-[320px] aspect-[9/16] rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10 mx-auto bg-obsidian group">
-                <img 
-                   src={temp.image} 
-                   alt={temp.title}
-                   className="absolute top-1/2 left-1/2 w-[135%] h-[135%] max-w-none -translate-x-1/2 -translate-y-1/2 object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-obsidian/80 via-transparent to-transparent opacity-60"></div>
-              </div>
+            {/* Visual Layer - Thumbnail or Playing Video */}
+            <div className="absolute inset-0 w-full h-full">
+              {hoveredId === camp.id ? (
+                <div className="w-full h-full scale-105 transition-transform duration-700">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${camp.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${camp.youtubeId}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&playsinline=1`}
+                    className="w-full h-full aspect-[9/16] pointer-events-none scale-x-125 md:scale-x-150"
+                    allow="autoplay; encrypted-media"
+                    frameBorder="0"
+                  />
+                  <div className="absolute inset-0 bg-black/20"></div>
+                </div>
+              ) : (
+                <div className="w-full h-full group-hover:scale-105 transition-transform duration-[1s]">
+                  <img
+                    src={`https://img.youtube.com/vi/${camp.youtubeId}/maxresdefault.jpg`}
+                    alt={camp.title}
+                    className="w-full h-full object-cover grayscale saturate-0 opacity-60 transition-all duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                     <div className="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center backdrop-blur-md bg-white/5 group-hover:scale-125 transition-transform">
+                        <Play size={20} fill="white" className="text-white ml-1" />
+                     </div>
+                  </div>
+                </div>
+              )}
             </div>
 
-            {/* Content Column */}
-            <div className="w-full md:w-1/2 p-6 md:p-16 flex flex-col justify-center text-left">
-              <span className={`text-[10px] font-mono uppercase tracking-[0.3em] font-bold ${temp.textColor} mb-4 block`}>
-                Campaign Protocol {index + 1}
+            {/* Poster Info */}
+            <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-10 z-10 pointer-events-none">
+              <span className="font-mono text-[9px] uppercase tracking-[0.4em] text-white/40 mb-3 group-hover:text-white/60 transition-colors">
+                {camp.tag}
               </span>
-              <h3 className="text-4xl md:text-6xl font-good-castyll text-white tracking-tight leading-[0.9] mb-6">
-                {temp.title}
-              </h3>
-              <p className="text-base md:text-lg text-ghost/70 font-sans font-light leading-relaxed mb-10">
-                {temp.subtitle}
-              </p>
-              
-              <div className="flex flex-col gap-8 md:gap-12 mt-auto">
-                <div className="border-t border-white/10 pt-6">
-                  <div className="text-[10px] font-mono text-ghost/40 uppercase tracking-widest mb-2">Strategy Type</div>
-                  <div className="font-sans text-xl font-bold tracking-tight text-white mb-8">{temp.stats.type}</div>
-                  
-                  {/* Action Button to make it a clickable module */}
-                  <button className={`group relative inline-flex items-center gap-3 px-8 py-4 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all duration-300 transform hover:scale-[1.02] cursor-pointer w-fit overflow-hidden`}>
-                    <div className={`absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out`}></div>
-                    <span className="relative text-[10px] uppercase font-mono tracking-[0.3em] text-white">Full Review</span>
-                    <svg className={`relative w-4 h-4 text-white transition-transform group-hover:translate-x-1`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </button>
-                </div>
+              <h2 className="font-bebas text-3xl md:text-5xl text-white tracking-widest uppercase leading-[0.9] mb-4 transform transition-all duration-500 group-hover:-translate-y-2">
+                {camp.title}
+              </h2>
+              <div className="flex items-center gap-3 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                 <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/60">Launch Preview</span>
+                 <ArrowUpRight size={14} className="text-white/60" />
               </div>
             </div>
           </div>
         ))}
       </div>
-    </section>
+
+      {/* Full-Screen Video Modal */}
+      {selectedVideo && (
+        <div 
+          className="fixed inset-0 z-[1000] bg-black/95 backdrop-blur-3xl flex items-center justify-center p-4 md:p-12 animate-in fade-in duration-500"
+          onClick={() => setSelectedVideo(null)}
+        >
+          {/* Close Interaction */}
+          <button 
+            className="absolute top-10 right-10 z-10 transition-transform hover:rotate-90 duration-500"
+            onClick={() => setSelectedVideo(null)}
+          >
+            <X size={32} className="text-white/50 hover:text-white" />
+          </button>
+
+          <div 
+            className="relative w-full max-w-4xl aspect-[9/16] md:aspect-video rounded-3xl overflow-hidden shadow-[0_0_100px_rgba(255,255,255,0.05)] border border-white/10 animate-in zoom-in-95 duration-500"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <iframe
+              src={`https://www.youtube.com/embed/${selectedVideo.youtubeId}?autoplay=1&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3`}
+              className="w-full h-full"
+              allow="autoplay; encrypted-media"
+              frameBorder="0"
+              allowFullScreen
+            />
+          </div>
+
+          <div className="absolute bottom-12 left-1/2 -translate-x-1/2 text-center pointer-events-none">
+             <h4 className="font-bebas text-4xl text-white tracking-widest uppercase mb-2">{selectedVideo.title}</h4>
+             <p className="text-[10px] font-mono uppercase tracking-[0.5em] text-white/20">Now Playing / TNT Ad Library</p>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
