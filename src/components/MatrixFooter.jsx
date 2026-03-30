@@ -57,6 +57,28 @@ export default function MatrixFooter() {
     setSelectedVideo(null);
   };
 
+  const currentPath = window.location.pathname;
+  const isImplantsPage = currentPath.includes('implants.html') || currentPath.endsWith('implants') || currentPath.includes('implants/');
+
+  if (!isImplantsPage) {
+    return (
+      <footer className="py-24 px-8 border-t border-white/10 bg-black text-center">
+           <div className="flex flex-col items-center gap-6">
+              <div className="h-10 md:h-12 flex items-center justify-center">
+                 <img 
+                   src="./assets/tnt-logo-official.png" 
+                   alt="TNT Dental" 
+                   className="h-full w-auto object-contain brightness-0 invert opacity-40 hover:opacity-100 transition-opacity" 
+                 />
+              </div>
+              <p className="text-white/20 text-[9px] font-mono tracking-[0.4em] uppercase max-w-sm mt-4">
+                 Strategic Intelligence for the Modern Dental Practice
+              </p>
+           </div>
+      </footer>
+    );
+  }
+
   return (
     <section ref={footerRef} id="footer" className="relative w-full bg-obsidian py-20 md:py-32 border-t border-white/5 px-6">
       <div className="max-w-7xl mx-auto">
