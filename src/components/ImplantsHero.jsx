@@ -37,10 +37,10 @@ export default function ImplantsHero() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05)_0%,transparent_80%)] opacity-40"></div>
       </div>
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center select-none">
-          <h1 className="font-serif text-[18vw] md:text-[14vw] lg:text-[10vw] leading-[0.85] tracking-tighter text-white mb-16 [perspective:1000px]">
+      <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col items-center select-none w-full px-4">
+          <h1 className="font-serif text-[clamp(3.5rem,15vw,10rem)] leading-[0.85] tracking-tighter text-white mb-16 [perspective:1000px]">
             <span className="hero-line block">DENTAL</span>
-            <span className="relative inline-block mt-4">
+            <span className="relative inline-block mt-4 md:mt-8">
               <span className="hero-line block italic font-light opacity-60">
                  Implants
               </span>

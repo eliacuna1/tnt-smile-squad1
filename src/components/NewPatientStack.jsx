@@ -81,19 +81,19 @@ export default function NewPatientStack() {
 
   return (
     <div ref={containerRef} className="w-full bg-black min-h-screen pt-40 pb-60 px-8 md:px-16 overflow-x-hidden">
-      {/* New Patient Campaign Hub Header (Designer Serif matching homepage) */}
-      <div className="max-w-6xl mx-auto mb-40 text-center px-6">
-         <h1 className="font-serif text-[18vw] md:text-[14vw] lg:text-[8vw] leading-[0.85] tracking-tighter text-white mb-10">
+      {/* New Patient Campaign Hub Header */}
+      <div className="max-w-6xl mx-auto mb-20 md:mb-40 text-center px-4">
+         <h1 className="font-serif text-[clamp(3rem,14vw,8vw)] leading-[0.85] tracking-tighter text-white mb-8">
             NEW PATIENT <br/>
             <span className="italic font-light opacity-60">Campaigns</span>
          </h1>
-         <p className="text-white/80 text-sm md:text-xl font-light leading-relaxed max-w-3xl mx-auto">
+         <p className="text-white/80 text-sm md:text-xl font-light leading-relaxed max-w-3xl mx-auto px-4">
             AI-powered ad templates designed to generate new patients, increase engagement, and drive more booked appointments.
          </p>
       </div>
 
       {/* Video Grid with Director Notes */}
-      <div className="campaign-grid max-w-[1700px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-24 md:gap-32 lg:gap-12 text-clip">
+      <div className="campaign-grid max-w-[1700px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-20 md:gap-32 lg:gap-8 px-4">
         {campaigns.map((camp) => (
           <div key={camp.id} className="campaign-wrapper relative group flex flex-col h-full">
             

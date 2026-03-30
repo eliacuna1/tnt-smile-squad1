@@ -54,12 +54,12 @@ export default function EmergencyStack() {
   return (
     <div ref={containerRef} className="w-full bg-black min-h-screen pt-40 pb-60 px-8 md:px-16 overflow-x-hidden">
       {/* Emergency Campaign Header (Designer Serif) */}
-      <div className="max-w-6xl mx-auto mb-40 text-center px-6">
-         <h1 className="hero-designer font-serif text-[18vw] md:text-[14vw] lg:text-[8vw] leading-[0.85] tracking-tighter text-white mb-10">
+      <div className="max-w-6xl mx-auto mb-20 md:mb-40 text-center px-4">
+         <h1 className="hero-designer font-serif text-[clamp(2.8rem,14vw,8vw)] leading-[0.85] tracking-tighter text-white mb-8">
             EMERGENCY <br/>
             <span className="italic font-light opacity-60">Visits</span>
          </h1>
-         <p className="text-white/80 text-sm md:text-xl font-light leading-relaxed max-w-3xl mx-auto">
+         <p className="text-white/80 text-sm md:text-xl font-light leading-relaxed max-w-3xl mx-auto px-4">
             High-converting emergency campaigns designed to capture high-intent patients and drive immediate calls and bookings.
          </p>
       </div>
@@ -139,8 +139,8 @@ export default function EmergencyStack() {
         </div>
 
         {/* High-Impact Description Below Card */}
-        <div className="mt-16 border-l border-white/10 pl-10 group-hover:border-white/30 transition-all duration-1000 max-w-4xl w-full">
-           <p className="text-sm md:text-xl text-white/50 leading-relaxed font-light transition-colors duration-1000 group-hover:text-white/80">
+        <div className="mt-10 md:mt-16 border-l border-white/10 pl-6 md:pl-10 group-hover:border-white/30 transition-all duration-1000 max-w-4xl w-full">
+           <p className="text-xs md:text-xl text-white/50 leading-relaxed font-light transition-colors duration-1000 group-hover:text-white/80">
               {emergencyCampaign.description}
            </p>
         </div>

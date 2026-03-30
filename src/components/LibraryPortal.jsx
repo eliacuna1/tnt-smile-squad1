@@ -136,9 +136,9 @@ const LibraryPortal = () => {
            </div>
         </div>
 
-        <div className="relative z-10 text-center flex flex-col items-center select-none">
-          <h1 className="hero-designer font-serif text-[18vw] md:text-[14vw] lg:text-[10vw] leading-[0.85] tracking-tighter text-white mb-10 [perspective:1000px]">
-            AI <span className="relative inline-block mx-4">
+        <div className="relative z-10 text-center flex flex-col items-center select-none w-full max-w-[100vw] overflow-hidden">
+          <h1 className="hero-designer font-serif text-[clamp(3.5rem,15vw,10rem)] leading-[0.85] tracking-tighter text-white mb-10 [perspective:1000px] w-full px-4">
+            AI <span className="relative inline-block mx-2 md:mx-4">
               <span className="font-['Mr_Dafoe'] italic font-normal text-[1.1em] opacity-80 text-white block transform translate-y-2 -rotate-3 scale-110">
                  Creative
               </span>
@@ -161,11 +161,11 @@ const LibraryPortal = () => {
            <span className="font-mono text-[9px] md:text-[10px] uppercase tracking-[0.8em] text-white/20 mb-12 block">
               OUR APPROACH
            </span>
-           <div className="space-y-10">
-              <p className="text-2xl md:text-4xl lg:text-5xl font-serif font-light text-white leading-[1.2] tracking-tighter animate-fade-in-up">
+           <div className="space-y-6 md:space-y-10">
+              <p className="text-xl md:text-4xl lg:text-5xl font-serif font-light text-white leading-[1.2] tracking-tighter">
                  We focus on four core campaign types, each designed to attract a <span className="italic font-serif opacity-60">specific patient profile</span> and demographic. Every campaign is built with a clear strategy behind it.
               </p>
-              <p className="text-sm md:text-lg text-white/40 font-light leading-relaxed max-w-2xl mx-auto animate-fade-in-up delay-300">
+              <p className="text-xs md:text-lg text-white/40 font-light leading-relaxed max-w-2xl mx-auto tracking-wide uppercase">
                  We have refined these systems to ensure your ads do more than generate clicks. They are built to convert attention into real appointments and real growth.
               </p>
            </div>

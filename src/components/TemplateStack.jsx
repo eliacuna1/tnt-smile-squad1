@@ -125,11 +125,11 @@ export default function TemplateStack() {
   }, []);
 
   return (
-    <section ref={containerRef} id="stack" className="relative w-full py-24 pb-[40vh] z-20 bg-black">
+    <section ref={containerRef} id="stack" className="relative w-full py-16 md:py-24 pb-[20vh] md:pb-[40vh] z-20 bg-black">
       
-      <div className="text-center mb-32 max-w-4xl mx-auto px-6 select-none">
-        <h3 className="font-serif text-[12vw] md:text-[8vw] leading-[0.85] tracking-tighter text-white mb-6">Meet the <span className="italic opacity-60">Squad</span></h3>
-        <p className="text-white/50 font-inter text-sm md:text-lg max-w-xl mx-auto leading-relaxed tracking-widest uppercase italic">
+      <div className="text-center mb-20 md:mb-32 max-w-4xl mx-auto px-6 select-none">
+        <h3 className="font-serif text-[clamp(2.5rem,10vw,8vw)] leading-[0.85] tracking-tighter text-white mb-6">Meet the <span className="italic opacity-60">Squad</span></h3>
+        <p className="text-white/50 font-inter text-[10px] md:text-lg max-w-xl mx-auto leading-relaxed tracking-[0.3em] md:tracking-widest uppercase italic">
           High-Ticket Psychology for High-Value Procedures
         </p>
       </div>
