@@ -14,9 +14,27 @@ const LibraryPortal = () => {
         { y: 0, opacity: 1, rotateX: 0, duration: 2.2, ease: "expo.out", delay: 0.2 }
       );
       
+      // Draw in the scribbles
+      gsap.fromTo('.scribble-path',
+        { drawSVG: "0%" },
+        { 
+          drawSVG: "100%", 
+          duration: 1.2, 
+          ease: "power2.inOut", 
+          delay: 1.5,
+          stagger: 0.2
+        }
+      );
+      
+      // Custom fade-in for fallback if DrawSVG plugin isn't present
+      gsap.fromTo('.scribble-path',
+        { opacity: 0, strokeDashoffset: 100 },
+        { opacity: 0.8, strokeDashoffset: 0, duration: 1.8, ease: "power4.out", delay: 1.2 }
+      );
+
       gsap.fromTo('.hero-sub',
         { opacity: 0 },
-        { opacity: 1, duration: 1.8, ease: "power2.out", delay: 1 }
+        { opacity: 1, duration: 1.8, ease: "power2.out", delay: 1.2 }
       );
 
       // Grid Entrance
@@ -40,28 +58,46 @@ const LibraryPortal = () => {
     {
       id: 'new-patient',
       title: 'NEW PATIENT\nCAMPAIGNS',
+      tag: 'HOOK',
       youtubeId: '6J7lJdCTuSw',
       path: './new-patient.html'
     },
     {
       id: 'emergency',
       title: 'EMERGENCY\nVISITS',
+      tag: 'URGENCY',
       youtubeId: '65KyQJboVo8',
       path: './emergency.html'
     },
     {
       id: 'implants',
       title: 'DENTAL\nIMPLANTS',
+      tag: 'VALUE',
       youtubeId: 'Qh5ddCxXEhU',
       path: './implants.html'
     },
     {
       id: 'cosmetic',
       title: 'SMILE\nTRANSFORMATION',
+      tag: 'AESTHETIC',
       youtubeId: 'Cy2bMX54GHs',
       path: './transformation.html'
     }
   ];
+
+  const ScribbleUnderline = () => (
+    <svg className="absolute -bottom-4 -left-2 w-[110%] h-8 pointer-events-none overflow-visible opacity-80" viewBox="0 0 300 20">
+       <path className="scribble-path" d="M5,15 Q50,5 150,15 Q250,25 295,10" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
+       <path className="scribble-path" d="M10,12 Q80,18 160,8 Q240,-2 290,15" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" opacity="0.6" />
+    </svg>
+  );
+
+  const ScribbleCross = () => (
+    <svg className="absolute top-1/2 -left-4 w-[115%] h-full -translate-y-1/2 pointer-events-none overflow-visible opacity-40 mix-blend-overlay" viewBox="0 0 300 100">
+       <path className="scribble-path" d="M20,45 L280,55" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" opacity="0.8" />
+       <path className="scribble-path" d="M30,52 C100,40 200,60 270,48" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" opacity="0.4" />
+    </svg>
+  );
 
   return (
     <div ref={containerRef} className="min-h-screen bg-black text-white font-inter selection:bg-white selection:text-black overflow-hidden">
@@ -71,7 +107,7 @@ const LibraryPortal = () => {
            <div className="relative w-full h-full overflow-hidden">
               <iframe 
                 src="https://www.youtube.com/embed/E5vGhT6HT9A?autoplay=1&mute=1&loop=1&playlist=E5vGhT6HT9A&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&iv_load_policy=3"
-                className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 pointer-events-none scale-[1.1] brightness-[0.6]"
+                className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 pointer-events-none scale-[1.1] brightness-[0.5]"
                 allow="autoplay; encrypted-media"
                 frameBorder="0"
               ></iframe>
@@ -79,9 +115,15 @@ const LibraryPortal = () => {
            </div>
         </div>
 
-        <div className="relative z-10 text-center flex flex-col items-center">
+        <div className="relative z-10 text-center flex flex-col items-center select-none">
           <h1 className="hero-designer font-serif text-[18vw] md:text-[14vw] lg:text-[10vw] leading-[0.85] tracking-tighter text-white mb-10 [perspective:1000px]">
-            AI <span className="italic font-light opacity-60">Creative</span><br/>
+            AI <span className="relative inline-block mx-4">
+              <span className="font-['Mr_Dafoe'] italic font-normal text-[1.1em] opacity-80 text-white block transform translate-y-2 -rotate-3 scale-110">
+                 Creative
+              </span>
+              <ScribbleUnderline />
+              <ScribbleCross />
+            </span><br/>
             LIBRARY
           </h1>
           <div className="hero-sub max-w-xl mx-auto px-6">
@@ -100,7 +142,7 @@ const LibraryPortal = () => {
            </span>
            <div className="space-y-10">
               <p className="text-2xl md:text-4xl lg:text-5xl font-serif font-light text-white leading-[1.2] tracking-tighter animate-fade-in-up">
-                 We focus on four core campaign types, each designed to attract a <span className="italic opacity-60">specific patient profile</span> and demographic. Every campaign is built with a clear strategy behind it.
+                 We focus on four core campaign types, each designed to attract a <span className="italic font-serif opacity-60">specific patient profile</span> and demographic. Every campaign is built with a clear strategy behind it.
               </p>
               <p className="text-sm md:text-lg text-white/40 font-light leading-relaxed max-w-2xl mx-auto animate-fade-in-up delay-300">
                  We have refined these systems to ensure your ads do more than generate clicks. They are built to convert attention into real appointments and real growth.
@@ -146,14 +188,20 @@ const LibraryPortal = () => {
                 )}
               </div>
 
-              {/* High-End Studio Typography Layer (Bottom-Left Aligned) */}
-              <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-10 z-10 pointer-events-none">
-                <div className="flex flex-col gap-5 transform transition-all duration-700 group-hover:-translate-y-2">
-                   <h2 className="font-serif leading-[0.85] tracking-tighter text-white whitespace-pre-line break-words
-                      text-[9vw] sm:text-[4vw] lg:text-[2.6vw] xl:text-[2.8vw]
-                   ">
-                      {section.title}
-                   </h2>
+              {/* High-End Studio Typography Layer */}
+              <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-10 z-10 pointer-events-none translate-y-2 group-hover:translate-y-0 transition-all duration-700">
+                <div className="flex flex-col gap-6">
+                   <div className="relative">
+                      {/* Sub-label Annotation (Handwritten Style) */}
+                      <span className="absolute -top-10 left-0 font-['Caveat'] text-lg text-white/30 tracking-tight transition-all duration-700 group-hover:text-white/60 group-hover:-translate-y-2 group-hover:rotate-6">
+                         {section.tag}
+                      </span>
+                      <h2 className="font-serif leading-[0.85] tracking-tighter text-white whitespace-pre-line break-words
+                         text-[9vw] sm:text-[4vw] lg:text-[2.6vw] xl:text-[2.8vw]
+                      ">
+                         {section.title}
+                      </h2>
+                   </div>
                    
                    {/* Minimalist Line Transition */}
                    <div className="flex items-center gap-4 mt-2">
