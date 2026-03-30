@@ -162,19 +162,17 @@ const LibraryPortal = () => {
       </main>
 
       {/* Footer */}
-      <footer className="py-40 px-8 border-t border-white/5 bg-black text-center">
-           <div className="flex flex-col items-center gap-10">
-              <span className="font-bebas text-5xl text-white tracking-[0.15em] uppercase opacity-80 hover:opacity-100 transition-opacity cursor-default">
-                 TNT LABORATORY
-              </span>
-              <div className="flex flex-wrap justify-center gap-6 md:gap-12 mt-4">
-                 {sections.map(s => (
-                   <a key={s.id} href={s.path} className="text-[10px] font-mono uppercase tracking-[0.2em] text-white/20 hover:text-white transition-colors">{s.title}</a>
-                 ))}
+      <footer className="py-24 px-8 border-t border-white/10 bg-black text-center">
+           <div className="flex flex-col items-center gap-6">
+              <div className="h-12 md:h-16 flex items-center justify-center">
+                 <img 
+                   src="./assets/tnt-logo-official.png" 
+                   alt="TNT Dental" 
+                   className="h-full w-auto object-contain brightness-0 invert opacity-60 hover:opacity-100 transition-opacity" 
+                 />
               </div>
-              <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent mt-8"></div>
-              <p className="text-white/10 text-[9px] font-mono tracking-[0.3em] uppercase max-w-sm">
-                 AI-Driven Complexity / Strategic Performance Design
+              <p className="text-white/20 text-[9px] font-mono tracking-[0.4em] uppercase max-w-sm mt-4">
+                 The front door to the world’s most advanced AI-driven dental ad templates.
               </p>
            </div>
       </footer>

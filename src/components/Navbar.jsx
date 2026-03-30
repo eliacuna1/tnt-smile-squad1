@@ -57,10 +57,12 @@ export default function Navbar() {
                   <ArrowLeft size={16} />
                 </div>
              )}
-             <div className="h-6 md:h-8 flex items-center">
-                <span className="font-serif text-lg md:text-xl tracking-tighter text-white uppercase font-bold">
-                  TNT <span className="opacity-40 italic font-light mx-1">/</span> Library
-                </span>
+             <div className="h-7 md:h-10 flex items-center">
+                <img 
+                  src="./assets/tnt-logo-official.png" 
+                  alt="TNT Dental" 
+                  className="h-full w-auto object-contain brightness-0 invert" 
+                />
              </div>
           </a>
 
