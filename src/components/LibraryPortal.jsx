@@ -103,8 +103,25 @@ const LibraryPortal = () => {
         </div>
       </header>
 
+      {/* Strategic Statement: OUR APPROACH */}
+      <section className="py-24 md:py-40 px-8">
+        <div className="max-w-3xl mx-auto text-center flex flex-col items-center">
+           <span className="font-mono text-[10px] uppercase tracking-[0.6em] text-white/30 mb-10 block animate-fade-in">
+              OUR APPROACH
+           </span>
+           <div className="space-y-8">
+              <p className="text-xl md:text-3xl font-light text-white leading-relaxed tracking-tight animate-fade-in-up">
+                 At TNT Dental Marketing, we focus on four core campaign types, each designed to attract a specific patient profile and demographic. Every campaign is built with a clear strategy behind it, targeting the right audience with the right message at the right time.
+              </p>
+              <p className="text-sm md:text-lg text-white/40 font-light leading-relaxed max-w-2xl mx-auto animate-fade-in-up delay-300">
+                 We have tested and refined these systems to ensure your ads do more than generate clicks. They are built to convert attention into real patients, real appointments, and real growth.
+              </p>
+           </div>
+        </div>
+      </section>
+
       {/* Living Preview Grid */}
-      <main className="category-grid pb-24 px-6 md:px-12">
+      <main className="category-grid pb-40 px-6 md:px-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-[1600px] mx-auto">
           {sections.map((section, index) => (
             <a
@@ -165,17 +182,18 @@ const LibraryPortal = () => {
         </div>
       </main>
 
-      {/* Footer Branding */}
-      <footer className="py-24 px-8 border-t border-white/10 bg-black text-center">
-           <div className="flex flex-col items-center gap-6">
-              <div className="h-10 md:h-12 flex items-center justify-center">
+      {/* Sleek Minimal Signature Footer */}
+      <footer className="py-8 px-6 md:px-16 border-t border-white/5 bg-black">
+           <div className="max-w-7xl mx-auto flex items-center justify-start gap-6">
+              <div className="h-6 md:h-8 flex items-center">
                  <img 
                    src="./assets/tnt-logo-official.png" 
                    alt="TNT Dental" 
-                   className="h-full w-auto object-contain brightness-0 invert opacity-40 hover:opacity-100 transition-opacity" 
+                   className="h-full w-auto object-contain brightness-0 invert opacity-60 hover:opacity-100 transition-opacity" 
                  />
               </div>
-              <p className="text-white/20 text-[9px] font-mono tracking-[0.4em] uppercase max-w-sm mt-4">
+              <div className="h-4 w-[1px] bg-white/10"></div>
+              <p className="text-white/20 text-[9px] md:text-[10px] font-mono tracking-[0.3em] uppercase whitespace-nowrap">
                  Strategic Intelligence for the Modern Dental Practice
               </p>
            </div>

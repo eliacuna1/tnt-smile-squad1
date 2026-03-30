@@ -62,16 +62,17 @@ export default function MatrixFooter() {
 
   if (!isImplantsPage) {
     return (
-      <footer className="py-24 px-8 border-t border-white/10 bg-black text-center">
-           <div className="flex flex-col items-center gap-6">
-              <div className="h-10 md:h-12 flex items-center justify-center">
+      <footer className="py-8 px-6 md:px-16 border-t border-white/5 bg-black">
+           <div className="max-w-7xl mx-auto flex items-center justify-start gap-6">
+              <div className="h-6 md:h-8 flex items-center">
                  <img 
                    src="./assets/tnt-logo-official.png" 
                    alt="TNT Dental" 
-                   className="h-full w-auto object-contain brightness-0 invert opacity-40 hover:opacity-100 transition-opacity" 
+                   className="h-full w-auto object-contain brightness-0 invert opacity-60 hover:opacity-100 transition-opacity" 
                  />
               </div>
-              <p className="text-white/20 text-[9px] font-mono tracking-[0.4em] uppercase max-w-sm mt-4">
+              <div className="h-4 w-[1px] bg-white/10"></div>
+              <p className="text-white/20 text-[9px] md:text-[10px] font-mono tracking-[0.3em] uppercase whitespace-nowrap">
                  Strategic Intelligence for the Modern Dental Practice
               </p>
            </div>
@@ -80,8 +81,8 @@ export default function MatrixFooter() {
   }
 
   return (
-    <section ref={footerRef} id="footer" className="relative w-full bg-obsidian py-20 md:py-32 border-t border-white/5 px-6">
-      <div className="max-w-7xl mx-auto">
+    <section ref={footerRef} id="footer" className="relative w-full bg-obsidian pt-32 pb-8 border-t border-white/5 px-6 flex flex-col items-center">
+      <div className="max-w-7xl mx-auto w-full mb-32">
         <div className="text-center mb-16">
           <h3 className="text-5xl md:text-7xl font-good-castyll text-ghost tracking-tight uppercase">The Smile Squad</h3>
           <p className="mt-4 text-ghost/60 font-sans max-w-lg mx-auto">
@@ -168,6 +169,20 @@ export default function MatrixFooter() {
           </div>
         </div>
       )}
+      {/* Sleek Minimal Signature at the very bottom */}
+      <div className="max-w-7xl mx-auto flex items-center justify-start gap-6 w-full opacity-60 border-t border-white/5 pt-8 mt-12">
+           <div className="h-6 md:h-8 flex items-center">
+              <img 
+                src="./assets/tnt-logo-official.png" 
+                alt="TNT Dental" 
+                className="h-full w-auto object-contain brightness-0 invert" 
+              />
+           </div>
+           <div className="h-4 w-[1px] bg-white/10"></div>
+           <p className="text-white/20 text-[9px] md:text-[10px] font-mono tracking-[0.3em] uppercase">
+              Strategic Intelligence for the Modern Dental Practice
+           </p>
+      </div>
     </section>
   );
 }
