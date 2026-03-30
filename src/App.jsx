@@ -37,10 +37,11 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      <main className="relative w-full min-h-screen bg-obsidian text-ghost selection:bg-plasma-pink selection:text-obsidian overflow-x-hidden">
+      <main className="relative w-full min-h-screen bg-black text-ghost selection:bg-plasma-pink selection:text-obsidian overflow-x-hidden">
         <EdgeGlow />
         <DoodleOverlay />
-        <Navbar />
+        <div className="relative z-10">
+          <Navbar />
         
         <Routes>
           <Route path="/" element={
@@ -81,8 +82,7 @@ function App() {
             </PageWrapper>
           } />
         </Routes>
-
-
+        </div>
       </main>
     </Router>
   );

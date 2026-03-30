@@ -34,7 +34,7 @@ export default function EdgeGlow() {
   }, []);
 
   return (
-    <div ref={containerRef} className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden select-none bg-black">
+    <div ref={containerRef} className="fixed inset-0 pointer-events-none z-[1] overflow-hidden select-none bg-black">
       {/* Top Left Glow - Cyan/Teal (Main Siri-style accent) */}
       <div className="glow-layer absolute top-[-10%] left-[-15%] w-[50%] h-[50%] bg-[radial-gradient(circle_at_center,rgba(0,255,255,0.15)_0%,transparent_70%)] blur-[180px] opacity-70"></div>
       

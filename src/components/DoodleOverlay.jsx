@@ -55,7 +55,7 @@ export default function DoodleOverlay() {
   }, [activeDoodles]);
 
   return (
-    <div ref={containerRef} className="fixed inset-0 pointer-events-none z-[5] overflow-hidden select-none">
+    <div ref={containerRef} className="fixed inset-0 pointer-events-none z-[100] overflow-hidden select-none">
       {activeDoodles.map((doodle) => (
         <Doodle key={doodle.uniqueId} doodle={doodle} />
       ))}
