@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 
-export default function Navbar() {
+export default function Navbar({ onBack }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isScrollingUp, setIsScrollingUp] = useState(true);
   const lastScrollY = useRef(0);
@@ -52,10 +52,20 @@ export default function Navbar() {
           <div className={`relative h-full w-full flex items-center px-4 md:px-8 
             ${isShrunk ? 'md:justify-center' : 'justify-between'}`}>
             
-            {/* Logo Section */}
-            <div className={`flex items-center transition-all duration-700 w-full md:w-auto justify-center md:justify-start
+            {/* Logo & Back button Section */}
+            <div className={`flex items-center gap-4 transition-all duration-700 w-full md:w-auto justify-center md:justify-start
               ${isShrunk ? 'md:scale-90' : 'scale-100'}
             `}>
+              {onBack && !isShrunk && (
+                <button 
+                  onClick={onBack}
+                  className="p-1.5 md:p-2 rounded-full border border-white/10 hover:bg-white/10 transition-colors group flex items-center justify-center shrink-0"
+                >
+                  <svg className="w-4 h-4 md:w-5 md:h-5 text-ghost group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+              )}
               <div className="h-7 md:h-9 w-auto flex items-center">
                 <img 
                   src="./assets/characters/tnt-logo-official.png" 
@@ -67,15 +77,19 @@ export default function Navbar() {
             
             {/* Navigation Links */}
             <div className={`hidden md:flex items-center justify-center gap-10 font-mono text-[10px] uppercase tracking-[0.3em] text-white/70 transition-all duration-700
-              ${isScrolled && !isScrollingUp ? 'md:opacity-0 md:absolute md:translate-y-10 md:pointer-events-none' : 'opacity-100 translate-y-0'}
+              ${isShrunk ? 'md:opacity-0 md:absolute md:translate-y-10 md:pointer-events-none' : 'opacity-100 translate-y-0'}
             `}>
-              <a href="#hero" className="hover:text-white hover:scale-110 transition-all duration-500 whitespace-nowrap">Casa</a>
-              <a href="#stack" className="hover:text-white hover:scale-110 transition-all duration-500 whitespace-nowrap">The Characters</a>
-              <a href="#footer" className="hover:text-white hover:scale-110 transition-all duration-500 whitespace-nowrap">All Templates</a>
+              <a href="#hero" className="hover:text-white hover:scale-110 transition-all duration-500 whitespace-nowrap">The Reveal</a>
+              <a href="#stack" className="hover:text-white hover:scale-110 transition-all duration-500 whitespace-nowrap">Archive</a>
+              <a href="#footer" className="hover:text-white hover:scale-110 transition-all duration-500 whitespace-nowrap">Select</a>
             </div>
 
-            {/* Desktop Spacer */}
-            <div className={`hidden md:block transition-all duration-700 ${isShrunk ? 'w-0' : 'w-[50px] opacity-0'}`}></div>
+            {/* Desktop Launch Button (Hidden when shrunk to stay minimal) */}
+            <button className={`hidden md:block px-5 py-2 rounded-full border border-plasma-purple/50 text-plasma-purple font-mono text-[10px] uppercase tracking-widest hover:bg-plasma-purple hover:text-white transition-all duration-500
+              ${isShrunk ? 'scale-0 opacity-0 pointer-events-none' : 'scale-100 opacity-100'}
+            `}>
+              Launch
+            </button>
           </div>
         </nav>
       </div>
