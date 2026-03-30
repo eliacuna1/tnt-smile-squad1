@@ -1,8 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import Navbar from './components/Navbar'
-import CosmeticHero from './components/CosmeticHero'
-import CosmeticStack from './components/CosmeticStack'
+import TransformationStack from './components/TransformationStack'
 import MatrixFooter from './components/MatrixFooter'
 import './index.css'
 
@@ -10,8 +9,7 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <main className="relative w-full min-h-screen bg-obsidian text-ghost selection:bg-plasma-pink selection:text-obsidian overflow-x-hidden">
       <Navbar />
-      <CosmeticHero />
-      <CosmeticStack />
+      <TransformationStack />
       <MatrixFooter />
     </main>
   </StrictMode>
