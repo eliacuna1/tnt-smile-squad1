@@ -16,18 +16,6 @@ const LibraryPortal = () => {
       
       // Draw in the scribbles
       gsap.fromTo('.scribble-path',
-        { drawSVG: "0%" },
-        { 
-          drawSVG: "100%", 
-          duration: 1.2, 
-          ease: "power2.inOut", 
-          delay: 1.5,
-          stagger: 0.2
-        }
-      );
-      
-      // Custom fade-in for fallback if DrawSVG plugin isn't present
-      gsap.fromTo('.scribble-path',
         { opacity: 0, strokeDashoffset: 100 },
         { opacity: 0.8, strokeDashoffset: 0, duration: 1.8, ease: "power4.out", delay: 1.2 }
       );
@@ -49,6 +37,21 @@ const LibraryPortal = () => {
           }
         }
       );
+
+      // Parallax for Scribbles
+      gsap.to('.parallax-scribble', {
+        y: (i, target) => {
+          const depth = target.getAttribute('data-depth') || 0.2;
+          return -100 * depth;
+        },
+        ease: "none",
+        scrollTrigger: {
+          trigger: '.category-grid',
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true
+        }
+      });
     }, containerRef);
 
     return () => ctx.revert();
@@ -60,47 +63,65 @@ const LibraryPortal = () => {
       title: 'NEW PATIENT\nCAMPAIGNS',
       tag: 'HOOK',
       youtubeId: '6J7lJdCTuSw',
-      path: './new-patient.html'
+      path: './new-patient.html',
+      scribbles: [
+        { text: 'Butts in Seats', pos: 'bottom-[-60px] left-0', style: 'underline', depth: 0.1 },
+        { text: 'Scroll Stopper', pos: 'top-[20%] left-[-80px]', style: 'arrow-right', depth: 0.3 },
+        { text: 'FOMO', pos: 'bottom-[10%] right-[-40px]', style: 'tilt', depth: 0.2 }
+      ]
     },
     {
       id: 'emergency',
       title: 'EMERGENCY\nVISITS',
       tag: 'URGENCY',
       youtubeId: '65KyQJboVo8',
-      path: './emergency.html'
+      path: './emergency.html',
+      scribbles: [
+        { text: 'urgency', pos: 'top-[-50px] left-4', style: 'circle', depth: 0.2 },
+        { text: 'call now', pos: 'top-[-30px] right-4', style: 'double-underline', depth: 0.4 },
+        { text: 'attention grabber', pos: 'top-[10%] right-[-100px]', style: 'default', depth: 0.15 }
+      ]
     },
     {
       id: 'implants',
       title: 'DENTAL\nIMPLANTS',
       tag: 'VALUE',
       youtubeId: 'Qh5ddCxXEhU',
-      path: './implants.html'
+      path: './implants.html',
+      scribbles: [
+        { text: 'story telling', pos: 'bottom-[-40px] left-10', style: 'default', depth: 0.1 },
+        { text: 'build trust', pos: 'bottom-[-60px] right-10', style: 'underline', depth: 0.3 },
+        { text: 'you are not alone', pos: 'top-[40%] right-[-120px]', style: 'italic', depth: 0.2 }
+      ]
     },
     {
       id: 'cosmetic',
       title: 'SMILE\nTRANSFORMATION',
       tag: 'AESTHETIC',
       youtubeId: 'Cy2bMX54GHs',
-      path: './transformation.html'
+      path: './transformation.html',
+      scribbles: [
+        { text: 'SMILE', pos: 'top-[-60px] left-1/2 -translate-x-1/2', style: 'large-curve', depth: 0.5 },
+        { text: 'Confidence', pos: 'top-[20%] right-[-80px]', style: 'default', depth: 0.2 },
+        { text: 'happy', pos: 'bottom-[-40px] left-4', style: 'circle', depth: 0.3 }
+      ]
     }
   ];
 
   const ScribbleUnderline = () => (
     <svg className="absolute -bottom-4 -left-2 w-[110%] h-8 pointer-events-none overflow-visible opacity-80" viewBox="0 0 300 20">
        <path className="scribble-path" d="M5,15 Q50,5 150,15 Q250,25 295,10" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
-       <path className="scribble-path" d="M10,12 Q80,18 160,8 Q240,-2 290,15" fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" opacity="0.6" />
     </svg>
   );
 
   const ScribbleCross = () => (
     <svg className="absolute top-1/2 -left-4 w-[115%] h-full -translate-y-1/2 pointer-events-none overflow-visible opacity-40 mix-blend-overlay" viewBox="0 0 300 100">
        <path className="scribble-path" d="M20,45 L280,55" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" opacity="0.8" />
-       <path className="scribble-path" d="M30,52 C100,40 200,60 270,48" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" opacity="0.4" />
     </svg>
   );
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-black text-white font-inter selection:bg-white selection:text-black overflow-hidden">
+    <div ref={containerRef} className="min-h-screen bg-black text-white font-inter selection:bg-white selection:text-black overflow-x-hidden">
       {/* Cinematic Hero */}
       <header className="relative h-[95svh] flex flex-col items-center justify-center px-6 overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none">
@@ -152,69 +173,93 @@ const LibraryPortal = () => {
       </section>
 
       {/* High-End Studio Portfolio Grid */}
-      <main className="category-grid pb-40 px-4 md:px-8 bg-black">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5 max-w-[1800px] mx-auto">
+      <main className="category-grid pb-60 px-4 md:px-8 bg-black">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-20 md:gap-24 lg:gap-8 max-w-[1700px] mx-auto">
           {sections.map((section, index) => (
-            <a
-              key={section.id}
-              href={section.path}
-              className={`category-card relative group flex flex-col pt-[155%] md:pt-[145%] rounded-[12px] md:rounded-[20px] overflow-hidden bg-neutral-900 cursor-pointer transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] border border-white/0 hover:border-white/10`}
-              onMouseEnter={() => setHoveredId(section.id)}
-              onMouseLeave={() => setHoveredId(null)}
-            >
-              {/* Background Layer */}
-              <div className="absolute inset-0 w-full h-full overflow-hidden">
-                {hoveredId === section.id ? (
-                  <div className="w-full h-full relative transition-transform duration-[1.5s]">
-                    <iframe 
-                      src={`https://www.youtube.com/embed/${section.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${section.youtubeId}&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&iv_load_policy=3`}
-                      className={`absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 pointer-events-none transition-all duration-1000
-                        ${(section.id === 'emergency' || section.id === 'implants') ? 'scale-[1.75] md:scale-[2.1]' : 'scale-[1.0]'}
-                      `}
-                      allow="autoplay; encrypted-media"
-                      frameBorder="0"
-                    />
-                    <div className="absolute inset-0 bg-black/20"></div>
-                  </div>
-                ) : (
-                  <div className="w-full h-full group-hover:scale-105 transition-transform duration-[1.5s]">
-                    <img 
-                      src={`https://img.youtube.com/vi/${section.youtubeId}/maxresdefault.jpg`}
-                      alt={section.title.replace('\n', ' ')} 
-                      className="w-full h-full object-cover grayscale saturate-0 opacity-40 transition-all duration-1000"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/30 to-transparent"></div>
-                  </div>
-                )}
-              </div>
-
-              {/* High-End Studio Typography Layer */}
-              <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-10 z-10 pointer-events-none translate-y-2 group-hover:translate-y-0 transition-all duration-700">
-                <div className="flex flex-col gap-6">
-                   <div className="relative">
-                      {/* Sub-label Annotation (Handwritten Style) */}
-                      <span className="absolute -top-10 left-0 font-['Caveat'] text-lg text-white/30 tracking-tight transition-all duration-700 group-hover:text-white/60 group-hover:-translate-y-2 group-hover:rotate-6">
-                         {section.tag}
-                      </span>
-                      <h2 className="font-serif leading-[0.85] tracking-tighter text-white whitespace-pre-line break-words
-                         text-[9vw] sm:text-[4vw] lg:text-[2.6vw] xl:text-[2.8vw]
-                      ">
-                         {section.title}
-                      </h2>
-                   </div>
-                   
-                   {/* Minimalist Line Transition */}
-                   <div className="flex items-center gap-4 mt-2">
-                      <div className={`h-[1px] bg-white/40 transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]
-                        ${hoveredId === section.id ? 'w-16 bg-white opacity-100' : 'w-0 opacity-0'}
-                      `}></div>
-                      <ArrowRight className={`w-4 h-4 text-white transition-all duration-700 delay-100
-                        ${hoveredId === section.id ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}
-                      `} />
-                   </div>
+            <div key={section.id} className="relative">
+              
+              {/* Director Scribbles Layer (Parallax) */}
+              {section.scribbles.map((sc, i) => (
+                <div 
+                  key={i}
+                  data-depth={sc.depth}
+                  className={`parallax-scribble absolute z-20 ${sc.pos} pointer-events-none opacity-30 group-hover:opacity-60 transition-opacity duration-700 md:block hidden`}
+                >
+                  <span className={`font-['Caveat'] text-white whitespace-nowrap
+                    ${sc.style === 'circle' ? 'border border-white/40 rounded-[50%] px-4 py-1 rotate-[-5deg]' : ''}
+                    ${sc.style === 'underline' ? 'border-b border-white/40 px-2' : ''}
+                    ${sc.style === 'double-underline' ? 'border-b-2 border-double border-white/40 px-2' : ''}
+                    ${sc.style === 'tilt' ? 'rotate-[-12deg] block' : ''}
+                    ${sc.style === 'large-curve' ? 'text-4xl rotate-[5deg] block border-b-2 border-white/20 pb-2 rounded-[40%]' : ''}
+                    ${sc.style === 'italic' ? 'italic opacity-60' : ''}
+                    text-base lg:text-lg
+                  `}>
+                    {sc.text}
+                    {sc.style === 'arrow-right' && <span className="ml-2">→</span>}
+                  </span>
                 </div>
-              </div>
-            </a>
+              ))}
+
+              <a
+                href={section.path}
+                className={`category-card relative group flex flex-col pt-[155%] md:pt-[145%] rounded-[12px] md:rounded-[20px] overflow-hidden bg-neutral-900 cursor-pointer transition-all duration-1000 ease-[cubic-bezier(0.23,1,0.32,1)] border border-white/0 hover:border-white/10 z-10`}
+                onMouseEnter={() => setHoveredId(section.id)}
+                onMouseLeave={() => setHoveredId(null)}
+              >
+                {/* Background Layer */}
+                <div className="absolute inset-0 w-full h-full overflow-hidden text-clip">
+                  {hoveredId === section.id ? (
+                    <div className="w-full h-full relative transition-transform duration-[1.5s]">
+                      <iframe 
+                        src={`https://www.youtube.com/embed/${section.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${section.youtubeId}&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&iv_load_policy=3`}
+                        className={`absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 pointer-events-none transition-all duration-1000
+                          ${(section.id === 'emergency' || section.id === 'implants') ? 'scale-[1.75] md:scale-[2.1]' : 'scale-[1.0]'}
+                        `}
+                        allow="autoplay; encrypted-media"
+                        frameBorder="0"
+                      />
+                      <div className="absolute inset-0 bg-black/20"></div>
+                    </div>
+                  ) : (
+                    <div className="w-full h-full group-hover:scale-105 transition-transform duration-[1.5s]">
+                      <img 
+                        src={`https://img.youtube.com/vi/${section.youtubeId}/maxresdefault.jpg`}
+                        alt={section.title.replace('\n', ' ')} 
+                        className="w-full h-full object-cover grayscale saturate-0 opacity-40 transition-all duration-1000"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/30 to-transparent"></div>
+                    </div>
+                  )}
+                </div>
+
+                {/* High-End Studio Typography Layer */}
+                <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-10 z-10 pointer-events-none translate-y-2 group-hover:translate-y-0 transition-all duration-700">
+                  <div className="flex flex-col gap-6">
+                     <div className="relative">
+                        {/* Sub-label Annotation (Handwritten Style) */}
+                        <span className="absolute -top-10 left-0 font-['Caveat'] text-lg text-white/30 tracking-tight transition-all duration-700 group-hover:text-white/60 group-hover:-translate-y-2 group-hover:rotate-6">
+                           {section.tag}
+                        </span>
+                        <h2 className="font-serif leading-[0.85] tracking-tighter text-white whitespace-pre-line break-words
+                           text-[9vw] sm:text-[4vw] lg:text-[2.2vw] xl:text-[2.4vw]
+                        ">
+                           {section.title}
+                        </h2>
+                     </div>
+                     
+                     {/* Minimalist Line Transition */}
+                     <div className="flex items-center gap-4 mt-2">
+                        <div className={`h-[1px] bg-white/40 transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]
+                          ${hoveredId === section.id ? 'w-16 bg-white opacity-100' : 'w-0 opacity-0'}
+                        `}></div>
+                        <ArrowRight className={`w-4 h-4 text-white transition-all duration-700 delay-100
+                          ${hoveredId === section.id ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}
+                        `} />
+                     </div>
+                  </div>
+                </div>
+              </a>
+            </div>
           ))}
         </div>
       </main>
