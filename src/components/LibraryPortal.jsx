@@ -154,8 +154,11 @@ const LibraryPortal = () => {
                 allow="autoplay; encrypted-media"
                 frameBorder="0"
               ></iframe>
-              <div className="absolute inset-0 bg-black/40"></div>
-           </div>
+               <div className="absolute inset-0 bg-black/40"></div>
+               {/* Siri-style Ambient Color Wash for Hero */}
+               <div className="absolute top-1/2 left-0 w-[40%] h-[40%] bg-[radial-gradient(circle_at_left,rgba(0,255,255,0.15)_0%,transparent_70%)] blur-[200px] animate-pulse-slow"></div>
+               <div className="absolute top-1/2 right-0 w-[40%] h-[40%] bg-[radial-gradient(circle_at_right,rgba(255,0,255,0.12)_0%,transparent_70%)] blur-[220px] animate-pulse-slow delay-700"></div>
+            </div>
         </div>
 
         <div className="relative z-10 text-center flex flex-col items-center select-none w-full max-w-[100vw] overflow-hidden">
@@ -204,16 +207,16 @@ const LibraryPortal = () => {
                 <div 
                   key={i}
                   data-depth={sc.depth}
-                  className={`parallax-scribble absolute z-20 ${sc.pos} pointer-events-none opacity-30 group-hover:opacity-60 transition-opacity duration-700 md:block hidden`}
+                  className={`parallax-scribble absolute z-20 ${sc.pos} pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity duration-1000 md:block hidden`}
                 >
                   <span className={`font-['Caveat'] text-white whitespace-nowrap
                     ${sc.style === 'circle' ? 'border border-white/40 rounded-[50%] px-4 py-1 rotate-[-5deg]' : ''}
                     ${sc.style === 'underline' ? 'border-b border-white/40 px-2' : ''}
                     ${sc.style === 'double-underline' ? 'border-b-2 border-double border-white/40 px-2' : ''}
                     ${sc.style === 'tilt' ? 'rotate-[-12deg] block' : ''}
-                    ${sc.style === 'large-curve' ? 'text-4xl rotate-[5deg] block border-b-2 border-white/20 pb-2 rounded-[40%]' : ''}
-                    ${sc.style === 'italic' ? 'italic opacity-60' : ''}
-                    text-base lg:text-lg
+                    ${sc.style === 'large-curve' ? 'text-4xl lg:text-5xl rotate-[5deg] block border-b-2 border-white/40 pb-2 rounded-[40%]' : ''}
+                    ${sc.style === 'italic' ? 'italic opacity-80 font-bold' : ''}
+                    text-lg lg:text-xl font-bold
                   `}>
                     {sc.text}
                     {sc.style === 'arrow-right' && <span className="ml-2">→</span>}

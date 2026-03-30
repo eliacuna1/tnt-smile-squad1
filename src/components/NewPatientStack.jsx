@@ -123,15 +123,15 @@ export default function NewPatientStack() {
               <div 
                 key={i}
                 data-depth={sc.depth}
-                className={`parallax-scribble absolute z-20 ${sc.pos} pointer-events-none opacity-20 group-hover:opacity-60 transition-opacity duration-1000 md:block hidden`}
+                className={`parallax-scribble absolute z-20 ${sc.pos} pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity duration-1000 md:block hidden`}
               >
                 <span className={`font-['Caveat'] text-white whitespace-nowrap
                   ${sc.style === 'circle-big' ? 'border-2 border-white/40 rounded-[50%] px-10 py-4 rotate-[-5deg] text-3xl' : ''}
                   ${sc.style === 'underline' ? 'border-b border-white/50 px-2' : ''}
                   ${sc.style === 'underline-clean' ? 'border-b border-white/20 px-4 pb-1' : ''}
                   ${sc.style === 'italic' ? 'italic opacity-60 text-lg' : ''}
-                  ${sc.style === 'italic-dim' ? 'italic opacity-40 text-base' : ''}
-                  text-base lg:text-xl
+                  ${sc.style === 'italic-dim' ? 'italic opacity-60 text-base' : ''}
+                  text-lg lg:text-xl font-bold
                 `}>
                   {sc.text}
                   {sc.style === 'arrow-left' && <span className="ml-3">←</span>}

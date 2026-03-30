@@ -143,13 +143,13 @@ export default function TemplateStack() {
               <div 
                 key={i}
                 data-depth={sc.depth}
-                className={`parallax-scribble absolute z-[60] ${sc.pos} pointer-events-none opacity-40 md:block hidden`}
+                className={`parallax-scribble absolute z-[60] ${sc.pos} pointer-events-none opacity-70 group-hover:opacity-100 transition-opacity duration-1000 md:block hidden`}
               >
                 <span className={`font-['Caveat'] text-white whitespace-nowrap
                   ${sc.style === 'circle' ? 'border border-white/40 rounded-[50%] px-4 py-1 rotate-[-5deg]' : ''}
                   ${sc.style === 'underline' ? 'border-b border-white/50 px-2' : ''}
-                  ${sc.style === 'italic' ? 'italic opacity-60' : ''}
-                  text-lg lg:text-xl
+                  ${sc.style === 'italic' ? 'italic opacity-80 font-bold' : ''}
+                  text-lg lg:text-3xl font-bold
                 `}>
                   {sc.text}
                   {sc.text.includes('→') && <span className="ml-2">→</span>}

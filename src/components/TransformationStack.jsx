@@ -112,14 +112,14 @@ export default function TransformationStack() {
               <div 
                 key={i}
                 data-depth={sc.depth}
-                className={`parallax-scribble absolute z-20 ${sc.pos} pointer-events-none opacity-20 group-hover:opacity-70 transition-opacity duration-1000 md:block hidden`}
+                className={`parallax-scribble absolute z-20 ${sc.pos} pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity duration-1000 md:block hidden`}
               >
                 <span className={`font-['Caveat'] text-white whitespace-nowrap
                   ${sc.style === 'large-text' ? 'text-4xl px-4 rotate-[-4deg] opacity-80' : ''}
                   ${sc.style === 'underline' ? 'border-b border-white/50 px-2' : ''}
                   ${sc.style === 'italic' ? 'italic opacity-60 text-lg' : ''}
-                  ${sc.style === 'italic-dim' ? 'italic opacity-30 text-base' : ''}
-                  text-lg lg:text-2xl
+                  ${sc.style === 'italic-dim' ? 'italic opacity-60 text-base font-bold' : ''}
+                  text-lg lg:text-3xl font-bold
                 `}>
                   {sc.text}
                   {sc.text === 'Mom decision' && <span className="ml-3">→</span>}
