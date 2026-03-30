@@ -79,17 +79,17 @@ const LibraryPortal = () => {
     <div ref={containerRef} className="min-h-screen bg-black text-white font-inter selection:bg-white selection:text-black">
       {/* Premium Hero Section */}
       <header className="relative h-[90svh] flex flex-col items-center justify-center px-6 overflow-hidden">
-        {/* Cinematic Video Background Container */}
+        {/* Full-screen Background Video - Full Color Always */}
         <div className="absolute inset-0 z-0 pointer-events-none">
-           <div className="relative w-full h-full">
+           <div className="relative w-full h-full overflow-hidden">
               <iframe 
-                src="https://www.youtube.com/embed/2MRmV2ePfUQ?autoplay=1&mute=1&loop=1&playlist=2MRmV2ePfUQ&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&iv_load_policy=3"
-                className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 pointer-events-none brightness-[0.5] saturate-0 scale-[1.05]"
+                src="https://www.youtube.com/embed/E5vGhT6HT9A?autoplay=1&mute=1&loop=1&playlist=E5vGhT6HT9A&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&iv_load_policy=3"
+                className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 pointer-events-none scale-[1.1] brightness-[0.6] transition-opacity duration-1000"
                 allow="autoplay; encrypted-media"
                 frameBorder="0"
               ></iframe>
-              {/* Solid dark overlay for premium focus */}
-              <div className="absolute inset-0 bg-black/60"></div>
+              {/* Subtle Dark Overlay */}
+              <div className="absolute inset-0 bg-black/40"></div>
            </div>
         </div>
 
