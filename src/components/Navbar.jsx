@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 
-export default function Navbar({ onBack }) {
+export default function Navbar({ onBack, currentView }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isScrollingUp, setIsScrollingUp] = useState(true);
   const lastScrollY = useRef(0);
@@ -24,11 +24,32 @@ export default function Navbar({ onBack }) {
 
   const isShrunk = isScrolled && !isScrollingUp;
 
+  // Custom links based on view
+  const getNavLinks = () => {
+    if (currentView === 'SMILE_SQUAD') {
+      return [
+        { label: 'The Reveal', href: '#hero' },
+        { label: 'Archive', href: '#stack' },
+        { label: 'Select', href: '#footer' }
+      ];
+    }
+    if (currentView === 'NEW_PATIENT_CAMPAIGNS') {
+      return [
+        { label: 'Creative Hub', href: '#hero' },
+        { label: 'Templates', href: '#stack' },
+        { label: 'Strategy', href: '#footer' }
+      ];
+    }
+    return [];
+  };
+
+  const navLinks = getNavLinks();
+
   return (
     <div className={`fixed top-6 left-1/2 -translate-x-1/2 z-[100] w-[95%] max-w-7xl flex flex-col items-center pointer-events-none transition-all duration-700`}>
       <div 
         className={`relative group pointer-events-auto transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]
-          ${isShrunk ? 'md:w-[180px]' : 'w-full'}
+          ${isShrunk ? 'md:w-[180px]' : (navLinks.length > 0 ? 'w-full' : 'w-auto px-4 md:px-10')}
           h-[60px] md:h-[72px]
         `}
       >
@@ -54,7 +75,7 @@ export default function Navbar({ onBack }) {
             
             {/* Logo & Back button Section */}
             <div className={`flex items-center gap-4 transition-all duration-700 w-full md:w-auto justify-center md:justify-start
-              ${isShrunk ? 'md:scale-90' : 'scale-100'}
+              ${isShrunk ? 'md:scale-90 px-0' : 'scale-100'}
             `}>
               {onBack && !isShrunk && (
                 <button 
@@ -77,16 +98,18 @@ export default function Navbar({ onBack }) {
             
             {/* Navigation Links */}
             <div className={`hidden md:flex items-center justify-center gap-10 font-mono text-[10px] uppercase tracking-[0.3em] text-white/70 transition-all duration-700
-              ${isShrunk ? 'md:opacity-0 md:absolute md:translate-y-10 md:pointer-events-none' : 'opacity-100 translate-y-0'}
+              ${isShrunk || navLinks.length === 0 ? 'md:opacity-0 md:absolute md:translate-y-10 md:pointer-events-none' : 'opacity-100 translate-y-0'}
             `}>
-              <a href="#hero" className="hover:text-white hover:scale-110 transition-all duration-500 whitespace-nowrap">The Reveal</a>
-              <a href="#stack" className="hover:text-white hover:scale-110 transition-all duration-500 whitespace-nowrap">Archive</a>
-              <a href="#footer" className="hover:text-white hover:scale-110 transition-all duration-500 whitespace-nowrap">Select</a>
+              {navLinks.map((link) => (
+                <a key={link.label} href={link.href} className="hover:text-white hover:scale-110 transition-all duration-500 whitespace-nowrap">
+                  {link.label}
+                </a>
+              ))}
             </div>
 
             {/* Desktop Launch Button (Hidden when shrunk to stay minimal) */}
             <button className={`hidden md:block px-5 py-2 rounded-full border border-plasma-purple/50 text-plasma-purple font-mono text-[10px] uppercase tracking-widest hover:bg-plasma-purple hover:text-white transition-all duration-500
-              ${isShrunk ? 'scale-0 opacity-0 pointer-events-none' : 'scale-100 opacity-100'}
+              ${isShrunk || currentView === 'LIBRARY' ? 'scale-0 opacity-0 pointer-events-none' : 'scale-100 opacity-100'}
             `}>
               Launch
             </button>

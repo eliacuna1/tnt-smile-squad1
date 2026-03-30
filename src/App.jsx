@@ -12,16 +12,27 @@ import TemplateStack from './components/TemplateStack';
 import MatrixFooter from './components/MatrixFooter';
 import Footer from './components/Footer';
 import LibraryPortal from './components/LibraryPortal';
+import NewPatientHero from './components/NewPatientHero';
+import NewPatientStack from './components/NewPatientStack';
 
 function App() {
-  const [showCampaign, setShowCampaign] = useState(false);
+  const [currentView, setCurrentView] = useState('LIBRARY'); // 'LIBRARY', 'SMILE_SQUAD', 'NEW_PATIENT_CAMPAIGNS'
   const appRef = useRef(null);
 
-  if (!showCampaign) {
+  const resetToLibrary = () => {
+    window.scrollTo(0, 0);
+    setCurrentView('LIBRARY');
+  };
+
+  if (currentView === 'LIBRARY') {
     return (
       <main ref={appRef} className="relative w-full min-h-screen bg-obsidian text-ghost selection:bg-plasma-pink selection:text-obsidian overflow-x-hidden">
         <NoiseOverlay />
-        <LibraryPortal onLaunchCampaign={() => setShowCampaign(true)} />
+        <Navbar currentView={currentView} />
+        <LibraryPortal 
+          onLaunchCampaign={() => setCurrentView('SMILE_SQUAD')} 
+          onNewPatientCampaigns={() => setCurrentView('NEW_PATIENT_CAMPAIGNS')}
+        />
       </main>
     )
   }
@@ -29,18 +40,23 @@ function App() {
   return (
     <main ref={appRef} className="relative w-full min-h-screen bg-obsidian text-ghost selection:bg-plasma-pink selection:text-obsidian overflow-x-hidden animate-fade-in">
       <NoiseOverlay />
-      <Navbar onBack={() => setShowCampaign(false)} />
+      <Navbar onBack={resetToLibrary} currentView={currentView} />
       
-      {/* Section A: The Reveal */}
-      <Hero />
-      
-      {/* Section B: The Template Protocol */}
-      <TemplateStack />
-      
-      {/* Section C: The Matrix Footer */}
-      <MatrixFooter />
+      {currentView === 'SMILE_SQUAD' && (
+        <>
+          <Hero />
+          <TemplateStack />
+          <MatrixFooter />
+        </>
+      )}
 
-      {/* Final Branding Section */}
+      {currentView === 'NEW_PATIENT_CAMPAIGNS' && (
+        <>
+          <NewPatientHero />
+          <NewPatientStack />
+        </>
+      )}
+      
       <Footer />
     </main>
   );

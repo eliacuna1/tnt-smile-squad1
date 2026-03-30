@@ -30,11 +30,11 @@ const LibraryPortal = ({ onLaunchCampaign }) => {
     {
       id: 'new-patient',
       tag: 'High Velocity',
-      title: 'New Patient',
+      title: 'New Patient Campaigns',
       description: 'High-converting AI ad templates designed to drive consistent new patient flow. Built to capture attention and turn visitors into booked appointments.',
       image: '/assets/new-patients.png',
       color: 'blue',
-      link: null
+      link: 'new-patient-campaigns'
     },
     {
       id: 'emergency',
@@ -99,7 +99,10 @@ const LibraryPortal = ({ onLaunchCampaign }) => {
             <div
               key={section.id}
               data-id={section.id}
-              onClick={() => section.link === 'smile-squad' && onLaunchCampaign()}
+              onClick={() => {
+                if (section.link === 'smile-squad') onLaunchCampaign();
+                if (section.link === 'new-patient-campaigns') onNewPatientCampaigns();
+              }}
               className={`library-card relative aspect-[16/10] rounded-[32px] overflow-hidden border border-white/10 bg-white/5 cursor-pointer 
                           transition-all duration-[800ms] cubic-bezier(0.16,1,0.3,1) group
                           ${visibleCards.has(section.id) ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}

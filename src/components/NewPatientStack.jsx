@@ -1,0 +1,161 @@
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
+const templates = [
+  { 
+    id: 'love-your-dentist',
+    title: "LOVE YOUR DENTIST?", 
+    subtitle: "An emotional, curiosity-driven campaign focused on patient experience, trust, and why people enjoy coming to your practice.", 
+    image: "./assets/love-your-dentist.png",
+    borderColor: "border-plasma-pink/30",
+    shadowColor: "shadow-[0_0_30px_rgba(255,0,127,0.1)]",
+    textColor: "text-plasma-pink",
+    stats: { type: "EMOTIONAL", confidence: "96.4%" }
+  },
+  { 
+    id: 'free-visits-eng',
+    title: "FREE VISITS ENG", 
+    subtitle: "English version of the Free Visits campaign, focused on value, accessibility, and converting interest into booked appointments.", 
+    image: "./assets/free-visits-eng.png",
+    borderColor: "border-plasma-blue/30",
+    shadowColor: "shadow-[0_0_30px_rgba(0,240,255,0.1)]",
+    textColor: "text-plasma-blue",
+    stats: { type: "ACQUISITION", confidence: "98.8%" }
+  },
+  { 
+    id: 'free-visitas-espl',
+    title: "FREE VISITAS ESPL", 
+    subtitle: "Spanish and Spanglish focused campaign designed to connect with Spanish-speaking audiences while maintaining high performance.", 
+    image: "./assets/free-visitas-espl.png",
+    borderColor: "border-plasma-green/30",
+    shadowColor: "shadow-[0_0_30px_rgba(0,255,102,0.1)]",
+    textColor: "text-plasma-green",
+    stats: { type: "REACH", confidence: "97.2%" }
+  },
+  { 
+    id: 'healthy-habits',
+    title: "Healthy Habits Checklist", 
+    subtitle: "Educational and family-friendly campaign focused on preventive care, value-driven messaging, and long-term trust.", 
+    image: "./assets/healthy-habits.png",
+    borderColor: "border-plasma-orange/30",
+    shadowColor: "shadow-[0_0_30px_rgba(255,85,0,0.1)]",
+    textColor: "text-plasma-orange",
+    stats: { type: "EDUCATION", confidence: "99.1%" }
+  }
+];
+
+export default function NewPatientStack() {
+  const containerRef = useRef(null);
+  
+  useEffect(() => {
+    let ctx = gsap.context(() => {
+      const cards = gsap.utils.toArray('.template-card');
+      
+      let mm = gsap.matchMedia();
+
+      mm.add("(min-width: 768px)", () => {
+        cards.forEach((card, i) => {
+          ScrollTrigger.create({
+            trigger: card,
+            start: `top top+=80`, 
+            endTrigger: ".template-stack-container",
+            end: `bottom bottom-=${(cards.length - i) * 20}`,
+            pin: true,
+            pinSpacing: false,
+            scrub: true,
+          });
+
+          if (i > 0) {
+            gsap.to(cards[i - 1], {
+              scale: 0.95 - (0.05 * i),
+              opacity: 0.5,
+              y: -20,
+              scrollTrigger: {
+                trigger: card,
+                start: 'top center',
+                end: 'top top+=80',
+                scrub: true,
+              }
+            });
+          }
+        });
+      });
+
+      mm.add("(max-width: 767px)", () => {
+        cards.forEach((card) => {
+          gsap.from(card, {
+            opacity: 0,
+            y: 30,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top bottom-=50",
+              toggleActions: "play none none reverse"
+            }
+          });
+        });
+      });
+      
+    }, containerRef);
+    
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section ref={containerRef} id="stack" className="relative w-full py-24 pb-[40vh] z-20 bg-obsidian">
+      
+      <div className="text-center mb-16 max-w-4xl mx-auto px-6">
+        <h3 className="text-5xl md:text-8xl font-good-castyll text-ghost mb-6 tracking-tight">Campaign Hub</h3>
+        <p className="text-ghost/70 font-sans text-lg max-w-xl mx-auto leading-relaxed">
+          High-performance acquisition strategies built to capture interest and drive consistent patient volume.
+        </p>
+      </div>
+
+      <div className="template-stack-container relative w-full max-w-5xl mx-auto px-4 md:px-8">
+        {templates.map((temp, index) => (
+          <div 
+            key={temp.id} 
+            className={`template-card relative w-full min-h-[70vh] mb-[10vh] flex flex-col md:flex-row items-center rounded-3xl overflow-hidden bg-obsidian/90 backdrop-blur-3xl border border-t-white/10 ${temp.borderColor} ${temp.shadowColor} origin-top`}
+            style={{ zIndex: index * 10 }}
+          >
+            {/* Visual Column - Reflected 9:16 Style */}
+            <div className="w-full md:w-1/2 flex items-center justify-center p-6 md:p-12 min-h-[45vh] py-10 lg:py-0 lg:h-full border-b md:border-b-0 md:border-r border-white/5 bg-black/40">
+              <div className="relative w-full max-w-[280px] md:max-w-[320px] aspect-[9/16] rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10 mx-auto bg-obsidian group">
+                <img 
+                   src={temp.image} 
+                   alt={temp.title}
+                   className="absolute top-1/2 left-1/2 w-[135%] h-[135%] max-w-none -translate-x-1/2 -translate-y-1/2 object-cover transition-transform duration-[1.2s] ease-out group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-obsidian/80 via-transparent to-transparent opacity-60"></div>
+              </div>
+            </div>
+
+            {/* Content Column */}
+            <div className="w-full md:w-1/2 p-6 md:p-16 flex flex-col justify-center text-left">
+              <span className={`text-[10px] font-mono uppercase tracking-[0.3em] font-bold ${temp.textColor} mb-4 block`}>
+                Campaign Protocol {index + 1}
+              </span>
+              <h3 className="text-4xl md:text-6xl font-good-castyll text-white tracking-tight leading-[0.9] mb-6">
+                {temp.title}
+              </h3>
+              <p className="text-base md:text-lg text-ghost/70 font-sans font-light leading-relaxed mb-10">
+                {temp.subtitle}
+              </p>
+              
+              <div className="border-t border-white/10 pt-6 mt-auto">
+                <div>
+                  <div className="text-[10px] font-mono text-ghost/40 uppercase tracking-widest mb-2">Strategy Type</div>
+                  <div className="font-sans text-xl font-bold tracking-tight text-ghost">{temp.stats.type}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
