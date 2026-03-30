@@ -50,11 +50,11 @@ export default function NewPatientStack() {
 
   return (
     <div ref={containerRef} className="w-full bg-black min-h-screen pt-32 pb-40 px-6 md:px-12">
-      {/* Cinematic Header for Context */}
-      <div className="max-w-7xl mx-auto mb-20 text-center">
-         <h1 className="font-bebas text-6xl md:text-8xl text-white tracking-widest uppercase mb-4">NEW PATIENT CAMPAIGNS</h1>
-         <p className="text-white/40 text-sm md:text-base font-light tracking-[0.2em] uppercase max-w-2xl mx-auto">
-            Interactive Video Repository
+      {/* New Patient Campaign Hub Header */}
+      <div className="max-w-4xl mx-auto mb-20 text-center px-6">
+         <h1 className="font-bebas text-6xl md:text-8xl text-white tracking-widest uppercase mb-6">NEW PATIENT CAMPAIGNS</h1>
+         <p className="text-white/80 text-sm md:text-lg font-light leading-relaxed max-w-2xl mx-auto">
+            AI-powered ad templates designed to generate new patients, increase engagement, and drive more booked appointments.
          </p>
       </div>
 
