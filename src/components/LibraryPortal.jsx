@@ -118,7 +118,7 @@ const LibraryPortal = () => {
     },
     {
       id: 'cosmetic',
-      title: 'ORTHO\nCAMPAIGNS',
+      title: 'ORTHO',
       tag: 'AESTHETIC',
       youtubeId: 'Cy2bMX54GHs',
       path: './transformation.html',
