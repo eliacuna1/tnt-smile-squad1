@@ -118,7 +118,7 @@ const LibraryPortal = () => {
     },
     {
       id: 'cosmetic',
-      title: 'SMILE\nTRANSFORMATION',
+      title: 'ORTHO\nCAMPAIGNS',
       tag: 'AESTHETIC',
       youtubeId: 'Cy2bMX54GHs',
       path: './transformation.html',
@@ -139,7 +139,7 @@ const LibraryPortal = () => {
   return (
     <div ref={containerRef} className="min-h-screen bg-black text-white font-inter selection:bg-white selection:text-black overflow-x-hidden">
       {/* Cinematic Hero */}
-      <header className="relative h-[95svh] flex flex-col items-center justify-center px-6 overflow-hidden">
+      <header className="relative h-[100svh] flex flex-col items-center justify-center px-6 overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none">
            <div className="relative w-full h-full overflow-hidden">
               <iframe 
