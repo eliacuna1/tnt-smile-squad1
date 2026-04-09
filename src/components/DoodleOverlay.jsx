@@ -105,11 +105,11 @@ function Doodle({ doodle, onComplete }) {
         <path 
           d={doodle.d} 
           fill="none" 
-          stroke="white" 
-          strokeWidth="3.5" 
+          stroke="rgba(255,255,255,0.7)" 
+          strokeWidth="1.5" 
           strokeLinecap="round" 
           strokeLinejoin="round"
-          className="drop-shadow-[0_0_15px_rgba(255,255,255,0.6)]"
+          className="drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]"
         />
         {doodle.text && (
           <text 

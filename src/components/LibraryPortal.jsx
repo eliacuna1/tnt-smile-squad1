@@ -18,7 +18,7 @@ const LibraryPortal = () => {
       
       // Draw in the scribbles
       gsap.fromTo('.scribble-path',
-        { opacity: 0, strokeDashoffset: 100 },
+        { opacity: 0, strokeDashoffset: 400 },
         { opacity: 0.8, strokeDashoffset: 0, duration: 1.8, ease: "power4.out", delay: 1.2 }
       );
 
@@ -131,14 +131,8 @@ const LibraryPortal = () => {
   ];
 
   const ScribbleUnderline = () => (
-    <svg className="absolute -bottom-4 -left-2 w-[110%] h-8 pointer-events-none overflow-visible opacity-80" viewBox="0 0 300 20">
-       <path className="scribble-path" d="M5,15 Q50,5 150,15 Q250,25 295,10" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" />
-    </svg>
-  );
-
-  const ScribbleCross = () => (
-    <svg className="absolute top-1/2 -left-4 w-[115%] h-full -translate-y-1/2 pointer-events-none overflow-visible opacity-40 mix-blend-overlay" viewBox="0 0 300 100">
-       <path className="scribble-path" d="M20,45 L280,55" fill="none" stroke="white" strokeWidth="4" strokeLinecap="round" opacity="0.8" />
+    <svg className="absolute -bottom-4 -left-2 w-[110%] h-8 pointer-events-none overflow-visible opacity-70" viewBox="0 0 300 20">
+       <path className="scribble-path" style={{strokeDasharray: 400}} d="M5,15 Q50,5 150,15 Q250,25 295,10" fill="none" stroke="white" strokeWidth="1" strokeLinecap="round" />
     </svg>
   );
 
@@ -163,7 +157,10 @@ const LibraryPortal = () => {
 
         <div className="relative z-10 text-center flex flex-col items-center select-none w-full max-w-[100vw] overflow-hidden">
           <h1 className="hero-designer font-serif text-[clamp(3.5rem,15vw,10rem)] leading-[0.85] tracking-tighter text-white mb-10 [perspective:1000px] w-full px-4">
-            AI <span className="relative inline-block mx-2 md:mx-4">
+            <span className="relative inline-block">
+              AI
+            </span>
+            <span className="relative inline-block mx-2 md:mx-4">
               <span className="font-['Mr_Dafoe'] italic font-normal text-[1.1em] opacity-80 text-white block transform translate-y-2 -rotate-3 scale-110">
                  Creative
               </span>
@@ -212,11 +209,11 @@ const LibraryPortal = () => {
                   <span className={`font-['Caveat'] text-white whitespace-nowrap
                     ${sc.style === 'circle' ? 'border border-white/40 rounded-[50%] px-4 py-1 rotate-[-5deg]' : ''}
                     ${sc.style === 'underline' ? 'border-b border-white/40 px-2' : ''}
-                    ${sc.style === 'double-underline' ? 'border-b-2 border-double border-white/40 px-2' : ''}
+                    ${sc.style === 'double-underline' ? 'border-b border-double border-white/40 px-2' : ''}
                     ${sc.style === 'tilt' ? 'rotate-[-12deg] block' : ''}
-                    ${sc.style === 'large-curve' ? 'text-4xl lg:text-5xl rotate-[5deg] block border-b-2 border-white/40 pb-2 rounded-[40%]' : ''}
-                    ${sc.style === 'italic' ? 'italic opacity-80 font-bold' : ''}
-                    text-lg lg:text-xl font-bold
+                    ${sc.style === 'large-curve' ? 'text-4xl lg:text-5xl rotate-[5deg] block border-b border-white/40 pb-2 rounded-[40%]' : ''}
+                    ${sc.style === 'italic' ? 'italic opacity-60 font-light' : ''}
+                    text-base lg:text-lg font-light opacity-70 tracking-wide
                   `}>
                     {sc.text}
                     {sc.style === 'arrow-right' && <span className="ml-2">→</span>}

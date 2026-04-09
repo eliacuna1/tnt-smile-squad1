@@ -35,7 +35,7 @@ export default function Navbar() {
     { label: 'New Patient', href: './new-patient.html' },
     { label: 'Emergency', href: './emergency.html' },
     { label: 'Implants', href: './implants.html' },
-    { label: 'Smile Transformation', href: './transformation.html' }
+    { label: 'Ortho', href: './transformation.html' }
   ];
 
   return (

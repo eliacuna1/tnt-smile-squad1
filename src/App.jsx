@@ -14,7 +14,6 @@ import TemplateStack from './components/TemplateStack'; // Character Cards for I
 import CosmeticHero from './components/CosmeticHero';
 import CosmeticStack from './components/CosmeticStack';
 import MatrixFooter from './components/MatrixFooter';
-import DoodleOverlay from './components/DoodleOverlay';
 import EdgeGlow from './components/EdgeGlow';
 
 function ScrollToTop() {

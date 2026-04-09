@@ -1,0 +1,129 @@
+.siri-glow {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.siri-glow__edge {
+  position: absolute;
+}
+
+/* Top edge glow */
+.siri-glow__top {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(100, 149, 237, 0.0) 10%,
+    rgba(100, 149, 237, 0.8) 25%,
+    rgba(138, 43, 226, 0.9) 40%,
+    rgba(0, 210, 255, 0.8) 55%,
+    rgba(138, 43, 226, 0.6) 70%,
+    transparent 90%
+  );
+  box-shadow:
+    0 0 15px 3px rgba(100, 149, 237, 0.4),
+    0 0 40px 8px rgba(138, 43, 226, 0.2),
+    0 0 80px 15px rgba(0, 210, 255, 0.1);
+  animation: glowSlideH 4s ease-in-out infinite alternate;
+}
+
+/* Bottom edge glow */
+.siri-glow__bottom {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(0, 210, 255, 0.0) 15%,
+    rgba(0, 210, 255, 0.7) 35%,
+    rgba(138, 43, 226, 0.9) 50%,
+    rgba(100, 149, 237, 0.7) 65%,
+    rgba(0, 210, 255, 0.5) 80%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 15px 3px rgba(0, 210, 255, 0.4),
+    0 0 40px 8px rgba(138, 43, 226, 0.2),
+    0 0 80px 15px rgba(100, 149, 237, 0.1);
+  animation: glowSlideH 5s ease-in-out infinite alternate-reverse;
+}
+
+/* Right edge glow */
+.siri-glow__right {
+  top: 0;
+  right: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(138, 43, 226, 0.0) 10%,
+    rgba(138, 43, 226, 0.8) 30%,
+    rgba(0, 210, 255, 0.9) 50%,
+    rgba(100, 149, 237, 0.7) 70%,
+    rgba(138, 43, 226, 0.5) 85%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 15px 3px rgba(138, 43, 226, 0.4),
+    0 0 40px 8px rgba(0, 210, 255, 0.2),
+    0 0 80px 15px rgba(100, 149, 237, 0.1);
+  animation: glowSlideV 4.5s ease-in-out infinite alternate;
+}
+
+/* Left edge glow */
+.siri-glow__left {
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(100, 149, 237, 0.0) 15%,
+    rgba(100, 149, 237, 0.7) 35%,
+    rgba(138, 43, 226, 0.9) 55%,
+    rgba(0, 210, 255, 0.7) 75%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 15px 3px rgba(100, 149, 237, 0.4),
+    0 0 40px 8px rgba(138, 43, 226, 0.2),
+    0 0 80px 15px rgba(0, 210, 255, 0.1);
+  animation: glowSlideV 5.5s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes glowSlideH {
+  0% {
+    transform: translateX(-30%);
+    opacity: 0.6;
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(30%);
+    opacity: 0.6;
+    filter: hue-rotate(40deg);
+  }
+}
+
+@keyframes glowSlideV {
+  0% {
+    transform: translateY(-30%);
+    opacity: 0.6;
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(30%);
+    opacity: 0.6;
+    filter: hue-rotate(40deg);
+  }
+}

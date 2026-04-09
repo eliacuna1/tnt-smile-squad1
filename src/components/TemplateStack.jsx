@@ -147,9 +147,10 @@ export default function TemplateStack() {
               >
                 <span className={`font-['Caveat'] text-white whitespace-nowrap
                   ${sc.style === 'circle' ? 'border border-white/40 rounded-[50%] px-4 py-1 rotate-[-5deg]' : ''}
-                  ${sc.style === 'underline' ? 'border-b border-white/50 px-2' : ''}
-                  ${sc.style === 'italic' ? 'italic opacity-80 font-bold' : ''}
-                  text-lg lg:text-3xl font-bold
+                  ${sc.style === 'large-text' ? 'text-2xl px-4 rotate-[-4deg] opacity-70' : ''}
+                  ${sc.style === 'underline' ? 'border-b border-white/40 px-2' : ''}
+                  ${sc.style === 'italic' ? 'italic opacity-60 font-light' : ''}
+                  text-base lg:text-xl font-light opacity-70 tracking-wide
                 `}>
                   {sc.text}
                   {sc.text.includes('→') && <span className="ml-2">→</span>}

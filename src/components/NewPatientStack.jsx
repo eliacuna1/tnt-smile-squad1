@@ -126,12 +126,12 @@ export default function NewPatientStack() {
                 className={`parallax-scribble absolute z-20 ${sc.pos} pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity duration-1000 md:block hidden`}
               >
                 <span className={`font-['Caveat'] text-white whitespace-nowrap
-                  ${sc.style === 'circle-big' ? 'border-2 border-white/40 rounded-[50%] px-10 py-4 rotate-[-5deg] text-3xl' : ''}
-                  ${sc.style === 'underline' ? 'border-b border-white/50 px-2' : ''}
+                  ${sc.style === 'circle-big' ? 'border border-white/40 rounded-[50%] px-10 py-4 rotate-[-5deg] text-2xl' : ''}
+                  ${sc.style === 'underline' ? 'border-b border-white/40 px-2' : ''}
                   ${sc.style === 'underline-clean' ? 'border-b border-white/20 px-4 pb-1' : ''}
-                  ${sc.style === 'italic' ? 'italic opacity-60 text-lg' : ''}
-                  ${sc.style === 'italic-dim' ? 'italic opacity-60 text-base' : ''}
-                  text-lg lg:text-xl font-bold
+                  ${sc.style === 'italic' ? 'italic opacity-60 font-light' : ''}
+                  ${sc.style === 'italic-dim' ? 'italic opacity-60 text-base font-light' : ''}
+                  text-base lg:text-lg font-light opacity-70 tracking-wide
                 `}>
                   {sc.text}
                   {sc.style === 'arrow-left' && <span className="ml-3">←</span>}
@@ -154,7 +154,7 @@ export default function NewPatientStack() {
                   <div className="w-full h-full relative">
                     <iframe
                       src={`https://www.youtube.com/embed/${camp.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${camp.youtubeId}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&playsinline=1`}
-                      className="w-full h-full aspect-[9/16] pointer-events-none scale-x-125 md:scale-x-150"
+                      className="w-full h-full pointer-events-none scale-[1.3] md:scale-[1.4] origin-center"
                       allow="autoplay; encrypted-media"
                       frameBorder="0"
                     />

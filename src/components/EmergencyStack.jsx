@@ -93,10 +93,10 @@ export default function EmergencyStack() {
             className={`parallax-scribble absolute z-20 ${sc.pos} pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity duration-1000 md:block hidden`}
           >
             <span className={`font-['Caveat'] text-white whitespace-nowrap
-              ${sc.style === 'circle' ? 'border-2 border-white/40 rounded-[50%] px-8 py-4 rotate-[-5deg] text-2xl' : ''}
-              ${sc.style === 'underline' ? 'border-b border-white/50 px-2' : ''}
-              ${sc.style === 'italic-dim' ? 'italic opacity-60 text-base font-bold' : ''}
-              text-lg lg:text-5xl font-bold
+              ${sc.style === 'circle' ? 'border border-white/40 rounded-[50%] px-8 py-4 rotate-[-5deg] text-2xl' : ''}
+              ${sc.style === 'underline' ? 'border-b border-white/40 px-2' : ''}
+              ${sc.style === 'italic-dim' ? 'italic opacity-60 text-base font-light' : ''}
+              text-base lg:text-3xl font-light opacity-70 tracking-wide
             `}>
               {sc.text}
               {sc.text === 'diversity' && <span className="ml-3">↓</span>}

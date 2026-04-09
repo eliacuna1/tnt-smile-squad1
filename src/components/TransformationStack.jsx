@@ -10,7 +10,7 @@ const campaigns = [
     description: "Family-focused campaigns that connect with both parents and teens, remove cost barriers, and position your practice as the trusted choice for orthodontic care.",
     scribbles: [
       { text: 'Mom decision', pos: 'top-[-50px] left-0', style: 'default', depth: 0.1 },
-      { text: 'Teen confidence', pos: 'top-[10%] left-[-110px]', style: 'italic', depth: 0.2 },
+      { text: 'Teen confidence', pos: 'top-[10%] left-[-110px]', style: 'arrow-right-from-mom', depth: 0.2 },
       { text: 'MassHealth', pos: 'bottom-[15%] right-[-60px]', style: 'underline', depth: 0.3 }
     ]
   },
@@ -21,7 +21,8 @@ const campaigns = [
     description: "Lifestyle-driven campaigns that tap into confidence and appearance to drive high-intent cosmetic treatment demand.",
     scribbles: [
       { text: 'Confidence', pos: 'top-[-60px] right-0', style: 'default', depth: 0.2 },
-      { text: 'Glow up', pos: 'top-[30%] right-[-100px]', style: 'large-text', depth: 0.15 },
+      { text: 'Glow up', pos: 'top-[30%] right-[-100px]', style: 'default', depth: 0.15 },
+      { text: 'First impression', pos: 'top-[10%] left-[-110px]', style: 'italic', depth: 0.2 },
       { text: 'Lifestyle', pos: 'bottom-[-40px] left-0', style: 'underline', depth: 0.2 }
     ]
   },
@@ -32,8 +33,9 @@ const campaigns = [
     description: "High-margin campaigns that showcase in-house capabilities, increase case acceptance, and position your practice as efficient and advanced.",
     scribbles: [
       { text: 'In-house', pos: 'top-[-50px] left-4', style: 'default', depth: 0.1 },
-      { text: 'High margin', pos: 'bottom-[-60px] right-0', style: 'underline', depth: 0.25 },
-      { text: 'Retention play', pos: 'top-[20%] right-[-120px]', style: 'italic-dim', depth: 0.3 }
+      { text: 'Fast turnaround', pos: 'top-[20%] right-[-140px]', style: 'default', depth: 0.3 },
+      { text: 'High margin', pos: 'bottom-[15%] left-[-80px]', style: 'underline', depth: 0.25 },
+      { text: 'Retention play', pos: 'bottom-[-40px] right-0', style: 'italic-dim', depth: 0.3 }
     ]
   }
 ];
@@ -92,10 +94,9 @@ export default function TransformationStack() {
   return (
     <div ref={containerRef} className="w-full bg-black min-h-screen pt-40 pb-60 px-8 md:px-16 overflow-x-hidden">
       {/* Transformation Page Header (Designer Serif) */}
-      <div className="max-w-6xl mx-auto mb-20 md:mb-40 text-center px-4">
-         <h1 className="hero-designer font-serif text-[clamp(2.8rem,14vw,8vw)] leading-[0.85] tracking-tighter text-white mb-8">
-            SMILE <br/>
-            <span className="italic font-light opacity-60 text-white/80">Transformation</span>
+      <div className="max-w-6xl mx-auto mb-20 md:mb-40 text-center px-4 overflow-visible pb-4">
+         <h1 className="hero-designer font-serif text-5xl sm:text-7xl lg:text-[8rem] leading-[1] text-white mb-8">
+            ORTHO
          </h1>
          <p className="text-white/80 text-sm md:text-xl font-light leading-relaxed max-w-3xl mx-auto px-4">
             High-converting campaigns designed to promote aesthetic treatments, boost confidence, and increase high-value patient bookings.
@@ -114,15 +115,16 @@ export default function TransformationStack() {
                 data-depth={sc.depth}
                 className={`parallax-scribble absolute z-20 ${sc.pos} pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity duration-1000 md:block hidden`}
               >
-                <span className={`font-['Caveat'] text-white whitespace-nowrap
-                  ${sc.style === 'large-text' ? 'text-4xl px-4 rotate-[-4deg] opacity-80' : ''}
-                  ${sc.style === 'underline' ? 'border-b border-white/50 px-2' : ''}
-                  ${sc.style === 'italic' ? 'italic opacity-60 text-lg' : ''}
-                  ${sc.style === 'italic-dim' ? 'italic opacity-60 text-base font-bold' : ''}
-                  text-lg lg:text-3xl font-bold
+                  <span className={`font-['Caveat'] text-white whitespace-nowrap
+                  ${sc.style === 'large-text' ? 'text-2xl px-4 rotate-[-4deg] opacity-70' : ''}
+                  ${sc.style === 'underline' ? 'border-b border-white/40 px-2' : ''}
+                  ${sc.style === 'italic' ? 'italic opacity-60 text-base font-light' : ''}
+                  ${sc.style === 'italic-dim' ? 'italic opacity-60 text-base font-light' : ''}
+                  text-base lg:text-xl font-light opacity-70 tracking-wide
                 `}>
+                  {sc.style === 'arrow-right-from-mom' && <span className="mr-3 opacity-60">←</span>}
                   {sc.text}
-                  {sc.text === 'Mom decision' && <span className="ml-3">→</span>}
+                  {sc.text === 'Mom decision' && <span className="ml-3 opacity-60">→</span>}
                 </span>
               </div>
             ))}
@@ -142,7 +144,7 @@ export default function TransformationStack() {
                   <div className="w-full h-full relative">
                     <iframe
                       src={`https://www.youtube.com/embed/${camp.youtubeId}?autoplay=1&mute=1&loop=1&playlist=${camp.youtubeId}&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&playsinline=1`}
-                      className="w-full h-full aspect-[9/16] pointer-events-none scale-x-125 md:scale-x-150"
+                      className="w-full h-full pointer-events-none scale-[1.3] md:scale-[1.4] origin-center"
                       allow="autoplay; encrypted-media"
                       frameBorder="0"
                     />
